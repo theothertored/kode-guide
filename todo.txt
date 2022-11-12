@@ -1,0 +1,9 @@
+- mode switcher in left drawer so the mode can be changed from any position on the page
+- favicon
+- "pick up where you left off" prompt
+- double tap to copy example
+- open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
+- add some text explaining section links and copying examples
+
+DONE:
+- fix light mode heavy border being the same color as the light border
