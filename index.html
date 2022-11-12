@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
 
         <p>
             What even is kode? If you've used Kustom apps before, you probably are familiar with the formula editor window.
-            Everything you write in the formula editor field inside it is kode.
+            Everything you write in the Formula Editor field is kode.
         </p>
 
         <div class="image-container">
@@ -385,10 +385,10 @@
         <div class="snippet">
             <label class="ex-no subex first">
                 <span class="error">
-                    incorrect, the $ will be treated as the end of the kode part, making the 1000 plain text.
+                    incorrect, the <code>$</code> will be treated as the end of the kode part, making <code>1000</code> plain text and the final <code>$</code> an unclosed evaluated part.
                 </span>
             </label>
-            <code><span class="hl hl-1">Please give me </span><span class="hl hl-error">$</span>1000</code>
+            <code><span class="hl hl-false strong">$</span><span class="hl hl-false">Please give me </span><span class="hl hl-false strong">$</span>1000$</code>
         </div>
 
         <p>
@@ -469,7 +469,7 @@
         <div class="snippet">
 
             <label class="ex-no subex"></label>
-            <code><span class="hl hl-9">"weather"</span> <span class="hl hl-10">-</span> <span class="hl hl-6">"sunny"</span></code>
+            <code><span class="hl hl-1">"weather"</span> <span class="hl hl-2">-</span> <span class="hl hl-1">"sunny"</span></code>
 
             <label class="output"></label>
             <code>weather-sunny</code>
@@ -790,14 +790,14 @@
             <h4 id="boolean-intro">Introduction to boolean values</h4>
 
             <p>
-                A boolean value is either <span class="hl hl-true">true</span> (represented as <code class="hl hl-true">1</code> in Kustom)
-                or <span class="hl hl-false">false</span> (represented as <code class="hl hl-false">0</code> in Kustom).
+                A boolean value is either <span class="hl hl-true">true</span> (represented as <code class="hl-true">1</code> in Kustom)
+                or <span class="hl hl-false">false</span> (represented as <code class="hl-false">0</code> in Kustom).
             </p>
 
             <p>
                 In most cases, we'll obtain a boolean value from a function like <code>ai(isday)</code>
-                (<code class="hl hl-true">1</code> when it is day, <code class="hl hl-false">0</code> otherwise)
-                or <code>si(locked)</code> (<code class="hl hl-true">1</code> when the phone is locked, <code class="hl hl-false">0</code> otherwise),
+                (<code class="hl-true">1</code> when it is day, <code class="hl-false">0</code> otherwise)
+                or <code>si(locked)</code> (<code class="hl-true">1</code> when the phone is locked, <code class="hl-false">0</code> otherwise),
                 or, alternatively, from comparing two values using one of the comparison operators listed below:
             </p>
 
@@ -889,9 +889,9 @@
             </div>
 
             <p>
-                The function will return the second argument if the boolean given to it in the first argument is <code class="hl hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>,
+                The function will return the second argument if the boolean given to it in the first argument is <code class="hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>,
                 Otherwise, the function will return seemingly nothing - an empty string, which can be written as two quotation marks next to one another <span class="nowrap">(<code>""</code>)</span>.
-                In this example, <code>2 = 2</code> first evaluates to <code class="hl hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>:
+                In this example, <code>2 = 2</code> first evaluates to <code class="hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>:
             </p>
 
             <div class="snippet">
@@ -904,7 +904,7 @@
             </div>
 
             <p>
-                Since the condition argument is <code class="hl hl-true">1</code> (<span class="hl hl-true">true</span>), <code>if()</code> will return the value of the second argument:
+                Since the condition argument is <code class="hl-true">1</code> (<span class="hl hl-true">true</span>), <code>if()</code> will return the value of the second argument:
             </p>
 
             <div class="snippet">
@@ -913,7 +913,7 @@
             </div>
 
             <p>
-                If a third argument is provided to the call, it'll be returned when the condition is <code class="hl hl-false">0</code> (<span class="hl hl-false">false</span>):
+                If a third argument is provided to the call, it'll be returned when the condition is <code class="hl-false">0</code> (<span class="hl hl-false">false</span>):
             </p>
 
             <div class="snippet">
@@ -986,7 +986,7 @@
             </div>
 
             <p>
-                If all conditions turn out to be <span class="hl hl-false">false</span>, <code>if()</code> will return the <span class="hl hl-false">last argument</span>:
+                If all conditions turn out to be <span class="hl hl-false">false</span>, <code>if()</code> will return the <span class="hl hl-false strong">last argument</span>:
             </p>
 
             <div class="snippet">
@@ -999,11 +999,11 @@
                 <span class="hl hl-2">"second"</span>, 
                 <span class="hl hl-false">0</span>, 
                 <span class="hl hl-2">"third"</span>, 
-                <span class="hl hl-false">"none"</span>)
+                <span class="hl hl-false strong">"none"</span>)
             </code>
 
                 <label class="output"></label>
-                <code><span class="hl hl-false">none</span></code>
+                <code><span class="hl hl-false strong">none</span></code>
 
             </div>
 
@@ -1104,7 +1104,7 @@
                     <code>bi(level)</code> returns the current battery level (from <code>0</code> to <code>100</code>),
                 </li>
                 <li>
-                    <code>bi(charging)</code> returns <code class="hl hl-true">1</code> if the phone is charging and <code class="hl hl-false">0</code> otherwise,
+                    <code>bi(charging)</code> returns <code class="hl-true">1</code> if the phone is charging and <code class="hl-false">0</code> otherwise,
                 </li>
                 <li>
                     <code>#ff0000</code> is the color hex for red, <code>#ffffff</code> is the color hex for white.
@@ -1190,7 +1190,7 @@
             </div>
 
             <p>
-                There are some important differences in how <code>if()</code> treats values other than <code class="hl hl-true">1</code> and <code class="hl hl-false">0</code>
+                There are some important differences in how <code>if()</code> treats values other than <code class="hl-true">1</code> and <code class="hl-false">0</code>
                 and how <code>&</code> and <code>|</code> do it.
             </p>
 
@@ -1243,7 +1243,7 @@
             </div>
 
             <p>
-                If the arguments are not strings, but numbers, any number given to <code>&</code> and <code>|</code> that isn't a <code class="hl hl-true">1</code> will be
+                If the arguments are not strings, but numbers, any number given to <code>&</code> and <code>|</code> that isn't a <code class="hl-true">1</code> will be
                 treated as <span class="hl hl-false">false</span>.
             </p>
 
@@ -1261,15 +1261,15 @@
             <h4 id="logical-not">Inverting booleans</h4>
 
             <p>
-                Kustom lacks a dedicated operator for inverting booleans (returning <code class="hl hl-true">1</code> when given <code class="hl hl-false">0</code> and vice versa).
-                It is possible to compare a boolean to <code class="hl hl-false">0</code> to achieve the same result (assume it is day and so <code>ai(isday)</code> returns <code class="hl hl-true">1</code>):
+                Kustom lacks a dedicated operator for inverting booleans (returning <code class="hl-true">1</code> when given <code class="hl-false">0</code> and vice versa).
+                It is possible to compare a boolean to <code class="hl-false">0</code> to achieve the same result (assume it is day and so <code>ai(isday)</code> returns <code class="hl-true">1</code>):
             </p>
 
             <div class="snippet">
 
                 <label class="ex-no subex first"></label>
                 <div class="step">
-                    <code>if(<span class="hl hl-before">ai(isday) = 0</span>, night, day)</code>
+                    <code>if(<span class="hl hl-before">ai(isday)</span> = 0, night, day)</code>
                     <div class="arrow"></div>
                     <code>if(<span class="hl hl-after">1</span> = 0, night, day)</code>
                 </div>
@@ -1337,12 +1337,12 @@
             </p>
 
             <ul>
-                <li><code class="hl hl-1">y</code> - Year</li>
-                <li><code class="hl hl-2">M</code> - Month</li>
-                <li><code class="hl hl-3">d</code> - Day</li>
-                <li><code class="hl hl-4">h</code> - Hour</li>
-                <li><code class="hl hl-5">m</code> - Minute</li>
-                <li><code class="hl hl-6">s</code> - Second</li>
+                <li><code class="hl-1">y</code> - Year</li>
+                <li><code class="hl-2">M</code> - Month</li>
+                <li><code class="hl-3">d</code> - Day</li>
+                <li><code class="hl-4">h</code> - Hour</li>
+                <li><code class="hl-5">m</code> - Minute</li>
+                <li><code class="hl-6">s</code> - Second</li>
             </ul>
 
 
@@ -1412,7 +1412,7 @@
             </div>
 
             <p>
-                The letters <code class="hl hl-5">m</code> and <code class="hl hl-6">s</code> in the
+                The letters <code class="hl-5">m</code> and <code class="hl-6">s</code> in the
                 word <code>minutes</code> were interpreted as tokens and, consequently, replaced by numbers.
                 To prevent that from happening, you can wrap what you want to be just text in singlequotes <span class="nowrap">(<code>'</code>)</span>:
             </p>
@@ -1486,9 +1486,9 @@
             </p>
 
             <ul>
-                <li><code class="hl hl-1">2019y</code> means that the year is 2019,</li>
-                <li><code class="hl hl-2">10M</code> means that the month is 10,</li>
-                <li><code class="hl hl-5">24m</code> means that it's the 24th minute etc.</li>
+                <li><code class="hl-1">2019y</code> means that the year is 2019,</li>
+                <li><code class="hl-2">10M</code> means that the month is 10,</li>
+                <li><code class="hl-5">24m</code> means that it's the 24th minute etc.</li>
             </ul>
 
             <div class="snippet">
@@ -1524,8 +1524,8 @@
 
             <p>
                 The Kustom date & time format also includes an easy way to <span class="hl hl-true">add to</span> or <span class="hl hl-false">subtract from</span> a date &amp; time value.
-                Any amount of time you specify after an <code class="hl hl-true strong">a</code> will be added to the date,
-                and anything after an <code class="hl hl-false strong">r</code> will be subtracted (which you can remember as <span class="hl hl-true strong">a</span><span class="hl hl-true">dd</span>/<span class="hl hl-false strong">r</span><span class="hl hl-false">emove</span>).
+                Any amount of time you specify after an <code class="hl-true strong">a</code> will be added to the date,
+                and anything after an <code class="hl-false strong">r</code> will be subtracted (which you can remember as <span class="hl hl-true strong">a</span><span class="hl hl-true">dd</span>/<span class="hl hl-false strong">r</span><span class="hl hl-false">emove</span>).
             </p>
 
             <p>
@@ -1558,7 +1558,7 @@
 
             <p>
                 You can also combine both adding and subtracting - in this example I'll both <span class="hl hl-true strong">add</span><span> </span><span class="hl hl-true">1 day and 4 seconds</span>
-                and <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">2 hours and 3 minutes</span>.
+                <span>and</span> <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">2 hours and 3 minutes</span>.
             </p>
 
             <div class="snippet">
@@ -1591,15 +1591,15 @@
                     <span class="hl hl-6">Second</span> are copied from the current date & time,
                 </li>
                 <li>
-                    <code class="hl hl-4">0h</code>,
-                    <code class="hl hl-5">0m</code>,
-                    <code class="hl hl-6">0s</code> -
+                    <code class="hl-4">0h</code>,
+                    <code class="hl-5">0m</code>,
+                    <code class="hl-6">0s</code> -
                     <span class="hl hl-4">Hours</span>,
                     <span class="hl hl-5">Minutes</span> and
                     <span class="hl hl-6">Seconds</span> are set to <code>0</code>,
                 </li>
                 <li>
-                    <code class="hl hl-3">a1d</code> - Day is increased by <code>1</code>.
+                    <code class="hl-3">a1d</code> - Day is increased by <code>1</code>.
                 </li>
             </ul>
 
@@ -1621,7 +1621,7 @@
 
             <p>
                 If you only use addition and/or subtraction, you'll get a datetime relative to the current date and time.
-                For example, using just <code class="hl hl-true">a1d</code> or <code class="hl hl-false">r1d</code> will give you the same time as right
+                For example, using just <code class="hl-true">a1d</code> or <code class="hl-false">r1d</code> will give you the same time as right
                 now, but the date for <span class="hl hl-true">tomorrow</span> or <span class="hl hl-false">yesterday</span> respectively.
             </p>
 

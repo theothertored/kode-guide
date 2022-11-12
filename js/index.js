@@ -57,6 +57,14 @@ function buildTOC() {
         entryEl.innerText = counters.slice(0, entryIndex + 1).join('.') + '. ' + el.innerText;
         entryEl.href = `#${el.id}`;
 
+        entryEl.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
         tocListEl.append(entryEl);
 
     });
