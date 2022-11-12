@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 
 <head>
     <meta charset="UTF-8">
@@ -14,13 +14,15 @@
 <body>
 
     <div id="toc" class="toc">
+        
+        <button type="button" id="toc-fab" class="toc-fab" title="Expand/Collapse the table of contents">≡</button>
+
         <header>Table of contents</header>
         <div id="toc-list" class="toc-list"></div>
+        
     </div>
-
-    <button type="button" id="toc-fab" class="toc-fab">
-        ≡
-    </button>
+    
+            <div class="toc-scrim"></div>
 
     <main>
 
@@ -29,6 +31,24 @@
             <span class="nowrap">kode basics</span>
             <div class="small">(by Tored)</div>
         </h1>
+
+        <div class="mode-switch">
+            <label>What theme would you like to read this guide in?</label>
+            <div class="buttons">
+                <label class="radio dark" title="Use dark theme">
+                    <input type="radio" name="mode" value="dark" />
+                    <span>Dark</span>
+                </label>
+                <label class="radio" title="Select automatically based on system theme">
+                    <input type="radio" name="mode" value="system" />
+                    <span>System</span>
+                </label>
+                <label class="radio light" title="Use light theme">
+                    <input type="radio" name="mode" value="light" />
+                    <span>Light</span>
+                </label>
+            </div>
+        </div>
 
         <h2 id="introduction">Introduction</h2>
 
@@ -1659,7 +1679,7 @@
 
             <p>
                 The resulting timespan is printed as the aforementioned number of seconds, as we can verify by manually calculating the number of seconds in
-                <span class="hl hl-3">1 day</span>, <span class="hl hl-4">2 hours</span>, <span class="hl hl-5">3 minutes</span> and <span class="hl hl-6">4 seconds</span>:
+                <span class="hl hl-3 nowrap">1 day</span>, <span class="hl hl-4 nowrap">2 hours</span>, <span class="hl hl-5 nowrap">3 minutes</span> and <span class="hl hl-6 nowrap">4 seconds</span>:
             </p>
 
             <div class="snippet">
@@ -2041,6 +2061,10 @@
                 <p>
                     Shoutouts to Bunn-E, robin and Grabster for helping me give this guide a much-needed facelift in November
                     2022.
+                </p>
+
+                <p>
+                    Anchor icon from <a href="https://remixicon.com">Remix Icons</a>.
                 </p>
 
                 <p class="text-right">
