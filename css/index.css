@@ -95,23 +95,23 @@ h1 > .small {
 h2 {
   font-size: 2rem;
   margin: 0;
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
 
 h3 {
   font-size: 1.5rem;
   margin: 0;
-  margin-top: 2.5rem;
+  padding-top: 2.5rem;
 }
 
 h4 {
   font-size: 1.25rem;
   margin: 0;
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
 
 h2 + h3 {
-  margin-top: 1rem;
+  padding-top: 1.5rem;
 }
 
 h1 + p,
@@ -409,6 +409,25 @@ code > pre {
   margin-top: 1.5rem;
 }
 
+.image-container {
+  width: 100%;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.image-container label {
+  margin-top: -0.5rem;
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--c-text-on-bg-tet);
+  font-style: italic;
+}
+
 .table-container {
   width: calc(100% + 16px);
   padding: 8px;
@@ -460,10 +479,26 @@ table code {
   width: 100%;
 }
 
-#math-symbol-table td:nth-child(3), #math-symbol-table td:nth-child(4) {
-  font-family: "Roboto Mono", monospace;
-  font-size: 0.85em;
-  white-space: nowrap;
+#string-mode-table td:nth-child(1),
+#string-mode-table th:nth-child(1) {
+  text-align: center;
+  font-weight: bold;
+}
+
+#string-mode-table td:nth-child(2),
+#string-mode-table th:nth-child(2) {
+  width: 100%;
+}
+
+#comparison-operator-table td:nth-child(1),
+#comparison-operator-table th:nth-child(1) {
+  text-align: center;
+  font-weight: bold;
+}
+
+#comparison-operator-table td:nth-child(2),
+#comparison-operator-table th:nth-child(2) {
+  width: 100%;
 }
 
 #comparison-operator-table td:nth-child(3),
@@ -490,6 +525,15 @@ table code {
 
 #tf-token-table tr:nth-child(4) td {
   border-top: 1px solid var(--c-text-on-bg-tet);
+}
+
+#tf-token-table td:nth-child(1), #tf-token-table th:nth-child(1) {
+  text-align: center;
+  font-weight: bold;
+}
+
+#tf-token-table td:nth-child(2), #tf-token-table th:nth-child(2) {
+  width: 100%;
 }
 
 .toc {

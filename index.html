@@ -39,24 +39,27 @@
 
         <p>
             What even is kode? If you've used Kustom apps before, you probably are familiar with the formula editor window.
-            Not everything you write in the formula editor field inside it is kode.
+            Everything you write in the formula editor field inside it is kode.
+        </p>
+
+        <div class="image-container">
+            <img src="img/intro-screenshot.png" />
+            <label>The formula editor window in KLWP.</label>
+        </div>
+
+        <p>
+            By default, what you write in the formula editor is displayed as-is (plain text).
+            However, anything you put between dollar signs <span class="nowrap">(<code>$</code>)</span> will be evaluated.
         </p>
 
         <p>
-            Everything written between two dollar signs <span class="nowrap">(<code>$</code>)</span> is kode and will be evaluated.
-        </p>
-
-        <p>
-            The main difference between kode and plain text is that kode is interpreted by Kustom. What that means is
-            that
-            what you write between the dollar signs isn't taken literally, it instead gets evaluated, and the result is
-            displayed. The displayed result is called the "output".
+            Evaluation means that Kustom will take what you wrote, interpret it as a set of commands telling it what to do,
+            and then produce a result (output) that will then be displayed (printed) instead of the entire text between dollar signs.
         </p>
 
         <p>
             Note that, for readability, I won't use dollar signs where there's no need to combine kode and normal text.
-            If
-            you want to test the examples for yourself, don't forget to add dollar signs around them.
+            If you want to test the examples for yourself, don't forget to add dollar signs around them.
         </p>
 
         <p>
@@ -115,37 +118,37 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>+</td>
+                        <td><code>+</code></td>
                         <td>Addition</td>
                         <td><code>3 + 2</code></td>
                         <td><code>5</code></td>
                     </tr>
                     <tr>
-                        <td>-</td>
+                        <td><code>-</code></td>
                         <td>Subtraction</td>
                         <td><code>3 - 2</code></td>
                         <td><code>1</code></td>
                     </tr>
                     <tr>
-                        <td>*</td>
+                        <td><code>*</code></td>
                         <td>Multiplication</td>
                         <td><code>3 * 2</code></td>
                         <td><code>6</code></td>
                     </tr>
                     <tr>
-                        <td>/</td>
+                        <td><code>/</code></td>
                         <td>Division</td>
                         <td><code>3 / 2</code></td>
                         <td><code>1.5</code></td>
                     </tr>
                     <tr>
-                        <td>%</td>
+                        <td><code>%</code></td>
                         <td>Modulo</td>
                         <td><code>3 % 2</code></td>
                         <td><code>1</code></td>
                     </tr>
                     <tr>
-                        <td>^</td>
+                        <td><code>^</code></td>
                         <td>Exponentiation</td>
                         <td><code>3 ^ 2</code></td>
                         <td><code>9</code></td>
@@ -297,7 +300,11 @@
         <div class="snippet">
 
             <label class="ex-no"></label>
-            <code><span class="hl hl-1">"abc"</span> + <span class="hl hl-2">"def"</span></code>
+            <code>
+                <span class="hl hl-1">"abc"</span>
+                <span>+</span>
+                <span class="hl hl-2">"def"</span>
+            </code>
 
             <label class="output"></label>
             <code><span class="hl hl-1">abc</span><span class="hl hl-2">def</span></code>
@@ -338,10 +345,16 @@
 
             <label class="ex-no subex">
                 <span class="success">
-                    fixed, note the parentheses!
+                    corrrect, note the parentheses
                 </span>
             </label>
-            <code><span class="hl hl-1">"2 + 2 is "</span> + <span class="hl hl-2">(2 + 2)</span> + <span class="hl hl-3">"!"</span></code>
+            <code>
+                <span class="hl hl-1">"2 + 2 is "</span>
+                <span>+</span>
+                <span class="hl hl-2">(2 + 2)</span>
+                <span>+</span>
+                <span class="hl hl-3">"!"</span>
+            </code>
 
             <label class="output"></label>
             <code><span class="hl hl-1">2 + 2 is </span><span class="hl hl-2">4</span><span class="hl hl-3">!</span></code>
@@ -408,7 +421,7 @@
         </div>
 
         <p>
-            Notice that the spaces around the + operator are not present in the output.
+            Notice that the <span class="hl hl-2">spaces around the + operator</span> <span>are not present in the output, but the</span> <span class="hl hl-1">spaces inside the quoteless strings</span> are preserved.
         </p>
 
         <p>
@@ -468,7 +481,7 @@
         </p>
 
         <div class="table-container">
-            <table>
+            <table id="string-mode-table">
                 <thead>
                     <tr>
                         <th>Operator</th>
@@ -477,20 +490,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>+</td>
+                        <td><code>+</code></td>
                         <td>Concatenation</td>
                     </tr>
                     <tr>
-                        <td>=</td>
+                        <td><code>=</code></td>
                         <td>Check if two strings are the same</td>
                     </tr>
                     <tr>
-                        <td>!=</td>
+                        <td><code>!=</code></td>
                         <td>Check if two strings are different</td>
                     </tr>
                     <tr>
-                        <td>~=</td>
-                        <td>Check if a string contains another string</td>
+                        <td><code>~=</code></td>
+                        <td>Check if a string contains another string/regex test</td>
                     </tr>
                 </tbody>
             </table>
@@ -752,214 +765,214 @@
         </p>
 
 
-        <h3 id="note-on-regex">Note on Regex (regular expressions)</h3>
+        <h4 id="note-on-regex">Note on Regex (regular expressions)</h3>
 
-        <p>
-            For advanced users, this is a good place to mention that <code>tc()</code> has a mode that allows you to
-            make use of regular expressions - <code>tc(reg)</code>.
-            This function accepts 3 arguments after the mode - <code>tc(reg, [text], [pattern], [replacement])</code>.
-            In the replacement, <code>$0</code> can be used to refer to the entire match, and <code>$1</code>,
-            <code>$2</code>, …, <code>$9</code> to groups 1-9 of the match.
-        </p>
+            <p>
+                For advanced users, this is a good place to mention that <code>tc()</code> has a mode that allows you to
+                make use of regular expressions - <code>tc(reg)</code>.
+                This function accepts 3 arguments after the mode - <code>tc(reg, [text], [pattern], [replacement])</code>.
+                In the replacement, <code>$0</code> can be used to refer to the entire match, and <code>$1</code>,
+                <code>$2</code>, …, <code>$9</code> to groups 1-9 of the match.
+            </p>
 
-        <p>
-            I won't go in depth about regex here, as it'd be repeating work already done better elsewhere.
-            If you're interested in learning regex, I'd recommend giving <a href="https://regexone.com/">RegexOne</a> a go, it'll help you master the basics
-            by giving you exercises as you go.
-            After that, <a href="https://regex101.com/">Regex101</a> is a great tool to build patterns with, letting you work with any text you put into it,
-            as well as highlighting what your pattern selects and why. Good luck!
-        </p>
-
-
-        <h3 id="doing-a-or-b-depending-on-x">Doing A or B depending on X</h3>
+            <p>
+                I won't go in depth about regex here, as it'd be repeating work already done better elsewhere.
+                If you're interested in learning regex, I'd recommend giving <a href="https://regexone.com/">RegexOne</a> a go, it'll help you master the basics
+                by giving you exercises as you go.
+                After that, <a href="https://regex101.com/">Regex101</a> is a great tool to build patterns with, letting you work with any text you put into it,
+                as well as highlighting what your pattern selects and why. Good luck!
+            </p>
 
 
-        <h4 id="boolean-intro">Introduction to boolean values</h4>
-
-        <p>
-            A boolean value is either <span class="hl hl-true">true</span> (represented as <code class="hl hl-true">1</code> in Kustom)
-            or <span class="hl hl-false">false</span> (represented as <code class="hl hl-false">0</code> in Kustom).
-        </p>
-
-        <p>
-            In most cases, we'll obtain a boolean value from a function like <code>ai(isday)</code>
-            (<code class="hl hl-true">1</code> when it is day, <code class="hl hl-false">0</code> otherwise)
-            or <code>si(locked)</code> (<code class="hl hl-true">1</code> when the phone is locked, <code class="hl hl-false">0</code> otherwise),
-            or, alternatively, from comparing two values using one of the comparison operators listed below:
-        </p>
-
-        <div class="table-container">
-            <table id="comparison-operator-table">
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Name</th>
-                        <th>Ex. ret. 1</th>
-                        <th>Ex. ret. 0</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>=</code></td>
-                        <td>Equal</td>
-                        <td><code>1 = 1</code></td>
-                        <td><code>1 = 2</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>!=</code></td>
-                        <td>Not equal</td>
-                        <td><code>1 != 2</code></td>
-                        <td><code>1 != 1</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;</code></td>
-                        <td>Less than</td>
-                        <td><code>1 &lt; 2</code></td>
-                        <td><code>2 &lt; 1</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>&gt;</code></td>
-                        <td>Greater than</td>
-                        <td><code>2 &gt; 1</code></td>
-                        <td><code>1 &gt; 2</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;=</code></td>
-                        <td>Less than or equal</td>
-                        <td><code>1 &lt;= 1</code></td>
-                        <td><code>2 &lt;= 1</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>&gt;=</code></td>
-                        <td>Greater than or equal</td>
-                        <td><code>1 &gt;= 1</code></td>
-                        <td><code>1 &gt;= 2</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p>
-            If you try to compare text and a number, Kustom will try its best to convert the text to a number before
-            comparing them.
-            That means that a number is equal to its string representation, as far as Kustom is concerned.
-            All following examples will return <code><span class="hl hl-11">1</span></code> (<span class="hl hl-11">true</span>):
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no subex"></label>
-            <code>"2" = 2</code>
-
-            <label class="ex-no subex"></label>
-            <code>"00002" = 2</code>
-
-            <label class="ex-no subex"></label>
-            <code>"2.0000" = 2</code>
-
-            <label class="ex-no subex"></label>
-            <code>"   00002.0000   " = 2</code>
-
-        </div>
+            <h3 id="doing-a-or-b-depending-on-x">Doing A or B depending on X</h3>
 
 
-        <h4 id="if-conditions"><code>if()</code> Conditions</h4>
+            <h4 id="boolean-intro">Introduction to boolean values</h4>
 
-        <p>
-            <code>if()</code> is a very frequently used function that is closely connected to booleans.
-            Unlike <code>tf()</code> or <code>mi()</code>, it doesn't take a mode argument. The most basic version of an <code>if()</code> call looks like this:
-        </p>
+            <p>
+                A boolean value is either <span class="hl hl-true">true</span> (represented as <code class="hl hl-true">1</code> in Kustom)
+                or <span class="hl hl-false">false</span> (represented as <code class="hl hl-false">0</code> in Kustom).
+            </p>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>if(<span class="hl hl-1">[condition]</span>, <span class="hl hl-true">[value if condition true]</span>)</code>
-        </div>
+            <p>
+                In most cases, we'll obtain a boolean value from a function like <code>ai(isday)</code>
+                (<code class="hl hl-true">1</code> when it is day, <code class="hl hl-false">0</code> otherwise)
+                or <code>si(locked)</code> (<code class="hl hl-true">1</code> when the phone is locked, <code class="hl hl-false">0</code> otherwise),
+                or, alternatively, from comparing two values using one of the comparison operators listed below:
+            </p>
 
-        <p>
-            The function will return the second argument if the boolean given to it in the first argument is <code class="hl hl-true">1</code> (<span class="hl hl-true">true</span>),
-            Otherwise, the function will return seemingly nothing - an empty string, which can be written as two quotation marks next to one another (<code>""</code>).
-            In this example, <code>2 = 2</code> first evaluates to <code class="hl hl-true">1</code> (<span class="hl hl-true">true</span>):
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no subex first"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-1">2 = 2</span>, <span class="hl hl-true">"Reality is still intact"</span>)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-true">1</span>, <span class="hl hl-true">"Reality is still intact"</span>)</code>
+            <div class="table-container">
+                <table id="comparison-operator-table">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Returns <code>1</code></th>
+                            <th>Returns <code>0</code></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>=</code></td>
+                            <td>Equal</td>
+                            <td><code>1 = 1</code></td>
+                            <td><code>1 = 2</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>!=</code></td>
+                            <td>Not equal</td>
+                            <td><code>1 != 2</code></td>
+                            <td><code>1 != 1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;</code></td>
+                            <td>Less than</td>
+                            <td><code>1 &lt; 2</code></td>
+                            <td><code>2 &lt; 1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;</code></td>
+                            <td>Greater than</td>
+                            <td><code>2 &gt; 1</code></td>
+                            <td><code>1 &gt; 2</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;=</code></td>
+                            <td>Less than or equal</td>
+                            <td><code>1 &lt;= 1</code></td>
+                            <td><code>2 &lt;= 1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;=</code></td>
+                            <td>Greater than or equal</td>
+                            <td><code>1 &gt;= 1</code></td>
+                            <td><code>1 &gt;= 2</code></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
 
-        <p>
-            Since the condition argument is <code class="hl hl-true">1</code> (<span class="hl hl-true">true</span>), <code>if()</code> will return the value of the second argument:
-        </p>
+            <p>
+                If you try to compare text and a number, Kustom will try its best to convert the text to a number before
+                comparing them.
+                That means that a number is equal to its string representation, as far as Kustom is concerned.
+                All following examples will return <code><span class="hl hl-11">1</span></code> (<span class="hl hl-11">true</span>):
+            </p>
 
-        <div class="snippet">
-            <label class="output"></label>
-            <code><span class="hl hl-13">Reality is still intact</span></code>
-        </div>
+            <div class="snippet">
 
-        <p>
-            If a third argument is provided to the call, it'll be returned when the condition is <code class="hl hl-false">0</code> (<span class="hl hl-false">false</span>):
-        </p>
+                <label class="ex-no subex"></label>
+                <code>"2" = 2</code>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>if(<span class="hl hl-1">[condition]</span>, <span class="hl hl-true">[value if condition true]</span>, <span class="hl hl-false">[value if condition false]</span>)</code>
-        </div>
+                <label class="ex-no subex"></label>
+                <code>"00002" = 2</code>
 
-        <div class="snippet">
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-1">1 = 2</span>, <span class="hl hl-true">"Weird"</span>, <span class="hl hl-false">"Normal"</span>)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-false">0</span>, <span class="hl hl-true">"Weird"</span>, <span class="hl hl-false">"Normal"</span>)</code>
+                <label class="ex-no subex"></label>
+                <code>"2.0000" = 2</code>
+
+                <label class="ex-no subex"></label>
+                <code>"   00002.0000   " = 2</code>
+
             </div>
-        </div>
-
-        <div class="snippet">
-            <label class="output"></label>
-            <code><span class="hl hl-false">Normal</span></code>
-        </div>
 
 
-        <p>
-            It's worth noting that empty strings (<code>""</code>) are considered false by <code>if()</code>, while any other value will be considered true:
-        </p>
+            <h4 id="if-conditions">Conditions and <code>if()</code></h4>
 
-        <div class="snippet">
+            <p>
+                <code>if()</code> is a very frequently used function that is closely connected to booleans.
+                Unlike <code>tf()</code> or <code>mi()</code>, it doesn't take a mode argument. The most basic version of an <code>if()</code> call looks like this:
+            </p>
 
-            <label class="ex-no subex first"></label>
-            <code>if(<span class="hl hl-false">""</span>, <span class="hl hl-true">"true"</span>, <span class="hl hl-false">"false"</span>)</code>
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>if(<span class="hl hl-1">[condition]</span>, <span class="hl hl-true">[value if condition true]</span>)</code>
+            </div>
 
-            <label class="output"></label>
-            <code><span class="hl hl-false">false</span></code>
+            <p>
+                The function will return the second argument if the boolean given to it in the first argument is <code class="hl hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>,
+                Otherwise, the function will return seemingly nothing - an empty string, which can be written as two quotation marks next to one another <span class="nowrap">(<code>""</code>)</span>.
+                In this example, <code>2 = 2</code> first evaluates to <code class="hl hl-true">1</code> <span class="nowrap">(<span class="hl hl-true">true</span>)</span>:
+            </p>
 
-            <label class="ex-no subex"></label>
-            <code>if(<span class="hl hl-true">"text"</span>, <span class="hl hl-true">"true"</span>, <span class="hl hl-false">"false"</span>)</code>
+            <div class="snippet">
+                <label class="ex-no subex first"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-1">2 = 2</span>, <span class="hl hl-true">"Reality is still intact"</span>)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-true">1</span>, <span class="hl hl-true">"Reality is still intact"</span>)</code>
+                </div>
+            </div>
 
-            <label class="output"></label>
-            <code><span class="hl hl-true">true</span></code>
+            <p>
+                Since the condition argument is <code class="hl hl-true">1</code> (<span class="hl hl-true">true</span>), <code>if()</code> will return the value of the second argument:
+            </p>
 
-        </div>
+            <div class="snippet">
+                <label class="output"></label>
+                <code><span class="hl hl-13">Reality is still intact</span></code>
+            </div>
 
-        <p>
-            <code>if()</code> calls can be extended with more pairs of <span class="hl hl-1">condition</span>-<span class="hl hl-2">value</span> arguments:
-        </p>
+            <p>
+                If a third argument is provided to the call, it'll be returned when the condition is <code class="hl hl-false">0</code> (<span class="hl hl-false">false</span>):
+            </p>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>if(<span class="hl hl-1">1 = 2</span>, <span class="hl hl-2">"first"</span>, <span class="hl hl-1">2 = 2</span>, <span class="hl hl-2">"second"</span>, <span class="hl hl-1">3 = 3</span>, <span class="hl hl-2">"third"</span>, <span class="hl hl-false">"none"</span>)</code>
-        </div>
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>if(<span class="hl hl-1">[condition]</span>, <span class="hl hl-true">[value if condition true]</span>, <span class="hl hl-false">[value if condition false]</span>)</code>
+            </div>
 
-        <p>
-            The function will go through each <span class="hl hl-1">condition</span> argument in order until it finds one that is <span class="hl hl-true">true</span>.
-            If a <span class="hl hl-true">true</span> condition argument is found, the <span class="hl hl-2">value</span> from its pair is returned:
-        </p>
+            <div class="snippet">
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-1">1 = 2</span>, <span class="hl hl-true">"Weird"</span>, <span class="hl hl-false">"Normal"</span>)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-false">0</span>, <span class="hl hl-true">"Weird"</span>, <span class="hl hl-false">"Normal"</span>)</code>
+                </div>
+            </div>
 
-        <div class="snippet">
-            <label class="ex-no subex"></label>
-            <code>
+            <div class="snippet">
+                <label class="output"></label>
+                <code><span class="hl hl-false">Normal</span></code>
+            </div>
+
+
+            <p>
+                It's worth noting that empty strings <span class="nowrap">(<code>""</code>)</span> are considered false by <code>if()</code>, while any other value will be considered true:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex first"></label>
+                <code>if(<span class="hl hl-false">""</span>, <span class="hl hl-true">"true"</span>, <span class="hl hl-false">"false"</span>)</code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-false">false</span></code>
+
+                <label class="ex-no subex"></label>
+                <code>if(<span class="hl hl-true">"text"</span>, <span class="hl hl-true">"true"</span>, <span class="hl hl-false">"false"</span>)</code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-true">true</span></code>
+
+            </div>
+
+            <p>
+                <code>if()</code> calls can be extended with more pairs of <span class="hl hl-1">condition</span>-<span class="hl hl-2">value</span> arguments:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>if(<span class="hl hl-1">1 = 2</span>, <span class="hl hl-2">"first"</span>, <span class="hl hl-1">2 = 2</span>, <span class="hl hl-2">"second"</span>, <span class="hl hl-1">3 = 3</span>, <span class="hl hl-2">"third"</span>, <span class="hl hl-false">"none"</span>)</code>
+            </div>
+
+            <p>
+                The function will go through each <span class="hl hl-1">condition</span> argument in order until it finds one that is <span class="hl hl-true">true</span>.
+                If a <span class="hl hl-true">true</span> condition argument is found, the <span class="hl hl-2">value</span> from its pair is returned:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no subex"></label>
+                <code>
                 if(<span class="hl hl-false">0</span>, 
                 <span class="hl hl-2">"first"</span>, 
                 <span class="hl hl-true">1</span>, 
@@ -968,18 +981,18 @@
                 <span class="hl hl-2">"third"</span>, 
                 <span class="hl hl-false">"none"</span>)
             </code>
-            <label class="output"></label>
-            <code><span class="hl hl-2 strong">second</span></code>
-        </div>
+                <label class="output"></label>
+                <code><span class="hl hl-2 strong">second</span></code>
+            </div>
 
-        <p>
-            If all conditions turn out to be <span class="hl hl-false">false</span>, <code>if()</code> will return the <span class="hl hl-false">last argument</span>:
-        </p>
+            <p>
+                If all conditions turn out to be <span class="hl hl-false">false</span>, <code>if()</code> will return the <span class="hl hl-false">last argument</span>:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>
+                <label class="ex-no"></label>
+                <code>
                 if(<span class="hl hl-false">0</span>, 
                 <span class="hl hl-2">"first"</span>, 
                 <span class="hl hl-false">0</span>, 
@@ -989,19 +1002,19 @@
                 <span class="hl hl-false">"none"</span>)
             </code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-false">none</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-false">none</span></code>
 
-        </div>
+            </div>
 
-        <p>
-            If the last argument isn't present, an empty string (<code>""</code>) will be returned:
-        </p>
+            <p>
+                If the last argument isn't present, an empty string <span class="nowrap">(<code>""</code>)</span> will be returned:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>
+                <label class="ex-no"></label>
+                <code>
                 if(<span class="hl hl-false">0</span>, 
                 <span class="hl hl-2">"first"</span>, 
                 <span class="hl hl-false">0</span>, 
@@ -1010,431 +1023,431 @@
                 <span class="hl hl-2">"third"</span>)
             </code>
 
-            <label class="output"></label>
-            <code></code>
+                <label class="output"></label>
+                <code></code>
 
-        </div>
-
-        <h4 id="logical-operators">Combining conditions using logical operators</h4>
-
-        <p>
-            Sometimes one condition is not enough and you need to combine multiple conditions.
-        </p>
-
-        <p>
-            Maybe your battery icon should only be coloured red if the battery is below 15% <strong>and</strong> the battery is discharging.
-        </p>
-
-        <p>
-            Maybe you'd like to display "Weekend!" when it is Saturday <strong>or</strong> Sunday.
-        </p>
-
-        <p>
-            Kode has two operators for combining boolean values, logical AND, represented by an ampersand (<code>&amp;</code>) and logical OR, represented by a pipe (<code>|</code>).
-            AND only returns <span class="hl hl-true">true</span> when values on both sides of it are <span class="hl hl-true">true</span>.
-            OR returns <span class="hl hl-true">true</span> when one or both of the values are <span class="hl hl-true">true</span>.
-        </p>
-
-        <p>
-            The table below illustrates all the different combinations of boolean inputs and what combining them with AND and OR will result in.
-        </p>
-
-        <div class="table-container">
-            <table id="logical-operator-table">
-                <thead>
-                    <tr>
-                        <th><code>A</code></th>
-                        <th><code>B</code></th>
-                        <th><code>A & B</code></th>
-                        <th><code>A | B</code></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                    </tr>
-                    <tr>
-                        <td class="hl-true"><code>1</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-false"><code>0</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                    </tr>
-                    <tr>
-                        <td class="hl-true"><code>1</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                        <td class="hl-true"><code>1</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p>
-            To illustrate how <code>&</code> and <code>|</code> can be used in conjunction with <code>if()</code>, let's write formulas for the two examples I mentioned at the start of this section.
-        </p>
-
-        <p>
-            The first example was coloring a battery icon red if the battery is below 15% <strong>and</strong> the battery is discharging.
-        </p>
-
-        <ul>
-            <li>
-                <code>bi(level)</code> returns the current battery level (from <code>0</code> to <code>100</code>),
-            </li>
-            <li>
-                <code>bi(charging)</code> returns <code class="hl hl-true">1</code> if the phone is charging and <code class="hl hl-false">0</code> otherwise,
-            </li>
-            <li>
-                <code>#ff0000</code> is the color hex for red, <code>#ffffff</code> is the color hex for white.
-            </li>
-        </ul>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>if(bi(level) &lt; 15 &amp; bi(charging) = 0, #ff0000, #ffffff)</code>
-
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">bi(level)</span> <span>&lt; 15 &amp;</span> <span class="hl hl-before">bi(charging)</span> <span>= 0, #ff0000, #ffffff)</span></code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">10</span> <span>&lt; 15 &amp;</span> <span class="hl hl-after">1</span> <span>= 0, #ff0000, #ffffff)</span></code>
             </div>
 
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">10 &lt; 15</span> <span>&amp;</span> <span class="hl hl-before">1 = 0</span>, #ff0000, #ffffff)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">1</span> <span>&amp;</span> <span class="hl hl-after">1</span>, #ff0000, #ffffff)</code>
+            <h4 id="logical-operators">Combining conditions using logical operators</h4>
+
+            <p>
+                Sometimes one condition is not enough and you need to combine multiple conditions.
+            </p>
+
+            <p>
+                Maybe your battery icon should only be coloured red if the battery is below 15% <strong>and</strong> the battery is discharging.
+            </p>
+
+            <p>
+                Maybe you'd like to display "Weekend!" when it is Saturday <strong>or</strong> Sunday.
+            </p>
+
+            <p>
+                Kode has two operators for combining boolean values, logical AND, represented by an ampersand <span class="nowrap">(<code>&amp;</code>)</span> and logical OR, represented by a pipe <span class="nowrap">(<code>|</code>)</span>.
+                AND only returns <span class="hl hl-true">true</span> when values on both sides of it are <span class="hl hl-true">true</span>.
+                OR returns <span class="hl hl-true">true</span> when one or both of the values are <span class="hl hl-true">true</span>.
+            </p>
+
+            <p>
+                The table below illustrates all the different combinations of boolean inputs and what combining them with AND and OR will result in.
+            </p>
+
+            <div class="table-container">
+                <table id="logical-operator-table">
+                    <thead>
+                        <tr>
+                            <th><code>A</code></th>
+                            <th><code>B</code></th>
+                            <th><code>A & B</code></th>
+                            <th><code>A | B</code></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                        </tr>
+                        <tr>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                        </tr>
+                        <tr>
+                            <td class="hl-true"><code>1</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-false"><code>0</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                        </tr>
+                        <tr>
+                            <td class="hl-true"><code>1</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                            <td class="hl-true"><code>1</code></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">1 &amp; 1</span>, #ff0000, #ffffff)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">1</span>, #ff0000, #ffffff)</code>
+            <p>
+                To illustrate how <code>&</code> and <code>|</code> can be used in conjunction with <code>if()</code>, let's write formulas for the two examples I mentioned at the start of this section.
+            </p>
+
+            <p>
+                The first example was coloring a battery icon red if the battery is below 15% <strong>and</strong> the battery is discharging.
+            </p>
+
+            <ul>
+                <li>
+                    <code>bi(level)</code> returns the current battery level (from <code>0</code> to <code>100</code>),
+                </li>
+                <li>
+                    <code>bi(charging)</code> returns <code class="hl hl-true">1</code> if the phone is charging and <code class="hl hl-false">0</code> otherwise,
+                </li>
+                <li>
+                    <code>#ff0000</code> is the color hex for red, <code>#ffffff</code> is the color hex for white.
+                </li>
+            </ul>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>if(bi(level) &lt; 15 &amp; bi(charging) = 0, #ff0000, #ffffff)</code>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">bi(level)</span> <span>&lt; 15 &amp;</span> <span class="hl hl-before">bi(charging)</span> <span>= 0, #ff0000, #ffffff)</span></code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">10</span> <span>&lt; 15 &amp;</span> <span class="hl hl-after">1</span> <span>= 0, #ff0000, #ffffff)</span></code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">10 &lt; 15</span> <span>&amp;</span> <span class="hl hl-before">1 = 0</span>, #ff0000, #ffffff)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">1</span> <span>&amp;</span> <span class="hl hl-after">1</span>, #ff0000, #ffffff)</code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">1 &amp; 1</span>, #ff0000, #ffffff)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">1</span>, #ff0000, #ffffff)</code>
+                </div>
+
+                <label class="output"></label>
+                <code>#ff0000</code>
             </div>
 
-            <label class="output"></label>
-            <code>#ff0000</code>
-        </div>
+            <p>
+                The second example was displaying "Weekend!" when it is Saturday <strong>or</strong> Sunday.
+            </p>
 
-        <p>
-            The second example was displaying "Weekend!" when it is Saturday <strong>or</strong> Sunday.
-        </p>
+            <ul>
+                <li>
+                    <code>df(f)</code> returns the current weekday (Monday being <code>1</code> and Sunday being <code>7</code>),
+                </li>
+                <li>
+                    assume it is Saturday.
+                </li>
+            </ul>
 
-        <ul>
-            <li>
-                <code>df(f)</code> returns the current weekday (Monday being <code>1</code> and Sunday being <code>7</code>),
-            </li>
-            <li>
-                assume it is Saturday.
-            </li>
-        </ul>
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>if(df(f) = 6 | df(f) = 7, "Weekend!")</code>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>if(df(f) = 6 | df(f) = 7, "Weekend!")</code>
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">df(f) = 6</span> <span>|</span> <span class="hl hl-before">df(f) = 7</span>, "Weekend!")</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">6 = 6</span> <span>|</span> <span class="hl hl-after">6 = 7</span>, "Weekend!")</code>
+                </div>
 
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">df(f) = 6</span> <span>|</span> <span class="hl hl-before">df(f) = 7</span>, "Weekend!")</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">6 = 6</span> <span>|</span> <span class="hl hl-after">6 = 7</span>, "Weekend!")</code>
-            </div>
-
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>
                     if(<span class="hl hl-before">6 = 6</span>
                     <span>|</span>
                     <span class="hl hl-before">6 = 7</span>, "Weekend!")
                 </code>
-                <div class="arrow"></div>
-                <code>
+                    <div class="arrow"></div>
+                    <code>
                     if(<span class="hl hl-after">1</span> <span>|</span> <span class="hl hl-after">0</span>, "Weekend!")
                 </code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">1 | 0</span>, "Weekend!")</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">1</span>, "Weekend!")</code>
+                </div>
+
+                <label class="output"></label>
+                <code>Weekend!</code>
+
             </div>
 
-            <label class="ex-no subex"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">1 | 0</span>, "Weekend!")</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">1</span>, "Weekend!")</code>
+            <p>
+                There are some important differences in how <code>if()</code> treats values other than <code class="hl hl-true">1</code> and <code class="hl hl-false">0</code>
+                and how <code>&</code> and <code>|</code> do it.
+            </p>
+
+            <p>
+                <code>&amp;</code> and <code>|</code> have a default string mode like described in <a href="#operator-string-mode">"The default string mode of operators"</a>.
+            </p>
+
+            <p>
+                For the following examples, assume no music player has been opened, so <code>mi(artist)</code> and <code>mi(title)</code> are empty strings <span class="nowrap">(<code>""</code>)</span>.
+            </p>
+
+            <p>
+                Trying to check if two strings are empty is not possible like this:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no subex first">
+                    <span class="error">Incorrect - the empty strings will be concatenated with the operator symbol in between.</span>
+                </label>
+                <code>mi(artist) & mi(title)</code>
+
+                <label class="output"></label>
+                <code>&</code>
             </div>
 
-            <label class="output"></label>
-            <code>Weekend!</code>
+            <p>
+                Instead, a comparison needs to an empty string needs to be made explicitly:
+            </p>
 
-        </div>
-
-        <p>
-            There are some important differences in how <code>if()</code> treats values other than <code class="hl hl-true">1</code> and <code class="hl hl-false">0</code>
-            and how <code>&</code> and <code>|</code> do it.
-        </p>
-
-        <p>
-            <code>&amp;</code> and <code>|</code> have a default string mode like described in <a href="#operator-string-mode">"The default string mode of operators"</a>.
-        </p>
-
-        <p>
-            For the following examples, assume no music player has been opened, so <code>mi(artist)</code> and <code>mi(title)</code> are empty strings <span class="nowrap">(<code>""</code>)</span>.
-        </p>
-
-        <p>
-            Trying to check if two strings are empty is not possible like this:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no subex first">
-                <span class="error">Incorrect - the empty strings will be concatenated with the operator symbol in between.</span>
-            </label>
-            <code>mi(artist) & mi(title)</code>
-
-            <label class="output"></label>
-            <code>&</code>
-        </div>
-
-        <p>
-            Instead, a comparison needs to an empty string needs to be made explicitly:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no subex">
-                <span class="success">Correct - the comparisons will first be evaluated to 0 or 1.</span>
-            </label>
-            <div class="step">
-                <code>
+            <div class="snippet">
+                <label class="ex-no subex">
+                    <span class="success">Correct - the comparisons will first be evaluated to 0 or 1.</span>
+                </label>
+                <div class="step">
+                    <code>
                     <span class="hl hl-before">mi(artist) = ""</span>
                     <span>&</span>
                     <span class="hl hl-before">mi(title) = ""</span>
                 </code>
-                <div class="arrow"></div>
-                <code>
+                    <div class="arrow"></div>
+                    <code>
                     <span class="hl hl-after">1</span>
                     <span>&</span> 
                     <span class="hl hl-after">1</span>
                 </code>
+                </div>
+
+                <label class="output"></label>
+                <code>1</code>
             </div>
 
-            <label class="output"></label>
-            <code>1</code>
-        </div>
+            <p>
+                If the arguments are not strings, but numbers, any number given to <code>&</code> and <code>|</code> that isn't a <code class="hl hl-true">1</code> will be
+                treated as <span class="hl hl-false">false</span>.
+            </p>
 
-        <p>
-            If the arguments are not strings, but numbers, any number given to <code>&</code> and <code>|</code> that isn't a <code class="hl hl-true">1</code> will be
-            treated as <span class="hl hl-false">false</span>.
-        </p>
+            <div class="snippet">
 
-        <div class="snippet">
+                <label class="ex-no"></label>
+                <code><span class="hl hl-false">5</span><span> | </span><span class="hl hl-false">0</span></code>
 
-            <label class="ex-no"></label>
-            <code><span class="hl hl-false">5</span><span> | </span><span class="hl hl-false">0</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-false">0</span></code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-false">0</span></code>
-
-        </div>
-
-
-        <h4 id="logical-not">Not-e on inverting booleans</h4>
-
-        <p>
-            Kustom lacks a dedicated operator for inverting booleans.
-            It is possible to compare a boolean to <code class="hl hl-false">0</code> to achieve the same result (assume it is day and so <code>ai(isday)</code> returns <code class="hl hl-true">1</code>):
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no subex first"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">ai(isday) = 0</span>, night, day)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">1</span> = 0, night, day)</code>
             </div>
 
-            <label class="ex-no subex first"></label>
-            <div class="step">
-                <code>if(<span class="hl hl-before">1 = 0</span>, night, day)</code>
-                <div class="arrow"></div>
-                <code>if(<span class="hl hl-after">0</span>, night, day)</code>
+
+            <h4 id="logical-not">Inverting booleans</h4>
+
+            <p>
+                Kustom lacks a dedicated operator for inverting booleans (returning <code class="hl hl-true">1</code> when given <code class="hl hl-false">0</code> and vice versa).
+                It is possible to compare a boolean to <code class="hl hl-false">0</code> to achieve the same result (assume it is day and so <code>ai(isday)</code> returns <code class="hl hl-true">1</code>):
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex first"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">ai(isday) = 0</span>, night, day)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">1</span> = 0, night, day)</code>
+                </div>
+
+                <label class="ex-no subex first"></label>
+                <div class="step">
+                    <code>if(<span class="hl hl-before">1 = 0</span>, night, day)</code>
+                    <div class="arrow"></div>
+                    <code>if(<span class="hl hl-after">0</span>, night, day)</code>
+                </div>
+
+                <label class="output"></label>
+                <code>day</code>
+
             </div>
 
-            <label class="output"></label>
-            <code>day</code>
+            <p>
+                If you want to invert the result of a comparison, you can also invert its operator, by for example swapping <code>=</code> with <code>!=</code>, or <code>&gt;</code> with <code>&lt;=</code>.
+            </p>
 
-        </div>
+            <p>
+                Finally, you can also invert the result of <code>if()</code> calls by simply swapping the second and third argument.
+            </p>
 
-        <p>
-            If you want to invert the result of a comparison, you can also invert its operator, by for example swapping <code>=</code> with <code>!=</code>, or <code>&gt;</code> with <code>&lt;=</code>.
-        </p>
+            <h4 id="contains-operator">Contains/Regex test: <code>~=</code></h4>
 
-        <p>
-            Finally, you can also invert the result of <code>if()</code> calls by simply swapping the second and third argument.
-        </p>
+            <p>
+                This operator got its own separate mention, because it's distinct from the other comparison operators, but it still
+                returns
+                a boolean. In its most basic form, this operator checks whether the left hand side string has the right hand
+                side string inside it, which can be read as "check if A contains B".
+            </p>
 
-        <h4 id="contains-operator">The "contains" operator (~=, Regex test)</h4>
+            <div class="snippet">
 
-        <p>
-            This operator got its own separate mention, because it's distinct from the other comparison operators, but it still
-            returns
-            a boolean. In its most basic form, this operator checks whether the left hand side string has the right hand
-            side string inside it, which can be read as "check if A contains B".
-        </p>
+                <label class="ex-no"></label>
+                <code>abc ~= a</code>
 
-        <div class="snippet">
+                <label class="output"></label>
+                <code><span class="hl hl-true">1</span></code>
 
-            <label class="ex-no"></label>
-            <code>abc ~= a</code>
+                <label class="ex-no"></label>
+                <code>abc ~= d</code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-true">1</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-false">0</span></code>
 
-            <label class="ex-no"></label>
-            <code>abc ~= d</code>
+            </div>
 
-            <label class="output"></label>
-            <code><span class="hl hl-false">0</span></code>
-
-        </div>
-
-        <p>
-            Note for advanced users: this operator tests if the left argument matches any part of the regex expression
-            provided as the right argument. It is possible to use it to check if the entire left argument matches the
-            expression by having the expression start with <code>^</code> (match start of string) and end with
-            <code>$</code> (match end of string).
-        </p>
+            <p>
+                Note for advanced users: this operator tests if the left argument matches any part of the regex expression
+                provided as the right argument. It is possible to use it to check if the entire left argument matches the
+                expression by having the expression start with <code>^</code> (match start of string) and end with
+                <code>$</code> (match end of string).
+            </p>
 
 
-        <h2 id="more-value-types">More value types</h2>
+            <h2 id="more-value-types">More value types</h2>
 
-        <h3 id="date-and-time">Date &amp; time</h3>
+            <h3 id="date-and-time">Date &amp; time</h3>
 
-        <p>
-            Date &amp; time is another value type in Kustom. It holds information about a specific point in time, down
-            to a second. A date & time comprises of the following components:
-        </p>
+            <p>
+                Date &amp; time is another value type in Kustom. It holds information about a specific point in time, down
+                to a second. A date & time comprises of the following components:
+            </p>
 
-        <ul>
-            <li><code class="hl hl-1">y</code> - Year</li>
-            <li><code class="hl hl-2">M</code> - Month</li>
-            <li><code class="hl hl-3">d</code> - Day</li>
-            <li><code class="hl hl-4">h</code> - Hour</li>
-            <li><code class="hl hl-5">m</code> - Minute</li>
-            <li><code class="hl hl-6">s</code> - Second</li>
-        </ul>
-
-
-        <h4 id="date-printing">Displaying a date &amp; time using <code>df()</code></h4>
-
-        <p>
-            <code>df()</code> (Date Format) is a function that can be used to display data from a datetime value in any format you
-            want.
-            In its simplest form, it takes one text argument, that being the format, and displays (prints) the current date &amp;
-            time in that format:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span>")</code>
-
-            <label class="output"></label>
-            <code><span class="hl hl-1">2022</span>-<span class="hl hl-2">07</span>-<span class="hl hl-3">11</span> <span class="hl hl-4">01</span>:<span class="hl hl-5">33</span>:<span class="hl hl-6">59</span></code>
-
-        </div>
-
-        <p>
-            Using the same token letter multiple times will cause the value to be padded with zeroes to the left until it reaches the same number of characters as the number of letters:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>df(dddddddd)</code>
-
-            <label class="output"></label>
-            <code>00000012</code>
-
-        </div>
-
-        <p>
-            Other tokens can also print a textual representation of the given component:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>df(EEEE, d MMM yyyy)</code>
-
-            <label class="output"></label>
-            <code>Fri, 11 Nov 2022</code>
-
-        </div>
-
-        <p>
-            Check out the <a href="https://help.kustom.rocks/i2554-df-date-format-represent-a-time-instant-as-text">official <code>df()</code> function documentation page</a> for all the different tokens you can use.
-        </p>
-
-        <p>
-            If you try to add a description after a token, you might run into a problem like this:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>df("<span class="hl hl-5">m</span> <span class="hl hl-5">m</span><span>inute</span><span class="hl hl-6">s</span>")</code>
-
-            <label class="output"></label>
-            <code><span class="hl hl-5">34</span> <span class="hl hl-5">34</span><span>inute</span><span class="hl hl-6">28</span></code>
-
-        </div>
-
-        <p>
-            The letters <code class="hl hl-5">m</code> and <code class="hl hl-6">s</code> in the
-            word <code>minutes</code> were interpreted as tokens and, consequently, replaced by numbers.
-            To prevent that from happening, you can wrap what you want to be just text in singlequotes (<code>'</code>):
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>df("<span class="hl hl-5">m</span> <span class="hl hl-gray strong">'</span><span class="hl hl-gray">minutes</span><span class="hl hl-gray strong">'</span>")</code>
-
-            <label class="output"></label>
-            <code><span class="hl hl-5">34</span> <span class="hl hl-gray">minutes</span></code>
-
-        </div>
+            <ul>
+                <li><code class="hl hl-1">y</code> - Year</li>
+                <li><code class="hl hl-2">M</code> - Month</li>
+                <li><code class="hl hl-3">d</code> - Day</li>
+                <li><code class="hl hl-4">h</code> - Hour</li>
+                <li><code class="hl hl-5">m</code> - Minute</li>
+                <li><code class="hl hl-6">s</code> - Second</li>
+            </ul>
 
 
-        <p>
-            A token deserving a separate mention is <code>H</code>, which prints the current hour in a 24-hour format.
-            This is useful for making time comparisons - with just <code>h</code>, you can't tell the difference between 1 AM and 1 PM, for example.
-        </p>
+            <h4 id="date-printing">Displaying a date &amp; time using <code>df()</code></h4>
 
-        <p>
-            Here's an example that returns:
-        </p>
+            <p>
+                <code>df()</code> (Date Format) is a function that can be used to display data from a datetime value in any format you
+                want.
+                In its simplest form, it takes one text argument, that being the format, and displays (prints) the current date &amp;
+                time in that format:
+            </p>
 
-        <ul>
-            <li>"morning" until <span class="hl hl-1">12 AM</span>,</li>
-            <li>"afternoon" after <span class="hl hl-1">12 AM</span> and until <span class="hl hl-2">6:30 PM</span>, </li>
-            <li>"evening" after <span class="hl hl-2">6:30 PM</span> and until <span class="hl hl-3">9 PM</span>, </li>
-            <li>"night" after <span class="hl hl-3">9 PM</span>:</li>
-        </ul>
+            <div class="snippet">
 
-        <div class="snippet">
+                <label class="ex-no"></label>
+                <code>df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span>")</code>
 
-            <label class="ex-no"></label>
-            <code>
+                <label class="output"></label>
+                <code><span class="hl hl-1">2022</span>-<span class="hl hl-2">07</span>-<span class="hl hl-3">11</span> <span class="hl hl-4">01</span>:<span class="hl hl-5">33</span>:<span class="hl hl-6">59</span></code>
+
+            </div>
+
+            <p>
+                Using the same token letter multiple times will cause the value to be padded with zeroes to the left until it reaches the same number of characters as the number of letters:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>df(dddddddd)</code>
+
+                <label class="output"></label>
+                <code>00000012</code>
+
+            </div>
+
+            <p>
+                Other tokens can also print a textual representation of the given component:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>df(EEEE, d MMM yyyy)</code>
+
+                <label class="output"></label>
+                <code>Fri, 11 Nov 2022</code>
+
+            </div>
+
+            <p>
+                Check out the <a href="https://help.kustom.rocks/i2554-df-date-format-represent-a-time-instant-as-text">official <code>df()</code> function documentation page</a> for all the different tokens you can use.
+            </p>
+
+            <p>
+                If you try to add a description after a token, you might run into a problem like this:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>df("<span class="hl hl-5">m</span> <span class="hl hl-5">m</span><span>inute</span><span class="hl hl-6">s</span>")</code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-5">34</span> <span class="hl hl-5">34</span><span>inute</span><span class="hl hl-6">28</span></code>
+
+            </div>
+
+            <p>
+                The letters <code class="hl hl-5">m</code> and <code class="hl hl-6">s</code> in the
+                word <code>minutes</code> were interpreted as tokens and, consequently, replaced by numbers.
+                To prevent that from happening, you can wrap what you want to be just text in singlequotes <span class="nowrap">(<code>'</code>)</span>:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>df("<span class="hl hl-5">m</span> <span class="hl hl-gray strong">'</span><span class="hl hl-gray">minutes</span><span class="hl hl-gray strong">'</span>")</code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-5">34</span> <span class="hl hl-gray">minutes</span></code>
+
+            </div>
+
+
+            <p>
+                A token deserving a separate mention is <code>H</code>, which prints the current hour in a 24-hour format.
+                This is useful for making time comparisons - with just <code>h</code>, you can't tell the difference between 1 AM and 1 PM, for example.
+            </p>
+
+            <p>
+                Here's an example that returns:
+            </p>
+
+            <ul>
+                <li>"morning" until <span class="hl hl-1">12 AM</span>,</li>
+                <li>"afternoon" after <span class="hl hl-1">12 AM</span> and until <span class="hl hl-2">6:30 PM</span>, </li>
+                <li>"evening" after <span class="hl hl-2">6:30 PM</span> and until <span class="hl hl-3">9 PM</span>, </li>
+                <li>"night" after <span class="hl hl-3">9 PM</span>:</li>
+            </ul>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>
 <pre>if(
     df(Hmm) &lt;= <span class="hl hl-1">1200</span>, 
     morning, 
@@ -1446,212 +1459,212 @@
 )</pre>
             </code>
 
-        </div>
+            </div>
 
-        <p>
-            If a date &amp; time value is given as the second argument to <code>df()</code>, it'll be used instead of
-            the current date &amp; time.
-            In this example, the <span class="hl hl-1">start date &amp; time of the first upcoming calendar event</span> is formatted and printed:
-        </p>
+            <p>
+                If a date &amp; time value is given as the second argument to <code>df()</code>, it'll be used instead of
+                the current date &amp; time.
+                In this example, the <span class="hl hl-1">start date &amp; time of the first upcoming calendar event</span> is formatted and printed:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>df("yyyy-MM-ss hh:mm:ss a", <span class="hl hl-1">ci(start, 0)</span>)</code>
+                <label class="ex-no"></label>
+                <code>df("yyyy-MM-ss hh:mm:ss a", <span class="hl hl-1">ci(start, 0)</span>)</code>
 
-            <label class="output"></label>
-            <code>2022-08-11 08:00:00 AM</code>
+                <label class="output"></label>
+                <code>2022-08-11 08:00:00 AM</code>
 
-        </div>
+            </div>
 
 
-        <h4 id="kustom-date-format">The Kustom date & time format</h4>
+            <h4 id="kustom-date-format">The Kustom date & time format</h4>
 
-        <p>
-            <code>dp()</code> is a function that can be used to create datetime values from text or numbers.
-            When no arguments are given, it returns the current date and time as a datetime value, in the Kustom date format:
-        </p>
+            <p>
+                <code>dp()</code> is a function that can be used to create datetime values from text or numbers.
+                When no arguments are given, it returns the current date and time as a datetime value, in the Kustom date format:
+            </p>
 
-        <ul>
-            <li><code class="hl hl-1">2019y</code> means that the year is 2019,</li>
-            <li><code class="hl hl-2">10M</code> means that the month is 10,</li>
-            <li><code class="hl hl-5">24m</code> means that it's the 24th minute etc.</li>
-        </ul>
+            <ul>
+                <li><code class="hl hl-1">2019y</code> means that the year is 2019,</li>
+                <li><code class="hl hl-2">10M</code> means that the month is 10,</li>
+                <li><code class="hl hl-5">24m</code> means that it's the 24th minute etc.</li>
+            </ul>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>dp()</code>
+                <label class="ex-no"></label>
+                <code>dp()</code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-1">2019y</span><span class="hl hl-2">10M</span><span class="hl hl-3">11d</span><span class="hl hl-4">15h</span><span class="hl hl-5">24m</span><span class="hl hl-6">28s</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-1">2019y</span><span class="hl hl-2">10M</span><span class="hl hl-3">11d</span><span class="hl hl-4">15h</span><span class="hl hl-5">24m</span><span class="hl hl-6">28s</span></code>
 
-        </div>
+            </div>
 
-        <p>
-            Date & time values written in this string format can not only be passed to <code>dp()</code> to get a date & time value, but also directly to functions expecting a date & time argument, like <code>df()</code>:
-        </p>
+            <p>
+                Date & time values written in this string format can not only be passed to <code>dp()</code> to get a date & time value, but also directly to functions expecting a date & time argument, like <code>df()</code>:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>
+                <label class="ex-no"></label>
+                <code>
                 df("yyyy-MM-ss hh:mm:ss a",
                 <span class="hl hl-1">2022y</span><span class="hl hl-2">11M</span><span class="hl hl-3">10d</span><span class="hl hl-4">13h</span><span class="hl hl-5">13m</span><span class="hl hl-6">41s</span>)
             </code>
 
-            <label class="output"></label>
-            <code>
+                <label class="output"></label>
+                <code>
                 <span class="hl hl-1">2022</span>-<span class="hl hl-2">11</span>-<span class="hl hl-3">10</span> 
                 <span class="hl hl-4">01</span>:<span class="hl hl-5">13</span>:<span class="hl hl-6">41</span> 
                 <span class="hl hl-4">PM</span>
             </code>
 
-        </div>
+            </div>
 
-        <p>
-            The Kustom date & time format also includes an easy way to <span class="hl hl-true">add to</span> or <span class="hl hl-false">subtract from</span> a date &amp; time value.
-            Any amount of time you specify after an <code class="hl hl-true strong">a</code> will be added to the date,
-            and anything after an <code class="hl hl-false strong">r</code> will be subtracted (which you can remember as <span class="hl hl-true strong">a</span><span class="hl hl-true">dd</span>/<span class="hl hl-false strong">r</span><span class="hl hl-false">emove</span>).
-        </p>
+            <p>
+                The Kustom date & time format also includes an easy way to <span class="hl hl-true">add to</span> or <span class="hl hl-false">subtract from</span> a date &amp; time value.
+                Any amount of time you specify after an <code class="hl hl-true strong">a</code> will be added to the date,
+                and anything after an <code class="hl hl-false strong">r</code> will be subtracted (which you can remember as <span class="hl hl-true strong">a</span><span class="hl hl-true">dd</span>/<span class="hl hl-false strong">r</span><span class="hl hl-false">emove</span>).
+            </p>
 
-        <p>
-            In this example, I'll specify a date & time using the Kustom format, and then <span class="hl hl-true strong">add</span><span> </span><span class="hl hl-true">1 day, 2 hours, 3 minutes and 4 seconds</span> to it:
-        </p>
+            <p>
+                In this example, I'll specify a date & time using the Kustom format, and then <span class="hl hl-true strong">add</span><span> </span><span class="hl hl-true">1 day, 2 hours, 3 minutes and 4 seconds</span> to it:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>dp(2019y10M4d10h24m32s<span class="hl hl-true strong">a</span><span class="hl hl-true">1d2h3m4s</span>)</code>
+                <label class="ex-no"></label>
+                <code>dp(2019y10M4d10h24m32s<span class="hl hl-true strong">a</span><span class="hl hl-true">1d2h3m4s</span>)</code>
 
-            <label class="output"></label>
-            <code>2019y10M<span class="hl hl-true">5d12h27m36s</span></code>
+                <label class="output"></label>
+                <code>2019y10M<span class="hl hl-true">5d12h27m36s</span></code>
 
-        </div>
+            </div>
 
-        <p>
-            In this example, I'll again specify a date & time, and then <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">1 day, 2 hours, 3 minutes and 4 seconds</span> from it:
-        </p>
+            <p>
+                In this example, I'll again specify a date & time, and then <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">1 day, 2 hours, 3 minutes and 4 seconds</span> from it:
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>dp(2019y10M4d10h24m32s<span class="hl hl-false strong">r</span><span class="hl hl-false">1d2h3m4s</span>)</code>
+                <label class="ex-no"></label>
+                <code>dp(2019y10M4d10h24m32s<span class="hl hl-false strong">r</span><span class="hl hl-false">1d2h3m4s</span>)</code>
 
-            <label class="output"></label>
-            <code>2019y10M<span class="hl hl-false">3d8h21m28s</span></code>
+                <label class="output"></label>
+                <code>2019y10M<span class="hl hl-false">3d8h21m28s</span></code>
 
-        </div>
+            </div>
 
-        <p>
-            You can also combine both adding and subtracting - in this example I'll both <span class="hl hl-true strong">add</span><span> </span><span class="hl hl-true">1 day and 4 seconds</span>
-            and <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">2 hours and 3 minutes</span>.
-        </p>
+            <p>
+                You can also combine both adding and subtracting - in this example I'll both <span class="hl hl-true strong">add</span><span> </span><span class="hl hl-true">1 day and 4 seconds</span>
+                and <span class="hl hl-false strong">subtract</span><span> </span><span class="hl hl-false">2 hours and 3 minutes</span>.
+            </p>
 
-        <div class="snippet">
+            <div class="snippet">
 
-            <label class="ex-no"></label>
-            <code>dp(2019y10M4d10h24m32s<span class="hl hl-true strong">a</span><span class="hl hl-true">1d4s</span><span class="hl hl-false strong">r</span><span class="hl hl-false">2h3m</span>)</code>
+                <label class="ex-no"></label>
+                <code>dp(2019y10M4d10h24m32s<span class="hl hl-true strong">a</span><span class="hl hl-true">1d4s</span><span class="hl hl-false strong">r</span><span class="hl hl-false">2h3m</span>)</code>
 
-            <label class="output"></label>
-            <code>2019y10M<span class="hl hl-true">5d</span><span class="hl hl-false">10h</span><span class="hl hl-true">21m</span><span class="hl hl-false">36s</span></code>
+                <label class="output"></label>
+                <code>2019y10M<span class="hl hl-true">5d</span><span class="hl hl-false">10h</span><span class="hl hl-true">21m</span><span class="hl hl-false">36s</span></code>
 
-        </div>
+            </div>
 
-        <p>
-            The way the Kustom date &amp; time format works is it starts off with the current date &amp; time value and then overwrites/adds to/subtracts from specific components of that date &amp; time value.
-        </p>
+            <p>
+                The way the Kustom date &amp; time format works is it starts off with the current date &amp; time value and then overwrites/adds to/subtracts from specific components of that date &amp; time value.
+            </p>
 
-        <p>
-            As an example of combining these mechanics, let's consider using <code>0h0m0sa1d</code> to get tomorrow's midnight:
-            <code>1</code>. This results in the date &amp; time of tomorrow's midnight:
-        </p>
+            <p>
+                As an example of combining these mechanics, let's consider using <code>0h0m0sa1d</code> to get tomorrow's midnight:
+                <code>1</code>. This results in the date &amp; time of tomorrow's midnight:
+            </p>
 
-        <ul>
-            <li>
-                At the start,
-                <span class="hl hl-1">Year</span>,
-                <span class="hl hl-2">Month</span>,
-                <span class="hl hl-3">Day</span>,
-                <span class="hl hl-4">Hour</span>,
-                <span class="hl hl-5">Minute</span> and
-                <span class="hl hl-6">Second</span> are copied from the current date & time,
-            </li>
-            <li>
-                <code class="hl hl-4">0h</code>,
-                <code class="hl hl-5">0m</code>,
-                <code class="hl hl-6">0s</code> -
-                <span class="hl hl-4">Hours</span>,
-                <span class="hl hl-5">Minutes</span> and
-                <span class="hl hl-6">Seconds</span> are set to <code>0</code>,
-            </li>
-            <li>
-                <code class="hl hl-3">a1d</code> - Day is increased by <code>1</code>.
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    At the start,
+                    <span class="hl hl-1">Year</span>,
+                    <span class="hl hl-2">Month</span>,
+                    <span class="hl hl-3">Day</span>,
+                    <span class="hl hl-4">Hour</span>,
+                    <span class="hl hl-5">Minute</span> and
+                    <span class="hl hl-6">Second</span> are copied from the current date & time,
+                </li>
+                <li>
+                    <code class="hl hl-4">0h</code>,
+                    <code class="hl hl-5">0m</code>,
+                    <code class="hl hl-6">0s</code> -
+                    <span class="hl hl-4">Hours</span>,
+                    <span class="hl hl-5">Minutes</span> and
+                    <span class="hl hl-6">Seconds</span> are set to <code>0</code>,
+                </li>
+                <li>
+                    <code class="hl hl-3">a1d</code> - Day is increased by <code>1</code>.
+                </li>
+            </ul>
 
-        This results in:
+            This results in:
 
-        <ul>
-            <li>
-                <span class="hl hl-1">Year</span>,
-                <span class="hl hl-2">Month</span> and
-                <span class="hl hl-3">Day</span>
-                specifying tomorrow as the date,
-            </li>
-            <li>
-                <span class="hl hl-4">Hours</span>,
-                <span class="hl hl-5">Minutes</span> and
-                <span class="hl hl-6">Seconds</span> specifying midnight (00:00:00) as the time.
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    <span class="hl hl-1">Year</span>,
+                    <span class="hl hl-2">Month</span> and
+                    <span class="hl hl-3">Day</span>
+                    specifying tomorrow as the date,
+                </li>
+                <li>
+                    <span class="hl hl-4">Hours</span>,
+                    <span class="hl hl-5">Minutes</span> and
+                    <span class="hl hl-6">Seconds</span> specifying midnight (00:00:00) as the time.
+                </li>
+            </ul>
 
-        <p>
-            If you only use addition and/or subtraction, you'll get a datetime relative to the current date and time.
-            For example, using just <code class="hl hl-true">a1d</code> or <code class="hl hl-false">r1d</code> will give you the same time as right
-            now, but the date for <span class="hl hl-true">tomorrow</span> or <span class="hl hl-false">yesterday</span> respectively.
-        </p>
+            <p>
+                If you only use addition and/or subtraction, you'll get a datetime relative to the current date and time.
+                For example, using just <code class="hl hl-true">a1d</code> or <code class="hl hl-false">r1d</code> will give you the same time as right
+                now, but the date for <span class="hl hl-true">tomorrow</span> or <span class="hl hl-false">yesterday</span> respectively.
+            </p>
 
-        <p>
-            Some functions ignore the time portion of the date & time arguments they are given.
-            For example, <code>ci(title, 0, <span class="hl hl-21">a</span><span class="hl hl-11">1d</span>)</code> gets the title of the first calendar event for tomorrow.
-            The time portion of the date resulting from <code>a1d</code> is ignored, and only the date portion is used to determine what day to get the first calendar event for.
-        </p>
+            <p>
+                Some functions ignore the time portion of the date & time arguments they are given.
+                For example, <code>ci(title, 0, <span class="hl hl-21">a</span><span class="hl hl-11">1d</span>)</code> gets the title of the first calendar event for tomorrow.
+                The time portion of the date resulting from <code>a1d</code> is ignored, and only the date portion is used to determine what day to get the first calendar event for.
+            </p>
 
 
-        <h3 id="timespan">Timespan</h3>
+            <h3 id="timespan">Timespan</h3>
 
-        <p>
-            Timespan is a different value type than datetime. Where datetime represents a specific point in time, a timespan value
-            represents a duration, down to a second.
-        </p>
+            <p>
+                Timespan is a different value type than datetime. Where datetime represents a specific point in time, a timespan value
+                represents a duration, down to a second.
+            </p>
 
-        <p>
-            While it is useful to think of a date & time as having separate components for each portion, it's more useful to think of a timespan value as just a number of seconds.
-        </p>
+            <p>
+                While it is useful to think of a date & time as having separate components for each portion, it's more useful to think of a timespan value as just a number of seconds.
+            </p>
 
-        <h4 id="obtaining-timespans">Obtaining timespans</h4>
+            <h4 id="obtaining-timespans">Obtaining timespans</h4>
 
-        <p>
-            Timespans can be obtained by subtracting one date & time from another.
-            In this example, the two points in time are 1 day, 2 hours, 3 minutes and 4 seconds apart:
-        </p>
+            <p>
+                Timespans can be obtained by subtracting one date & time from another.
+                In this example, the two points in time are 1 day, 2 hours, 3 minutes and 4 seconds apart:
+            </p>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>dp(2022y11M4d10h24m32s) - dp(2022y11M3d8h21m28s)</code>
-            <label class="output"></label>
-            <code>93784</code>
-        </div>
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>dp(2022y11M4d10h24m32s) - dp(2022y11M3d8h21m28s)</code>
+                <label class="output"></label>
+                <code>93784</code>
+            </div>
 
-        <p>
-            The resulting timespan is printed as the aforementioned number of seconds, as we can verify by manually calculating the number of seconds in
-            <span class="hl hl-3">1 day</span>, <span class="hl hl-4">2 hours</span>, <span class="hl hl-5">3 minutes</span> and <span class="hl hl-6">4 seconds</span>:
-        </p>
+            <p>
+                The resulting timespan is printed as the aforementioned number of seconds, as we can verify by manually calculating the number of seconds in
+                <span class="hl hl-3">1 day</span>, <span class="hl hl-4">2 hours</span>, <span class="hl hl-5">3 minutes</span> and <span class="hl hl-6">4 seconds</span>:
+            </p>
 
-        <div class="snippet">
-            <label class="ex-no subex"></label>
-            <code>
+            <div class="snippet">
+                <label class="ex-no subex"></label>
+                <code>
                 <span class="hl hl-3">1 * 24 * 60 * 60</span>
                 <span>+</span>
                 <span class="hl hl-4">2 * 60 * 60</span>
@@ -1660,384 +1673,382 @@
                 <span>+</span>
                 <span class="hl hl-6">4</span>
             </code>
-            <label class="output"></label>
-            <code>93784</code>
-        </div>
-
-        <p>
-            If we were to swap the order of the two date & time values, the resulting timespan would be negative:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>dp(2022y11M3d8h21m28s) - dp(2022y11M4d10h24m32s)</code>
-            <label class="output"></label>
-            <code>-93784</code>
-        </div>
-
-
-        <h4 id="timespan-printing">Formatting timespans</h4>
-
-        <p>
-            Timespans can be formatted using <code>tf()</code> (Timespan Format).
-            There are two main ways to call <code>tf()</code>:
-        </p>
-
-        <ul>
-            <li>
-                <code>tf(<span class="hl hl-1">timespan</span>)</code> - Formats the timespan using a default, human-readable format,
-            </li>
-            <li>
-                <code>tf(<span class="hl hl-1">timespan</span>, <span class="hl hl-2">format</span>)</code> - Prints the timespan using the given format.
-            </li>
-        </ul>
-
-        <p>
-            Furthermode, the <span class="hl hl-1">timespan</span> argument can be a timespan value, or a date & time value.
-            If it is a date & time value, it is first converted to a timespan value by subtracting the current date & time from it.
-        </p>
-
-        <p>
-            The default, human-readable format is different depending on whether the first argument was a timespan, or a date & time.
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>tf(a1h)</code>
-            <label class="output"></label>
-            <code>60 minutes from now</code>
-        </div>
-
-        <p>
-            For timespans, the output will describe the amount of time in the timespan, in the largest units possible.
-            In this example, the timespan is 1 hour (60 minutes * 60 seconds):
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>tf(60 * 60)</code>
-            <label class="output"></label>
-            <code>1 hour</code>
-        </div>
-
-        <p>
-            For date & time values, the output will describe the given date & time relative to current date & time.
-            In this example, the date & time being given is now + 1 hour:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>tf(a1h)</code>
-            <label class="output"></label>
-            <code>60 minutes from now</code>
-            <div class="note">
-                Note: At the time of writing, an (I believe) bug is present that causes the output for the date & time mode to be displayed one unit smaller than it should be -
-                in this case, I believe the output should be "1 hour from now". Interestingly, this is not the case for the timespan mode.
+                <label class="output"></label>
+                <code>93784</code>
             </div>
-        </div>
 
-        <p>
-            As mentioned before, you can pass a format string as the second argument for <code>tf()</code>.
-            Similarly to <code>df()</code>, the format string can contain tokens that will be replaced with values.
-            Here are all <code>tf()</code> format tokens I know of:
-        </p>
+            <p>
+                If we were to swap the order of the two date & time values, the resulting timespan would be negative:
+            </p>
 
-        <div class="table-container">
-            <table id="tf-token-table">
-                <thead>
-                    <tr>
-                        <th>Token</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>h</code></td>
-                        <td>Hours</td>
-                    </tr>
-                    <tr>
-                        <td><code>m</code></td>
-                        <td>Minutes</td>
-                    </tr>
-                    <tr>
-                        <td><code>s</code></td>
-                        <td>Seconds</td>
-                    </tr>
-                    <tr>
-                        <td><code>S</code></td>
-                        <td>Total seconds</td>
-                    </tr>
-                    <tr>
-                        <td><code>M</code></td>
-                        <td>Total minutes</td>
-                    </tr>
-                    <tr>
-                        <td><code>H</code></td>
-                        <td>Total hours</td>
-                    </tr>
-                    <tr>
-                        <td><code>D</code></td>
-                        <td>Total days</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>dp(2022y11M3d8h21m28s) - dp(2022y11M4d10h24m32s)</code>
+                <label class="output"></label>
+                <code>-93784</code>
+            </div>
 
-        <p>
-            Consider a timespan lasting 1 day, 2 hours, 3 minutes and 4 seconds.
-        </p>
 
-        <p>
-            The values for Hours, Minutes and Seconds are right there - if you used <code>D:hh:mm:ss</code> as the format, you would get <code>1:02:03:04</code>.
-        </p>
+            <h4 id="timespan-printing">Formatting timespans using <code>tf()</code></h4>
 
-        <p>
-            The total number for Days, Hours, Minutes and Seconds is the number of that component plus all previous components converted to the same unit.
-        </p>
+            <p>
+                Timespans can be formatted using <code>tf()</code> (Timespan Format).
+                There are two main ways to call <code>tf()</code>:
+            </p>
 
-        <p>
-            Consider minutes for example - the total number of minutes is the <span class="hl hl-1">number of minutes</span> +
-            <span class="hl hl-2">number of hours converted to minutes</span> + <span class="hl hl-3">number of days converted to minutes</span>:
-        </p>
+            <ul>
+                <li>
+                    <code>tf(<span class="hl hl-1">timespan</span>)</code> - Formats the timespan using a default, human-readable format,
+                </li>
+                <li>
+                    <code>tf(<span class="hl hl-1">timespan</span>, <span class="hl hl-2">format</span>)</code> - Prints the timespan using the given format.
+                </li>
+            </ul>
 
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>
+            <p>
+                Furthermode, the <span class="hl hl-1">timespan</span> argument can be a timespan value, or a date & time value.
+                If it is a date & time value, it is first converted to a timespan value by subtracting the current date & time from it.
+            </p>
+
+            <p>
+                The default, human-readable format is different depending on whether the first argument was a timespan, or a date & time.
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tf(a1h)</code>
+                <label class="output"></label>
+                <code>60 minutes from now</code>
+            </div>
+
+            <p>
+                For timespans, the output will describe the amount of time in the timespan, in the largest units possible.
+                In this example, the timespan is 1 hour (60 minutes * 60 seconds):
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tf(60 * 60)</code>
+                <label class="output"></label>
+                <code>1 hour</code>
+            </div>
+
+            <p>
+                For date & time values, the output will describe the given date & time relative to current date & time.
+                In this example, the date & time being given is now + 1 hour:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tf(a1h)</code>
+                <label class="output"></label>
+                <code>60 minutes from now</code>
+                <div class="note">
+                    Note: At the time of writing, an (I believe) bug is present that causes the output for the date & time mode to be displayed one unit smaller than it should be -
+                    in this case, I believe the output should be "1 hour from now". Interestingly, this is not the case for the timespan mode.
+                </div>
+            </div>
+
+            <p>
+                As mentioned before, you can pass a format string as the second argument for <code>tf()</code>.
+                Similarly to <code>df()</code>, the format string can contain tokens that will be replaced with values.
+                Here are all <code>tf()</code> format tokens I know of:
+            </p>
+
+            <div class="table-container">
+                <table id="tf-token-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>h</code></td>
+                            <td>Hours</td>
+                        </tr>
+                        <tr>
+                            <td><code>m</code></td>
+                            <td>Minutes</td>
+                        </tr>
+                        <tr>
+                            <td><code>s</code></td>
+                            <td>Seconds</td>
+                        </tr>
+                        <tr>
+                            <td><code>S</code></td>
+                            <td>Total seconds</td>
+                        </tr>
+                        <tr>
+                            <td><code>M</code></td>
+                            <td>Total minutes</td>
+                        </tr>
+                        <tr>
+                            <td><code>H</code></td>
+                            <td>Total hours</td>
+                        </tr>
+                        <tr>
+                            <td><code>D</code></td>
+                            <td>Total days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                Consider a timespan lasting 1 day, 2 hours, 3 minutes and 4 seconds.
+            </p>
+
+            <p>
+                The values for Hours, Minutes and Seconds are right there - if you used <code>D:hh:mm:ss</code> as the format, you would get <code>1:02:03:04</code>.
+            </p>
+
+            <p>
+                The total number for Days, Hours, Minutes and Seconds is the number of that component plus all previous components converted to the same unit.
+            </p>
+
+            <p>
+                Consider minutes for example - the total number of minutes is the <span class="hl hl-1">number of minutes</span> +
+                <span class="hl hl-2">number of hours converted to minutes</span> + <span class="hl hl-3">number of days converted to minutes</span>:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>
                 <span class="hl hl-1">3</span> 
                 <span>+</span>
                 <span class="hl hl-2">2 * 60</span>
                 <span>+</span>
                 <span class="hl hl-3">1 * 24 * 60</span>
             </code>
-            <label class="output"></label>
-            <code>93784</code>
-        </div>
-
-        <p>
-            Therefore, if you used <code>M</code> as the format, you would get <code>93784</code>.
-        </p>
-
-        <p>
-            Because there is no previous component for Days, there is no <span class="nowrap">non-total</span> number of Days, thus the only token for Days is <code>D</code>.
-        </p>
-
-        <p>
-            Negative timespans given as date & time values are formatted the same way as positive timespans, but with the word "ago" instead of "from now".
-        </p>
-
-        <p>
-            Negative timespans given as timespan values are formatted exactly the same way as positive timespans - there is no sign in the output that the timespan is negative (this might be a bug).
-        </p>
-
-        <p>
-            Negative timespans with a custom format print the same way as positive timespans, except the output of each token is prefixed with a minus:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>tf(-93784, "D:hh:mm:ss")</code>
-            <label class="output"></label>
-            <code>-1:-2:-3:-4</code>
-            <div class="note">
-                Note: <code>hh</code>, <code>mm</code> and <code>ss</code> still pad their respective components with zeroes to two characters,
-                but in this case the minus sign counts towards the 2 characters, leading to no zeroes being added.
+                <label class="output"></label>
+                <code>93784</code>
             </div>
-        </div>
 
-        <p>
-            Just like with <code>df()</code> format string, singlequotes can be used to include literal text:
-        </p>
+            <p>
+                Therefore, if you used <code>M</code> as the format, you would get <code>93784</code>.
+            </p>
 
-        <div class="snippet">
+            <p>
+                Because there is no previous component for Days, there is no <span class="nowrap">non-total</span> number of Days, thus the only token for Days is <code>D</code>.
+            </p>
 
-            <label class="ex-no"></label>
-            <code>tf(a2h36m, "<span class="hl hl-1">H</span> 
+            <p>
+                Negative timespans given as date & time values are formatted the same way as positive timespans, but with the word "ago" instead of "from now".
+            </p>
+
+            <p>
+                Negative timespans given as timespan values are formatted exactly the same way as positive timespans - there is no sign in the output that the timespan is negative (this might be a bug).
+            </p>
+
+            <p>
+                Negative timespans with a custom format print the same way as positive timespans, except the output of each token is prefixed with a minus:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tf(-93784, "D:hh:mm:ss")</code>
+                <label class="output"></label>
+                <code>-1:-2:-3:-4</code>
+                <div class="note">
+                    Note: <code>hh</code>, <code>mm</code> and <code>ss</code> still pad their respective components with zeroes to two characters,
+                    but in this case the minus sign counts towards the 2 characters, leading to no zeroes being added.
+                </div>
+            </div>
+
+            <p>
+                Just like with <code>df()</code> format string, singlequotes can be used to include literal text:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tf(a2h36m, "<span class="hl hl-1">H</span> 
                 <span class="hl hl-gray strong">'</span><span class="hl hl-gray">hours and</span><span class="hl hl-gray strong">'</span>
                 <span class="hl hl-2">m</span> 
                 <span class="hl hl-gray strong">'</span><span class="hl hl-gray">minutes</span><span class="hl hl-gray strong">'</span>")
             </code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-1">2</span> <span class="hl hl-gray">hours and</span> <span class="hl hl-2">36</span> <span class="hl hl-gray">minutes</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-1">2</span> <span class="hl hl-gray">hours and</span> <span class="hl hl-2">36</span> <span class="hl hl-gray">minutes</span></code>
 
-        </div>
-
-
-        <h2 id="further-reading">Further reading</h2>
-
-        <p>
-            If you want to learn more about Kustom:
-        </p>
-
-        <ul class="text-left">
-            <li>
-                <a href="https://help.kustom.rocks/s1-general/knowledgebase/top/c2-functions">Official documentation</a> for all Kustom functions,
-            </li>
-            <li>
-                <a href="https://discord.gg/XhDkh3SFNt">Kustom Discord server</a>, where you can get help and showcase your creations, as well as browse useful resources and formulas created by other users,
-            </li>
-            <li>
-                <a href="https://reddit.com/r/kustom">Kustom Subreddit</a>,
-            </li>
-            <li>
-                <a href="https://www.jagwar.de/kustom-live-wallpaper-maker/">Jagwar's Kustom Basics</a> - tutorial series
-            </li>
-            <li>
-                <a href="https://www.bcraftmath.com/klwp.html">Brandon Craft's series of tutorials</a> on Kustom apps
-            </li>
-        </ul>
+            </div>
 
 
-        <h2 id="tips-and-tricks">Additional tips &amp; tricks</h2>
+            <h2 id="further-reading">Further reading</h2>
 
-        <h3 id="more-about-parentheses">More about parentheses &amp; quotation marks</h3>
+            <p>
+                If you want to learn more about Kustom:
+            </p>
 
-        <p>
-            Be careful when using parentheses and doublequotes - both will give you errors when mismatched. You need a
-            closing parenthesis for every opening one, and a closing quotation mark for each opening one.
-        </p>
+            <ul class="text-left">
+                <li>
+                    <a href="https://help.kustom.rocks/s1-general/knowledgebase/top/c2-functions">Official documentation</a> for all Kustom functions,
+                </li>
+                <li>
+                    <a href="https://discord.gg/XhDkh3SFNt">Kustom Discord server</a>, where you can get help and showcase your creations, as well as browse useful resources and formulas created by other users,
+                </li>
+                <li>
+                    <a href="https://reddit.com/r/kustom">Kustom Subreddit</a>,
+                </li>
+                <li>
+                    <a href="https://www.jagwar.de/kustom-live-wallpaper-maker/">Jagwar's Kustom Basics</a> - tutorial series
+                </li>
+                <li>
+                    <a href="https://www.bcraftmath.com/klwp.html">Brandon Craft's series of tutorials</a> on Kustom apps
+                </li>
+            </ul>
 
-        <div class="snippet">
 
-            <label class="ex-no subex first">
-                <span class="error">incorrect - the red parenthesis doesn't have an opening one</span>
-            </label>
-            <code><span class="hl hl-1">(</span>10 + tc<span class="hl hl-2">(</span>len, mi<span class="hl hl-3">(</span>title<span class="hl hl-3">)</span> + "a"<span class="hl hl-2">)</span><span class="hl hl-1">)</span><span class="hl hl-error">)</span> * 3</code>
+            <h2 id="tips-and-tricks">Additional tips &amp; tricks</h2>
 
-            <label class="ex-no subex">
-                <span class="success">correct</span>
-            </label>
-            <code><span class="hl hl-1">(</span>10 + tc<span class="hl hl-2">(</span>len, mi<span class="hl hl-3">(</span>title<span class="hl hl-3">)</span> + "a"<span class="hl hl-2">)</span><span class="hl hl-1">)</span> * 3</code>
+            <h3 id="more-about-parentheses">More about parentheses &amp; quotation marks</h3>
 
-        </div>
+            <p>
+                Be careful when using parentheses and doublequotes - both will give you errors when mismatched. You need a
+                closing parenthesis for every opening one, and a closing quotation mark for each opening one.
+            </p>
 
-        <p>
-            Because of that, if you try to put a quotation mark in your string, it'll get treated as a closing quotation
-            mark, which'll break your formula.
-        </p>
+            <div class="snippet">
 
-        <div class="snippet">
-            <label class="ex-no">
-                <span class="error">incorrect - matching doublequotes highlighted</span>
-            </label>
-            <code><span class="hl hl-1 strong">"</span><span class="hl hl-1">He said </span><span class="hl hl-1 strong">"</span>I am dead<span class="hl hl-2 strong">"</span><span class="hl hl-2">. He was right.</span><span class="hl hl-2 strong">"</span></code>
-        </div>
+                <label class="ex-no subex first">
+                    <span class="error">incorrect - the red parenthesis doesn't have an opening one</span>
+                </label>
+                <code><span class="hl hl-1">(</span>10 + tc<span class="hl hl-2">(</span>len, mi<span class="hl hl-3">(</span>title<span class="hl hl-3">)</span> + "a"<span class="hl hl-2">)</span><span class="hl hl-1">)</span><span class="hl hl-error">)</span> * 3</code>
 
-        <p>
-            To get around it, you can use <code>tc(utf)</code>.
-            <code>tc(utf, [character code])</code> returns a character from its hexadecimal representation.
-            A doublequote's "hex code" is <code>22</code>, so <code>tc(utf, 22)</code> will return a doublequote character.
-            Then, use <code>+</code> to concatenate parts of the string and the doublequotes returned from
-            <code>tc(utf)</code>:
-        </p>
+                <label class="ex-no subex">
+                    <span class="success">correct</span>
+                </label>
+                <code><span class="hl hl-1">(</span>10 + tc<span class="hl hl-2">(</span>len, mi<span class="hl hl-3">(</span>title<span class="hl hl-3">)</span> + "a"<span class="hl hl-2">)</span><span class="hl hl-1">)</span> * 3</code>
 
-        <div class="snippet">
+            </div>
 
-            <label class="ex-no">
-                <span class="success">correct - matching doublequotes highlighted</span>
-            </label>
-            <code>
+            <p>
+                Because of that, if you try to put a quotation mark in your string, it'll get treated as a closing quotation
+                mark, which'll break your formula.
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no">
+                    <span class="error">incorrect - matching doublequotes highlighted</span>
+                </label>
+                <code><span class="hl hl-1 strong">"</span><span class="hl hl-1">He said </span><span class="hl hl-1 strong">"</span>I am dead<span class="hl hl-2 strong">"</span><span class="hl hl-2">. He was right.</span><span class="hl hl-2 strong">"</span></code>
+            </div>
+
+            <p>
+                To get around it, you can use <code>tc(utf)</code>.
+                <code>tc(utf, [character code])</code> returns a character from its hexadecimal representation.
+                A doublequote's "hex code" is <code>22</code>, so <code>tc(utf, 22)</code> will return a doublequote character.
+                Then, use <code>+</code> to concatenate parts of the string and the doublequotes returned from
+                <code>tc(utf)</code>:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no">
+                    <span class="success">correct - matching doublequotes highlighted</span>
+                </label>
+                <code>
                 <span class="hl hl-1 strong">"</span><span class="hl hl-1">He said </span><span class="hl hl-1 strong">"</span> + <span class="hl hl-2">tc(utf, 22)</span>
                 <span>+</span>
                 <span class="hl hl-3 strong">"</span><span class="hl hl-3">I am dead</span><span class="hl hl-3 strong">"</span> + <span class="hl hl-2">tc(utf, 22)</span> + <span class="hl hl-4 strong">"</span><span class="hl hl-4">. He was right.</span><span class="hl hl-4 strong">"</span>
             </code>
 
-            <label class="output"></label>
-            <code><span class="hl hl-1">He said </span><span class="hl hl-2">"</span><span class="hl hl-3">I am dead</span><span class="hl hl-2">"</span><span class="hl hl-4">. He was right.</span></code>
+                <label class="output"></label>
+                <code><span class="hl hl-1">He said </span><span class="hl hl-2">"</span><span class="hl hl-3">I am dead</span><span class="hl hl-2">"</span><span class="hl hl-4">. He was right.</span></code>
 
-        </div>
-
-        <p>
-            Alternatively, single quotes could be used in the string and later replaced with double quotes using
-            <code>tc(reg)</code>:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>tc(reg, "He said <span class="hl hl-1">'</span><span>I am dead</span><span class="hl hl-1">'</span><span>. He was right.", </span><span class="hl hl-1">'</span><span>, </span><span class="hl hl-2">tc(utf, 22)</span>)</code>
-
-            <label class="output"></label>
-            <code>He said <span class="hl hl-2">"</span><span>I am dead<span class="hl hl-2">"</span>. He was right.</code>
-
-        </div>
-
-
-        <h3 id="concatenating-numbers">Concatenating numbers</h3>
-
-        <p>
-            I mentioned before that I'll present a workaround for concatenating numbers instead of adding them together.
-            It looks like this:
-        </p>
-
-        <div class="snippet">
-            <label class="ex-no"></label>
-            <code>tc(reg, [number 1], "$", [number 2])</code>
-        </div>
-
-        <p>
-            This matches the end of the first number and replaces it with the second number.
-            Note that this will still not help you with numeric values written directly:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no"></label>
-            <code>tc(reg, 003, "$", 009)</code>
-
-            <label class="output"></label>
-            <code>39</code>
-
-        </div>
-
-        <p>
-            But, if the number is received from another function and is a text value behind the scenes, it helps avoid
-            the aggressive conversion to number <code>+</code> performs:
-        </p>
-
-        <div class="snippet">
-
-            <label class="ex-no subex first"></label>
-            <code>tc(lpad, 3, 3, 0) + 9</code>
-
-            <label class="output"></label>
-            <code>11</code>
-
-        </div>
-
-        <div class="snippet">
-
-            <label class="ex-no subex"></label>
-            <code>tc(reg, tc(lpad, 3, 3, 0), "$", 9)</code>
-
-            <label class="output"></label>
-            <code>0039</code>
-
-        </div>
-
-        <footer>
+            </div>
 
             <p>
-                This is the end of the guide.
+                Alternatively, single quotes could be used in the string and later replaced with double quotes using
+                <code>tc(reg)</code>:
             </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tc(reg, "He said <span class="hl hl-1">'</span><span>I am dead</span><span class="hl hl-1">'</span><span>. He was right.", </span><span class="hl hl-1">'</span><span>, </span><span class="hl hl-2">tc(utf, 22)</span>)</code>
+
+                <label class="output"></label>
+                <code>He said <span class="hl hl-2">"</span><span>I am dead<span class="hl hl-2">"</span>. He was right.</code>
+
+            </div>
+
+
+            <h3 id="concatenating-numbers">Concatenating numbers</h3>
 
             <p>
-                If you made it this far, thank you very much for reading! Hope you found this resource useful. If you
-                have
-                some feedback, be it positive or negative, contact me on the <a href="https://discord.gg/XhDkh3SFNt">Kustom Discord server</a>.
+                I mentioned before that I'll present a workaround for concatenating numbers instead of adding them together.
+                It looks like this:
             </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tc(reg, [number 1], "$", [number 2])</code>
+            </div>
 
             <p>
-                Shoutouts to Bunn-E, robin and Grabster for helping me give this guide a much-needed facelift in November
-                2022.
+                This matches the end of the first number and replaces it with the second number.
+                Note that this will still not help you with numeric values written directly:
             </p>
 
-            <p class="text-right">
-                have a nice day o7<br>
-                - Tored
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tc(reg, 003, "$", 009)</code>
+
+                <label class="output"></label>
+                <code>39</code>
+
+            </div>
+
+            <p>
+                But, if the number is received from another function and is a text value behind the scenes, it helps avoid the aggressive conversion to number <code>+</code> performs:
             </p>
 
-        </footer>
+            <div class="snippet">
+
+                <label class="ex-no subex first"></label>
+                <code>tc(lpad, 3, 3, 0) + 9</code>
+
+                <label class="output"></label>
+                <code>11</code>
+
+            </div>
+
+            <div class="snippet">
+
+                <label class="ex-no subex"></label>
+                <code>tc(reg, tc(lpad, 3, 3, 0), "$", 9)</code>
+
+                <label class="output"></label>
+                <code>0039</code>
+
+            </div>
+
+            <footer>
+
+                <p>
+                    This is the end of the guide.
+                </p>
+
+                <p>
+                    If you made it this far, thank you very much for reading! Hope you found this resource useful.
+                    If you have some feedback, be it positive or negative, contact me on the <a href="https://discord.gg/XhDkh3SFNt">Kustom Discord server</a>.
+                </p>
+
+                <p>
+                    Shoutouts to Bunn-E, robin and Grabster for helping me give this guide a much-needed facelift in November
+                    2022.
+                </p>
+
+                <p class="text-right">
+                    have a nice day o7<br>
+                    - Tored
+                </p>
+
+            </footer>
 
     </main>
 
