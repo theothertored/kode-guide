@@ -1,3 +1,5 @@
+// #region font setup
+
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital@0;1&family=Roboto+Mono&family=Source+Serif+Pro:wght@700&display=swap');
 
 $font-family-heading: 'Source Serif Pro', serif;
@@ -7,12 +9,18 @@ $font-size-base: 1rem;
 $font-size-code: 0.85em;
 $font-size-small: 0.75rem;
 
+// #endregion
+
+// #region colors
+
+// variables shared between themes
 $c-dark-bg: #101010;
 $c-dark-text: rgba(#fff, 0.9);
 $c-light-bg: #ffffff;
 $c-light-text: rgba(#000, 0.9);
 $c-accent: #ff00ff;
 
+// dark theme
 :root {
     --c-bg: $c-dark-bg;
     --c-bg-hover: rgba(#fff, 0.1);
@@ -49,6 +57,7 @@ $c-accent: #ff00ff;
     color-scheme: dark;
 }
 
+// light theme
 :root.light {
     --c-bg: $c-light-bg;
     --c-bg-hover: rgba(#000, 0.05);
@@ -85,6 +94,7 @@ $c-accent: #ff00ff;
     color-scheme: light;
 }
 
+// declare variables so it's easier to change things later just in case
 $c-bg: var(--c-bg);
 $c-bg-hover: var(--c-bg-hover);
 $c-text-on-bg-pri: var(--c-text-on-bg-pri);
@@ -97,7 +107,10 @@ $c-border-light: var(--c-border-light);
 $c-border-heavy: var(--c-border-heavy);
 $c-code-bg: var(--c-code-bg);
 
-$main-max-w: 35rem;
+// #endregion
+
+
+$guide-max-w: 35rem;
 
 * {
     box-sizing: border-box;
@@ -119,13 +132,14 @@ body {
     line-height: 1.25;
 }
 
-main {
+.guide {
     width: 100%;
-    max-width: $main-max-w;
+    max-width: $guide-max-w;
     padding: 0 1rem;
     padding-bottom: 15rem;
     text-align: justify;
 }
+
 
 // #region spacing
 
@@ -155,7 +169,7 @@ h1 {
     margin: 2.5rem 0;
     margin-top: 6rem;
 
-    >.small {
+    > .small {
         margin-top: 1rem;
     }
 }
@@ -178,7 +192,7 @@ h4 {
     padding-top: 2rem;
 }
 
-h2+h3 {
+h2 + h3 {
     padding-top: 1.5rem;
 }
 
@@ -187,8 +201,8 @@ h2,
 h3,
 h4 {
 
-    +p,
-    +.snippet {
+    + p,
+    + .snippet {
         margin-top: 2rem;
     }
 }
@@ -203,12 +217,12 @@ p {
 
 ul,
 ol {
-    >li+li {
+    > li + li {
         margin-top: 0.5rem;
     }
 }
 
-main>footer {
+.guide > footer {
     margin-top: 4rem;
     border-top: 1px dashed $c-border-heavy;
 }
@@ -217,7 +231,7 @@ main>footer {
 
 // #region counters
 
-main {
+.guide {
     counter-reset: h2 h3 h4;
 }
 
@@ -262,7 +276,7 @@ h4 {
         padding: 0.1rem;
         margin: -0.1rem;
 
-        +.hl {
+        + .hl {
             margin-left: 0.1rem;
         }
     }
@@ -384,8 +398,8 @@ h4 {
         line-height: 1;
         padding: 0.4rem 0.5rem;
 
-        >.error,
-        >.success {
+        > .error,
+        > .success {
 
             &:before {
                 content: "-";
@@ -396,11 +410,11 @@ h4 {
             font-style: italic;
         }
 
-        >.error {
+        > .error {
             color: $c-text-error;
         }
 
-        >.success {
+        > .success {
             color: $c-text-success;
         }
 
@@ -411,8 +425,8 @@ h4 {
         }
     }
 
-    >code,
-    .step>code {
+    > code,
+    .step > code {
         display: block;
         border: 1px solid $c-border-light;
         padding: 0.5rem;
@@ -428,16 +442,16 @@ h4 {
             }
         }
 
-        +code {
+        + code {
             margin-top: 0.2rem;
         }
 
-        +label {
+        + label {
             margin-top: 0.5rem;
         }
     }
 
-    >.step {
+    > .step {
 
         .arrow {
             display: flex;
@@ -454,12 +468,12 @@ h4 {
             }
         }
 
-        +label {
+        + label {
             margin-top: 0.5rem;
         }
     }
 
-    >.note {
+    > .note {
         font-size: $font-size-small;
         color: $c-text-on-bg-tet;
         margin-top: 0.5rem;
@@ -467,7 +481,7 @@ h4 {
         padding: 0 0.5rem;
     }
 
-    +.snippet {
+    + .snippet {
         margin-top: 1.5rem;
     }
 }
@@ -490,7 +504,7 @@ table {
     border: 1px solid $c-border-light;
     text-align: left;
 
-    thead>tr:last-child>th {
+    thead > tr:last-child > th {
         border-bottom: 1px solid $c-border-heavy;
     }
 
@@ -638,7 +652,8 @@ table {
 // #region TOC
 
 $toc-w: 24rem;
-$mobile-threshold: $toc-w + 5rem + $main-max-w;
+$mobile-threshold: $toc-w + 5rem + $guide-max-w;
+$fab-to-border-threshold: $toc-w + 5rem;
 
 .toc {
     display: flex;
@@ -650,7 +665,7 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
     z-index: 2;
     background-color: $c-bg;
     width: $toc-w;
-    max-width: calc(100vw - 5rem);
+    max-width: calc(100vw - 3rem);
     vertical-align: top;
     border-right: 1px solid $c-border-light;
     text-align: left;
@@ -663,52 +678,52 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
     &.in {
         transform: translateX(0);
 
-        +.toc-scrim {
+        + .toc-scrim {
             opacity: 0.9;
             pointer-events: auto;
         }
     }
 
-    >header {
+    > header {
         width: 100%;
         border-bottom: 1px solid $c-border-light;
         padding: 1rem;
-    }
-
-    >.toc-list {
-        padding: 0.5rem;
-        flex: 1;
-        overflow-y: auto;
-        overscroll-behavior-y: contain;
-    }
-
-    >header {
         font-family: $font-family-heading;
         font-size: 1.5rem;
     }
 
-    >.toc-list {
-        >.toc-entry {
+    > main {
+        padding: 0.5rem;
+        flex: 1;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+
+        > .toc-entry {
             @extend %standard-hover;
             display: block;
             text-decoration: none;
             color: $c-text-on-bg-sec;
             padding: 0.5rem;
             -webkit-tap-highlight-color: transparent;
-            transition: background-color ease-in-out 0.15s;
-        }
-
-        >.toc-entry:hover {
-            background-color: $c-bg-hover;
             border-radius: 0.25rem;
         }
 
-        >.toc-1 {
+        > .toc-1 {
             padding-left: 1rem;
         }
 
-        >.toc-2 {
+        > .toc-2 {
             padding-left: 2rem;
+        }
+    }
+
+    > footer {
+        padding: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid $c-border-light;
+
+        > .theme-switcher {
+            margin-top: 0;
         }
     }
 }
@@ -758,25 +773,45 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
 
 // larger than 1600px at 16px font size
 @media screen and (min-width: 100rem) {
-    body {}
-
-    main {
+    .guide {
         margin: auto;
     }
 }
 
-// larger than mobile (can fit both toc and main)
+// larger than mobile (can fit both toc and .guide)
 @media screen and (min-width: $mobile-threshold) and (max-width: 100rem) {
 
-    .toc.in~main {
+    .toc.in ~ .guide {
         transform: translateX($toc-w + 5rem);
     }
-    
-    main {
+
+    .guide {
         transform: translateX(50vw) translateX(-50%);
         transition: transform 0.33s ease-in-out;
     }
 
+}
+
+@media screen and (max-width: $fab-to-border-threshold) {
+    .toc-fab {
+        right: -1.5rem;
+        top: 0.5rem;
+    }
+
+    .toc.in .toc-fab.scroll-out {
+        transform: translateX(0);
+    }
+
+    .toc:not(.in) .toc-fab {
+
+        &.scroll-out {
+            transform: translate(2rem, -5rem);
+        }
+
+        &:not(.scroll-out) {
+            transform: translateX(2rem);
+        }
+    }
 }
 
 // mobile (toc is hidden)
@@ -786,7 +821,7 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
         text-align: center;
     }
 
-    main {
+    .guide {
         display: inline-block;
         text-align: justify;
         margin: 0;
@@ -805,33 +840,59 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
     }
 }
 
+// expand some touch targets for touchscreens
+@media (pointer: coarse) {
+    $p: 0.75rem;
+
+    .toc main > .toc-entry {
+        padding-top: $p;
+        padding-bottom: $p;
+    }
+
+    .theme-switch {
+        > .buttons {
+            > label {
+                padding: $p !important;
+            }
+        }
+    }
+}
+
 // #endregion
 
-// #region mode switch
+// #region theme switcher
 
-.mode-switch {
-    >label {}
+.theme-switch {
+    > label {
+        display: block;
+        font-size: $font-size-small;
+        color: $c-text-on-bg-tet;
 
-    >.buttons {
+        + .buttons {
+            margin-top: 0.5rem;
+        }
+    }
+
+    > .buttons {
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
         margin-top: 1rem;
         -webkit-tap-highlight-color: transparent;
 
-        >label {
+        > label {
             flex: 1;
-            padding: 1rem;
+            padding: 0.5rem;
             text-align: center;
             position: relative;
             transition: background-color ease-in-out 0.1s, transform ease-in-out 0.33s;
             cursor: pointer;
 
-            >input {
+            > input {
                 display: none;
             }
 
-            >span {
+            > span {
                 &:before {
                     content: "";
                     position: absolute;
@@ -845,8 +906,10 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
                 }
             }
 
-            &:hover {
-                background-color: $c-bg-hover;
+            @media (hover: hover) {
+                &:hover {
+                    background-color: $c-bg-hover;
+                }
             }
 
             &:active {
@@ -854,7 +917,7 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
                 transform: scale(0.96);
             }
 
-            >input:checked+span {
+            > input:checked + span {
                 &:before {
                     border: 0.25rem solid $c-accent;
                 }
@@ -863,7 +926,7 @@ $mobile-threshold: $toc-w + 5rem + $main-max-w;
     }
 }
 
-.mode-switch-overlay {
+.theme-switch-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -928,7 +991,7 @@ code {
     text-align: left;
     font-style: normal;
 
-    >pre {
+    > pre {
         margin: 0;
     }
 }
@@ -981,7 +1044,7 @@ h4 {
         margin: 0.1em;
         margin-right: 0;
 
-        >img {
+        > img {
             width: $is;
             height: $is;
             line-height: $is;
@@ -998,7 +1061,7 @@ h4 {
     h3,
     h4 {
         .btn-section-link {
-            >img {
+            > img {
                 filter: invert(1);
             }
         }

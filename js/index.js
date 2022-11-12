@@ -14,7 +14,7 @@ function rem2px(rem) {
 document.addEventListener('DOMContentLoaded', ev => {
 
     numberExamples();
-    buildTOC();
+    initTOC();
     initModeSwitching();
 
 });
@@ -48,9 +48,9 @@ function numberExamples() {
 
 }
 
-function buildTOC() {
+function initTOC() {
 
-    let mainEl = document.querySelector('main');
+    let guideEl = document.querySelector('.guide');
 
     // build TOC list
     let tocListEl = document.getElementById('toc-list');
@@ -156,10 +156,10 @@ function buildTOC() {
 
         if (scrollToEl.offsetTop < window.scrollY && window.innerWidth < mobileThreshold) {
             // scrolling up and on mobile, fab will be in the way
-            scrollTop = mainEl.offsetTop + scrollToEl.offsetTop - tocFab.clientHeight;
+            scrollTop = scrollToEl.offsetTop - tocFab.clientHeight;
         } else {
             // scrolling down or not on mobile, fab is not in the way
-            scrollTop = mainEl.offsetTop + scrollToEl.offsetTop;
+            scrollTop = scrollToEl.offsetTop;
         }
 
         window.scrollTo({
@@ -173,8 +173,14 @@ function buildTOC() {
 function initModeSwitching() {
 
     function reactToSelectedModeChange(mode, dontAnimate) {
+
+        setCheckedValue('mode', mode);
+        setCheckedValue('mode2', mode);
+
         if (mode === 'dark' || mode === 'light') {
+
             switchTo(mode, dontAnimate);
+
         } else {
             // mode is system
             if (window.matchMedia) {
@@ -199,6 +205,7 @@ function initModeSwitching() {
         }
 
         localStorage.setItem('mode', mode);
+
     }
 
     function systemDarkModeListener() {
@@ -217,8 +224,9 @@ function initModeSwitching() {
             document.documentElement.classList.toggle('light', toMode === 'light');
 
         } else {
+
             let overlay = document.createElement('div');
-            overlay.classList.add('mode-switch-overlay', toMode);
+            overlay.classList.add('theme-switch-overlay', toMode);
             document.body.appendChild(overlay);
 
             setTimeout(() => {
@@ -232,6 +240,7 @@ function initModeSwitching() {
                     }, 330);
                 }, 330);
             }, 0);
+
         }
 
         currentMode = toMode;
@@ -240,10 +249,17 @@ function initModeSwitching() {
 
     let initialMode = localStorage.getItem('mode') || 'system';
 
-    document.querySelectorAll('[name="mode"]').forEach(el => {
+    document.querySelectorAll('[name="mode"], [name="mode2"]').forEach(el => {
         el.checked = el.value === initialMode;
         el.addEventListener('change', ev => reactToSelectedModeChange(ev.currentTarget.value));
     });
 
     reactToSelectedModeChange(initialMode, true);
+}
+
+
+function setCheckedValue(name, value) {
+    document.querySelectorAll(`[name="${name}"]`).forEach(el => {
+        el.checked = el.value === value;
+    });
 }

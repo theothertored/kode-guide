@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,17 +14,40 @@
 <body>
 
     <div id="toc" class="toc">
-        
+
         <button type="button" id="toc-fab" class="toc-fab" title="Expand/Collapse the table of contents">≡</button>
 
         <header>Table of contents</header>
-        <div id="toc-list" class="toc-list"></div>
-        
-    </div>
-    
-            <div class="toc-scrim"></div>
 
-    <main>
+        <main id="toc-list"></main>
+
+        <footer>
+
+            <div class="theme-switch">
+                <label class="sec">Theme</label>
+                <div class="buttons">
+                    <label class="radio dark" title="Use dark theme">
+                        <input type="radio" name="mode2" value="dark" />
+                        <span>Dark</span>
+                    </label>
+                    <label class="radio" title="Select automatically based on system theme">
+                        <input type="radio" name="mode2" value="system" />
+                        <span>System</span>
+                    </label>
+                    <label class="radio light" title="Use light theme">
+                        <input type="radio" name="mode2" value="light" />
+                        <span>Light</span>
+                    </label>
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+
+    <div class="toc-scrim"></div>
+
+    <main class="guide">
 
         <h1>
             <span class="nowrap">A guide to</span>
@@ -32,8 +55,10 @@
             <div class="small">(by Tored)</div>
         </h1>
 
-        <div class="mode-switch">
+        <div class="theme-switch">
+
             <label>What theme would you like to read this guide in?</label>
+
             <div class="buttons">
                 <label class="radio dark" title="Use dark theme">
                     <input type="radio" name="mode" value="dark" />
@@ -48,6 +73,7 @@
                     <span>Light</span>
                 </label>
             </div>
+
         </div>
 
         <h2 id="introduction">Introduction</h2>
