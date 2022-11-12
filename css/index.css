@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital@0;1&family=Roboto+Mono&family=Source+Serif+Pro:wght@700&display=swap");
 :root {
   --c-bg: #101010;
-  --c-bg-hover: rgba(255, 255, 255, 0.05);
+  --c-bg-hover: rgba(255, 255, 255, 0.1);
   --c-text-on-bg-pri: rgba(255, 255, 255, 0.9);
   --c-text-on-bg-sec: rgba(255, 255, 255, 0.8);
   --c-text-on-bg-tet: rgba(255, 255, 255, 0.6);
@@ -26,7 +26,7 @@
   --c-hl-6-strong: #ffb872;
   --c-hl-gray: #f5f5f5;
   --c-hl-gray-strong: #d2d2d2;
-  --c-hl-before: #98bbff;
+  --c-hl-before: #6f9fff;
   --c-hl-after: #6f9fff;
   --c-hl-error: #ea9999;
   --c-hl-true: #9ecd88;
@@ -62,7 +62,7 @@
   --c-hl-6-strong: #fba44e;
   --c-hl-gray: #f5f5f5;
   --c-hl-gray-strong: #d2d2d2;
-  --c-hl-before: #cfe6fc;
+  --c-hl-before: #a2d2ff;
   --c-hl-after: #a2d2ff;
   --c-hl-error: #ea9999;
   --c-hl-true: #ecfccf;
@@ -110,6 +110,25 @@ h6 {
   font-weight: 700;
   color: var(--c-text-on-bg-pri);
   text-align: left;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 > a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover,
+h5 > a:hover,
+h6 > a:hover {
+  text-decoration: underline;
 }
 
 h1 {
@@ -645,7 +664,7 @@ table code {
 }
 
 .toc > .toc-list {
-  padding: 1rem;
+  padding: 0.5rem;
   flex: 1;
   overflow-y: auto;
   overscroll-behavior-y: contain;
@@ -929,7 +948,7 @@ h4 .btn-section-link > img {
   .toc > .toc-list > .toc-entry, .toc-fab:before, h2 .btn-section-link,
   h3 .btn-section-link,
   h4 .btn-section-link {
-    transition: background-color ease-in-out 0.1s;
+    transition: background-color ease-in-out 0.15s;
   }
   .toc > .toc-list > .toc-entry:hover, .toc-fab:hover:before, h2 .btn-section-link:hover,
   h3 .btn-section-link:hover,

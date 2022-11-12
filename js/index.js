@@ -5,7 +5,7 @@ let currentMode;
 let prevScrollY = 0;
 let showingFab = true;
 
-const mobileThreshold = rem2px(60);
+const mobileThreshold = rem2px(64);
 
 function rem2px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -50,20 +50,24 @@ function numberExamples() {
 
 function buildTOC() {
 
+    let mainEl = document.querySelector('main');
+
     // build TOC list
     let tocListEl = document.getElementById('toc-list');
     let counters = [0, 0, 0];
 
     document.querySelectorAll('h2, h3, h4').forEach(el => {
 
-        let sectionLinkBtnEl = document.createElement('a');
-        sectionLinkBtnEl.classList.add('btn-section-link');
-        sectionLinkBtnEl.href = `#${el.id}`;
-        sectionLinkBtnEl.title = 'Link to this section';
-        sectionLinkBtnEl.innerHTML = '<img src="img/icons/anchor-fill.svg"/>';
-        sectionLinkBtnEl.addEventListener('click', linkEl_click);
+        let text = el.innerText;
+        el.innerText = '';
 
-        el.appendChild(sectionLinkBtnEl);
+        let sectionLinkEl = document.createElement('a');
+        sectionLinkEl.href = `#${el.id}`;
+        sectionLinkEl.title = 'Link to this section';
+        sectionLinkEl.innerText = text;
+        sectionLinkEl.addEventListener('click', linkEl_click);
+
+        el.appendChild(sectionLinkEl);
 
         let entryEl = document.createElement('a');
         let entryIndex = parseInt(el.tagName[1]) - 2;
@@ -76,7 +80,7 @@ function buildTOC() {
             counters[i] = 0;
         }
 
-        entryEl.innerText = counters.slice(0, entryIndex + 1).join('.') + '. ' + el.innerText;
+        entryEl.innerText = counters.slice(0, entryIndex + 1).join('.') + '. ' + text;
         entryEl.href = `#${el.id}`;
 
         entryEl.addEventListener('click', ev => {
@@ -152,10 +156,10 @@ function buildTOC() {
 
         if (scrollToEl.offsetTop < window.scrollY && window.innerWidth < mobileThreshold) {
             // scrolling up and on mobile, fab will be in the way
-            scrollTop = scrollToEl.offsetTop - tocFab.clientHeight;
+            scrollTop = mainEl.offsetTop + scrollToEl.offsetTop - tocFab.clientHeight;
         } else {
             // scrolling down or not on mobile, fab is not in the way
-            scrollTop = scrollToEl.offsetTop;
+            scrollTop = mainEl.offsetTop + scrollToEl.offsetTop;
         }
 
         window.scrollTo({
