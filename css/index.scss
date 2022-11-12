@@ -410,7 +410,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .guide > footer {
     margin-top: 4rem;
-    border-top: 1px dashed $c-border-heavy;
+    border-top: 1px dashed $c-border-light;
 }
 
 // there is only one image at the moment, at the very start
@@ -660,13 +660,14 @@ code {
         }
     }
 
-    > code,
-    .step > code {
+    > code, .step > code {
         display: block;
         border: 1px solid $c-border-light;
         padding: 0.5rem;
         line-height: 1.5;
         margin: 0;
+        overflow: hidden;
+        position: relative;
 
         &:empty {
             user-select: none;
@@ -683,6 +684,35 @@ code {
 
         + label {
             margin-top: 0.5rem;
+        }
+
+        &.copied {
+            &:after {
+                content: "";
+                background-color: $c-bg-copied;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 1;
+                width: 50%;
+                height: 400%;
+                transform-origin: center;
+                animation: 0.5s 1 forwards copied;
+                animation-timing-function: ease-out;
+
+                @keyframes copied {
+                    $rot: 20deg;
+                    $tr: 80%;
+
+                    0% {
+                        transform: translateX(-50%) translateX(Min($guide-max-w / 2, 50vw)) translateX($tr) translateY(-50%) translateX(-50%) rotate($rot);
+                    }
+                    
+                    100% {
+                        transform: translateX(-50%) translateX(Max(-$guide-max-w / 2, -50vw)) translateX(-$tr) translateY(-50%) translateX(-50%) rotate($rot);
+                    }
+                }
+            }
         }
     }
 

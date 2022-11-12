@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kode Basics</title>
 
-    <link rel="stylesheet" href="css/index.css?v=0.0.2" />
+    <link rel="stylesheet" href="css/index.css?v=0.0.3" />
 
 </head>
 
@@ -15,11 +15,11 @@
 
     <div id="toc" class="toc">
 
-        <button type="button" id="toc-fab" class="toc-fab" title="Expand/Collapse the table of contents">≡</button>
+        <button type="button" class="toc-fab" title="Expand/Collapse the table of contents">≡</button>
 
         <header>Table of contents</header>
 
-        <main id="toc-list"></main>
+        <main></main>
 
         <footer>
 
@@ -79,11 +79,6 @@
         <h2 id="introduction">Introduction</h2>
 
         <p>
-            Before I begin, a quick note - experimenting and testing stuff for yourself is highly encouraged.
-            If you encounter something you don't get, try doing it in the editor and seeing how it works in practice. Have fun!
-        </p>
-
-        <p>
             What even is kode? If you've used Kustom apps before, you probably are familiar with the formula editor window.
             Everything you write in the Formula Editor field is kode.
         </p>
@@ -103,13 +98,45 @@
             and then produce a result (output) that will then be displayed (printed) instead of the entire text between dollar signs.
         </p>
 
+
+        <h3>Important notes regarding this guide</h3>
+
         <p>
-            Note that, for readability, I won't use dollar signs where there's no need to combine kode and normal text.
-            If you want to test the examples for yourself, don't forget to add dollar signs around them.
+            A quick note for the very start - experimenting and testing stuff for yourself is highly encouraged.
+            If you encounter something you don't get, try doing it in the editor and seeing how it works in practice.
         </p>
 
         <p>
-            Having that established, let's talk about how Kustom transforms your kode text into a result value.
+            If you want to test the examples for yourself:
+        </p>
+        
+        <ul>
+            <li>
+                You can <strong>double-tap/double-click any example box</strong> to copy its contents to clipboard,
+            </li>
+            <li>
+                For readability, I won't use dollar signs where there's no need to combine kode and normal text.
+                Don't forget to <strong>wrap anything you want evaluated in dollar signs <span class="nowrap">(<code>$</code>)</span></strong>.
+            </li>
+        </ul>
+
+        <p>
+            If you'd like to refer someone to a section of this guide:
+        </p>
+
+        <ul>
+            <li>Each section title is also a link to that section,</li>
+            <li>
+                <strong>Long press/right click</strong> the section title and then use "copy link address" to get a <strong>link that will open the guide on that section</strong>.
+            </li>
+        </ul>
+
+        <p>
+            With all that out of the way, let's talk about how Kustom transforms your kode text into a result value.
+        </p>
+
+        <p>
+            Have fun!
         </p>
 
         <h2 id="values-and-operators">Values and operators</h2>
@@ -434,7 +461,7 @@
                     incorrect, the <code>$</code> will be treated as the end of the kode part, making <code>1000</code> plain text and the final <code>$</code> an unclosed evaluated part.
                 </span>
             </label>
-            <code><span class="hl hl-false strong">$</span><span class="hl hl-false">Please give me </span><span class="hl hl-false strong">$</span>1000$</code>
+            <code class="no-dollars"><span class="hl hl-false strong">$</span><span class="hl hl-false">Please give me </span><span class="hl hl-false strong">$</span>1000$</code>
         </div>
 
         <p>
@@ -2098,7 +2125,7 @@
 
     </main>
 
-    <script src="js/index.js?v=0.0.2"></script>
+    <script src="js/index.js?v=0.0.3"></script>
 
 </body>
 

@@ -10,6 +10,7 @@ $c-accent: #ff00ff;
 :root {
     --c-bg: $c-dark-bg;
     --c-bg-hover: rgba(#fff, 0.1);
+    --c-bg-copied: $c-light-bg;
     --c-text-on-bg-pri: $c-dark-text;
     --c-text-on-bg-sec: rgba(#fff, 0.8);
     --c-text-on-bg-tet: rgba(#fff, 0.6);
@@ -47,6 +48,7 @@ $c-accent: #ff00ff;
 :root.light {
     --c-bg: $c-light-bg;
     --c-bg-hover: rgba(#000, 0.05);
+    --c-bg-copied: $c-dark-bg;
     --c-text-on-bg-pri: $c-light-text;
     --c-text-on-bg-sec: rgba(#000, 0.75);
     --c-text-on-bg-tet: rgba(#000, 0.5);
@@ -83,6 +85,7 @@ $c-accent: #ff00ff;
 // variables so it's easier to change things later just in case
 $c-bg: var(--c-bg);
 $c-bg-hover: var(--c-bg-hover);
+$c-bg-copied: var(--c-bg-copied);
 $c-text-on-bg-pri: var(--c-text-on-bg-pri);
 $c-text-on-bg-sec: var(--c-text-on-bg-sec);
 $c-text-on-bg-tet: var(--c-text-on-bg-tet);

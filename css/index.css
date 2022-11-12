@@ -3,6 +3,7 @@
 :root {
   --c-bg: #101010;
   --c-bg-hover: rgba(255, 255, 255, 0.1);
+  --c-bg-copied: #ffffff;
   --c-text-on-bg-pri: rgba(255, 255, 255, 0.9);
   --c-text-on-bg-sec: rgba(255, 255, 255, 0.8);
   --c-text-on-bg-tet: rgba(255, 255, 255, 0.6);
@@ -39,6 +40,7 @@
 :root.light {
   --c-bg: #ffffff;
   --c-bg-hover: rgba(0, 0, 0, 0.05);
+  --c-bg-copied: #101010;
   --c-text-on-bg-pri: rgba(0, 0, 0, 0.9);
   --c-text-on-bg-sec: rgba(0, 0, 0, 0.75);
   --c-text-on-bg-tet: rgba(0, 0, 0, 0.5);
@@ -366,7 +368,7 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
 
 .guide > footer {
   margin-top: 4rem;
-  border-top: 1px dashed var(--c-border-heavy);
+  border-top: 1px dashed var(--c-border-light);
 }
 
 .image-container {
@@ -663,34 +665,54 @@ code > pre {
   content: "Output";
 }
 
-.snippet > code,
-.snippet .step > code {
+.snippet > code, .snippet .step > code {
   display: block;
   border: 1px solid var(--c-border-light);
   padding: 0.5rem;
   line-height: 1.5;
   margin: 0;
+  overflow: hidden;
+  position: relative;
 }
 
-.snippet > code:empty,
-.snippet .step > code:empty {
+.snippet > code:empty, .snippet .step > code:empty {
   user-select: none;
 }
 
-.snippet > code:empty:before,
-.snippet .step > code:empty:before {
+.snippet > code:empty:before, .snippet .step > code:empty:before {
   content: " ";
   white-space: pre;
 }
 
-.snippet > code + code,
-.snippet .step > code + code {
+.snippet > code + code, .snippet .step > code + code {
   margin-top: 0.2rem;
 }
 
-.snippet > code + label,
-.snippet .step > code + label {
+.snippet > code + label, .snippet .step > code + label {
   margin-top: 0.5rem;
+}
+
+.snippet > code.copied:after, .snippet .step > code.copied:after {
+  content: "";
+  background-color: var(--c-bg-copied);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 50%;
+  height: 400%;
+  transform-origin: center;
+  animation: 0.5s 1 forwards copied;
+  animation-timing-function: ease-out;
+}
+
+@keyframes copied {
+  0% {
+    transform: translateX(-50%) translateX(Min(17.5rem, 50vw)) translateX(80%) translateY(-50%) translateX(-50%) rotate(20deg);
+  }
+  100% {
+    transform: translateX(-50%) translateX(Max(-17.5rem, -50vw)) translateX(-80%) translateY(-50%) translateX(-50%) rotate(20deg);
+  }
 }
 
 .snippet > .step .arrow {
