@@ -1,116 +1,36 @@
-// #region font setup
+@import "./_fonts.scss";
+@import "./_themes.scss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital@0;1&family=Roboto+Mono&family=Source+Serif+Pro:wght@700&display=swap');
 
-$font-family-heading: 'Source Serif Pro', serif;
-$font-family-body: 'Inria Sans', sans-serif;
-$font-family-mono: 'Roboto Mono', monospace;
-$font-size-base: 1rem;
-$font-size-code: 0.85em;
-$font-size-small: 0.75rem;
 
-// #endregion
+// #region base
 
-// #region colors
+// base class for things simply highlighting on hover, without sticking after touch
+@media (hover: hover) {
+    %standard-hover {
+        transition: background-color ease-in-out 0.15s;
 
-// variables shared between themes
-$c-dark-bg: #101010;
-$c-dark-text: rgba(#fff, 0.9);
-$c-light-bg: #ffffff;
-$c-light-text: rgba(#000, 0.9);
-$c-accent: #ff00ff;
-
-// dark theme
-:root {
-    --c-bg: $c-dark-bg;
-    --c-bg-hover: rgba(#fff, 0.1);
-    --c-text-on-bg-pri: $c-dark-text;
-    --c-text-on-bg-sec: rgba(#fff, 0.8);
-    --c-text-on-bg-tet: rgba(#fff, 0.6);
-    --c-text-link: #74c9ea;
-    --c-text-error: #ed9090;
-    --c-text-success: #84c666;
-    --c-border-light: rgba(#fff, 0.2);
-    --c-border-heavy: rgba(#fff, 0.5);
-    --c-code-bg: rgba(#000, 0.01);
-    --c-hl-1: #eacf7f;
-    --c-hl-2: #c88afe;
-    --c-hl-3: #a6ddfd;
-    --c-hl-4: #c2e4a1;
-    --c-hl-5: #f794d1;
-    --c-hl-6: #ffb872;
-    --c-hl-1-strong: #ffcc35;
-    --c-hl-2-strong: #d19dff;
-    --c-hl-3-strong: #74ccff;
-    --c-hl-4-strong: #c4ff8a;
-    --c-hl-5-strong: #f794d1;
-    --c-hl-6-strong: #ffb872;
-    --c-hl-gray: #f5f5f5;
-    --c-hl-gray-strong: #d2d2d2;
-    --c-hl-before: #6f9fff;
-    --c-hl-after: #6f9fff;
-    --c-hl-error: #ea9999;
-    --c-hl-true: #9ecd88;
-    --c-hl-false: #d98989;
-    --c-hl-true-strong: #9dff6f;
-    --c-hl-false-strong: #ff6f6f;
-    color-scheme: dark;
+        &:hover {
+            background-color: $c-bg-hover;
+        }
+    }
 }
-
-// light theme
-:root.light {
-    --c-bg: $c-light-bg;
-    --c-bg-hover: rgba(#000, 0.05);
-    --c-text-on-bg-pri: $c-light-text;
-    --c-text-on-bg-sec: rgba(#000, 0.75);
-    --c-text-on-bg-tet: rgba(#000, 0.5);
-    --c-text-link: #0e7398;
-    --c-text-error: #e41717;
-    --c-text-success: #52a92a;
-    --c-border-light: rgba(#000, 0.1);
-    --c-border-heavy: rgba(#000, 0.25);
-    --c-code-bg: rgba(#000, 0.01);
-    --c-hl-1: #ffe599;
-    --c-hl-2: #f0dfff;
-    --c-hl-3: #d1eeff;
-    --c-hl-4: #d9ead3;
-    --c-hl-5: #f4cccc;
-    --c-hl-6: #f9cb9c;
-    --c-hl-1-strong: #f7ca42;
-    --c-hl-2-strong: #d8bcfd;
-    --c-hl-3-strong: #9fdcff;
-    --c-hl-4-strong: #a2f484;
-    --c-hl-5-strong: #ff7979;
-    --c-hl-6-strong: #fba44e;
-    --c-hl-gray: #f5f5f5;
-    --c-hl-gray-strong: #d2d2d2;
-    --c-hl-before: #a2d2ff;
-    --c-hl-after: #a2d2ff;
-    --c-hl-error: #ea9999;
-    --c-hl-true: #ecfccf;
-    --c-hl-false: #ffc7c7;
-    --c-hl-true-strong: #ccff6d;
-    --c-hl-false-strong: #ff9797;
-    color-scheme: light;
-}
-
-// declare variables so it's easier to change things later just in case
-$c-bg: var(--c-bg);
-$c-bg-hover: var(--c-bg-hover);
-$c-text-on-bg-pri: var(--c-text-on-bg-pri);
-$c-text-on-bg-sec: var(--c-text-on-bg-sec);
-$c-text-on-bg-tet: var(--c-text-on-bg-tet);
-$c-text-link: var(--c-text-link);
-$c-text-error: var(--c-text-error);
-$c-text-success: var(--c-text-success);
-$c-border-light: var(--c-border-light);
-$c-border-heavy: var(--c-border-heavy);
-$c-code-bg: var(--c-code-bg);
 
 // #endregion
 
 
+
+// #region layout
+
+
+// layout variables
 $guide-max-w: 35rem;
+$toc-w: 24rem;
+$mobile-threshold: $toc-w + 5rem + $guide-max-w;
+$toc-fab-to-border-threshold: $toc-w + 5rem;
+$toc-fab-size: 3rem;
+$toc-fab-icon-size: 1.5rem;
+$toc-fab-scroll-out-y-offset: 5rem;
 
 * {
     box-sizing: border-box;
@@ -124,46 +44,17 @@ body {
     margin: 0;
 }
 
-body {
-    font-family: $font-family-body;
-    font-size: $font-size-base;
-    color: $c-text-on-bg-sec;
-    background-color: $c-bg;
-    line-height: 1.25;
-}
-
 .guide {
     width: 100%;
     max-width: $guide-max-w;
     padding: 0 1rem;
     padding-bottom: 15rem;
-    text-align: justify;
 }
 
 
-// #region spacing
+// #region header layout
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: $font-family-heading;
-    font-weight: 700;
-    color: $c-text-on-bg-pri;
-    text-align: left;
-
-    > a {
-        color: inherit;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
+// headers use padding-top for spacing so scrolling to a section via offsetTop leaves a nice gap
 h1 {
     font-size: 2.5rem;
     margin: 2.5rem 0;
@@ -192,34 +83,329 @@ h4 {
     padding-top: 2rem;
 }
 
+// #endregion
+
+
+// #region spacing
+
+// spacing between 1. and 1.1. headings
 h2 + h3 {
     padding-top: 1.5rem;
 }
 
-h1,
-h2,
-h3,
-h4 {
-
-    + p,
-    + .snippet {
+// spacing between header and first section item
+h1, h2, h3, h4 {
+    + p, + .snippet {
         margin-top: 2rem;
     }
 }
 
+// spacing between paragraphs
 p {
     margin-top: 1.5rem;
+    line-height: 140%;
 }
 
+// spacing before snippets
 .snippet {
     margin-top: 0.5rem;
 }
 
-ul,
-ol {
+// spacing between list items
+ul, ol {
     > li + li {
         margin-top: 0.5rem;
     }
+}
+
+// #endregion
+
+
+// #region responsiveness
+
+.toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: $toc-w;
+    max-width: calc(100vw - 3rem);
+
+}
+
+// toc position when expanded
+.toc.in {
+    transform: translateX(0);
+}
+
+// toc position when collapsed
+.toc:not(.in) {
+    transform: translateX(-100%);
+}
+
+// position fab 1rem from the top of the page and 1rem to the right of the guide
+.toc-fab {
+    position: fixed;
+    top: 1rem;
+    right: -1rem - $toc-fab-size;
+    z-index: 2;
+}
+
+// larger than 1600px at 16px font size (max desktop)
+@media screen and (min-width: 100rem) {
+
+    // center the guide on the screen
+    .guide {
+        margin: auto;
+    }
+
+}
+
+// less than 1600px at 16px, but can fit both toc and the guide side by side
+@media screen and (min-width: $mobile-threshold) and (max-width: 100rem) {
+
+    // center the guide on the screen by default
+    .guide {
+        transform: translateX(50vw) translateX(-50%);
+        transition: transform 0.33s ease-in-out;
+    }
+
+    // position the guide to the right of the toc when it is expanded
+    .toc.in ~ .guide {
+        transform: translateX($toc-w + 5rem);
+    }
+
+}
+
+// mobile (toc is overlaid as a left drawer)
+@media screen and (max-width: $mobile-threshold) {
+
+    // center the guide on the screen
+    .guide {
+        margin: auto;
+    }
+
+    // stop no-displaying the toc scrim
+    .toc-scrim {
+        display: block !important;
+        transition: opacity ease-in 0.2s;
+    }
+
+    // js applies this class to hide the fab when scrolling down
+    .toc-fab {
+        &.scroll-out {
+            transform: translateY(-5rem);
+        }
+    }
+}
+
+// the drawer will start to decrease in width at this point
+@media screen and (max-width: $toc-fab-to-border-threshold) {
+
+    // move fab so it overlaps the right border of the toc
+    .toc-fab {
+        right: -1.5rem;
+        top: 0.5rem;
+    }
+
+    // if the toc is expanded, override the fab being hidden due to scrolling down
+    .toc.in .toc-fab.scroll-out {
+        transform: translateX(0);
+    }
+
+    // if the toc is collapsed, 
+    .toc:not(.in) .toc-fab {
+
+        // hide the fab when scrolling up and also move it to the right so it no longer overlaps the border of the toc
+        &.scroll-out {
+            transform: translate(2rem, -$toc-fab-scroll-out-y-offset);
+        }
+
+        // otherwise only move it to the right so it no longer overlaps the border of the toc
+        &:not(.scroll-out) {
+            transform: translateX(2rem);
+        }
+    }
+}
+
+// expand touch targets for touchscreens
+@media (pointer: coarse) {
+    $p: 0.75rem;
+
+    .toc main > .toc-entry {
+        padding-top: $p;
+        padding-bottom: $p;
+    }
+
+    .theme-switcher {
+        > .buttons {
+            > label {
+                padding: $p !important;
+            }
+        }
+    }
+}
+
+// #endregion
+
+
+// #endregion
+
+
+
+// #region styling
+
+
+// #region toc
+
+.toc {
+    display: flex;
+    flex-direction: column;
+    background-color: $c-bg;
+    vertical-align: top;
+    border-right: 1px solid $c-border-light;
+    text-align: left;
+
+    // class added by js to only animate after initial state was set
+    &.transition {
+        transition: transform ease-in-out 0.33s;
+    }
+
+    &.in ~ .toc-scrim {
+        opacity: 0.9;
+        pointer-events: auto;
+    }
+
+    > header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid $c-border-light;
+        padding: 1rem;
+        font-family: $font-family-heading;
+        font-size: 1.5rem;
+    }
+
+    > main {
+        padding: 0.5rem;
+        flex: 1;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+
+        > .toc-entry {
+            @extend %standard-hover;
+            display: block;
+            text-decoration: none;
+            color: $c-text-on-bg-sec;
+            padding: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
+            border-radius: 0.25rem;
+        }
+
+        > .toc-1 {
+            padding-left: 1rem;
+        }
+
+        > .toc-2 {
+            padding-left: 2rem;
+        }
+    }
+
+    > footer {
+        padding: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid $c-border-light;
+
+        > .theme-switcher {
+            margin-top: 0;
+        }
+    }
+}
+
+.toc-fab {
+    width: $toc-fab-size;
+    height: $toc-fab-size;
+    font-size: $toc-fab-icon-size;
+    border-radius: 1.5rem;
+    border: 1px solid $c-border-light;
+    color: $c-text-on-bg-pri;
+    background-color: $c-bg;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform ease-in-out 0.33s;
+
+    // add a separate element responsible for just animating on hover
+    // otherwise, switching the theme causes the fab bg colour to animate
+    // and it looks very bad
+    &:before {
+        @extend %standard-hover;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.toc-scrim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background-color: $c-bg;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+// #endregion
+
+
+// #region basic component styling
+
+body {
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $c-text-on-bg-sec;
+    background-color: $c-bg;
+    line-height: 1.25;
+}
+
+.guide {
+    text-align: justify;
+}
+
+
+// header styles
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    color: $c-text-on-bg-pri;
+    text-align: left;
+
+    > a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// styling for that tiny text below the main header
+.small {
+    font-size: $font-size-small;
+    font-weight: normal;
+    color: $c-text-on-bg-tet;
+    font-family: $font-family-body;
 }
 
 .guide > footer {
@@ -227,9 +413,35 @@ ol {
     border-top: 1px dashed $c-border-heavy;
 }
 
+// there is only one image at the moment, at the very start
+.image-container {
+    width: 100%;
+
+    img {
+        display: block;
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    label {
+        margin-top: -0.5rem;
+        display: block;
+        text-align: center;
+        font-size: $font-size-small;
+        color: $c-text-on-bg-tet;
+        font-style: italic;
+    }
+}
+
+// recolour links
+a {
+    color: $c-text-link;
+}
+
 // #endregion
 
-// #region counters
+
+// #region section counters
 
 .guide {
     counter-reset: h2 h3 h4;
@@ -263,8 +475,29 @@ h4 {
 
 // #endregion
 
-// #region highlighting
 
+// #region code & highlighting
+
+// inline code bits
+code {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: $font-size-code;
+    border: 1px solid $c-border-light;
+    // background-color: $c-code-bg;
+    border-radius: 0.25em;
+    padding: 0 0.35em;
+    margin: 0 0.2em;
+    word-break: break-all;
+    text-align: left;
+    font-style: normal;
+
+    > pre {
+        margin: 0;
+    }
+}
+
+// light mode highlights using background color
 :root.light {
 
     .hl {
@@ -328,6 +561,7 @@ h4 {
     }
 }
 
+// dark mode highlights using text color
 :root:not(.light) {
 
     @for $i from 1 to 7 {
@@ -383,6 +617,7 @@ h4 {
 }
 
 // #endregion
+
 
 // #region snippets
 
@@ -487,6 +722,7 @@ h4 {
 }
 
 // #endregion
+
 
 // #region tables
 
@@ -649,220 +885,11 @@ table {
 
 // #endregion
 
-// #region TOC
-
-$toc-w: 24rem;
-$mobile-threshold: $toc-w + 5rem + $guide-max-w;
-$fab-to-border-threshold: $toc-w + 5rem;
-
-.toc {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 2;
-    background-color: $c-bg;
-    width: $toc-w;
-    max-width: calc(100vw - 3rem);
-    vertical-align: top;
-    border-right: 1px solid $c-border-light;
-    text-align: left;
-    transform: translateX(-100%);
-
-    &.transition {
-        transition: transform ease-in-out 0.33s;
-    }
-
-    &.in {
-        transform: translateX(0);
-
-        + .toc-scrim {
-            opacity: 0.9;
-            pointer-events: auto;
-        }
-    }
-
-    > header {
-        width: 100%;
-        border-bottom: 1px solid $c-border-light;
-        padding: 1rem;
-        font-family: $font-family-heading;
-        font-size: 1.5rem;
-    }
-
-    > main {
-        padding: 0.5rem;
-        flex: 1;
-        overflow-y: auto;
-        overscroll-behavior-y: contain;
-
-        > .toc-entry {
-            @extend %standard-hover;
-            display: block;
-            text-decoration: none;
-            color: $c-text-on-bg-sec;
-            padding: 0.5rem;
-            -webkit-tap-highlight-color: transparent;
-            border-radius: 0.25rem;
-        }
-
-        > .toc-1 {
-            padding-left: 1rem;
-        }
-
-        > .toc-2 {
-            padding-left: 2rem;
-        }
-    }
-
-    > footer {
-        padding: 1rem;
-        padding-top: 0.5rem;
-        border-top: 1px solid $c-border-light;
-
-        > .theme-switcher {
-            margin-top: 0;
-        }
-    }
-}
-
-.toc-fab {
-    position: fixed;
-    top: 1rem;
-    right: -4rem;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
-    border-radius: 1.5rem;
-    border: 1px solid $c-border-light;
-    color: $c-text-on-bg-pri;
-    background-color: $c-bg;
-    z-index: 2;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    cursor: pointer;
-    transition: transform ease-in-out 0.33s;
-    overflow: hidden;
-
-    &:before {
-        @extend %standard-hover;
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-}
-
-.toc-scrim {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    background-color: $c-bg;
-    opacity: 0;
-    pointer-events: none;
-    display: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-// larger than 1600px at 16px font size
-@media screen and (min-width: 100rem) {
-    .guide {
-        margin: auto;
-    }
-}
-
-// larger than mobile (can fit both toc and .guide)
-@media screen and (min-width: $mobile-threshold) and (max-width: 100rem) {
-
-    .toc.in ~ .guide {
-        transform: translateX($toc-w + 5rem);
-    }
-
-    .guide {
-        transform: translateX(50vw) translateX(-50%);
-        transition: transform 0.33s ease-in-out;
-    }
-
-}
-
-@media screen and (max-width: $fab-to-border-threshold) {
-    .toc-fab {
-        right: -1.5rem;
-        top: 0.5rem;
-    }
-
-    .toc.in .toc-fab.scroll-out {
-        transform: translateX(0);
-    }
-
-    .toc:not(.in) .toc-fab {
-
-        &.scroll-out {
-            transform: translate(2rem, -5rem);
-        }
-
-        &:not(.scroll-out) {
-            transform: translateX(2rem);
-        }
-    }
-}
-
-// mobile (toc is hidden)
-@media screen and (max-width: $mobile-threshold) {
-
-    body {
-        text-align: center;
-    }
-
-    .guide {
-        display: inline-block;
-        text-align: justify;
-        margin: 0;
-        width: 100%;
-    }
-
-    .toc-scrim {
-        display: block;
-        transition: opacity ease-in 0.2s;
-    }
-
-    .toc-fab {
-        &.scroll-out {
-            transform: translateY(-5rem);
-        }
-    }
-}
-
-// expand some touch targets for touchscreens
-@media (pointer: coarse) {
-    $p: 0.75rem;
-
-    .toc main > .toc-entry {
-        padding-top: $p;
-        padding-bottom: $p;
-    }
-
-    .theme-switch {
-        > .buttons {
-            > label {
-                padding: $p !important;
-            }
-        }
-    }
-}
-
-// #endregion
 
 // #region theme switcher
 
-.theme-switch {
+.theme-switcher {
+
     > label {
         display: block;
         font-size: $font-size-small;
@@ -902,6 +929,7 @@ $fab-to-border-threshold: $toc-w + 5rem;
                     right: 0;
                     border-radius: 0.25rem;
                     border: 1px solid $c-border-light;
+                    // overshoot
                     transition: border cubic-bezier(0.87, 1.92, 0.48, 0.75) 0.15s;
                 }
             }
@@ -919,7 +947,7 @@ $fab-to-border-threshold: $toc-w + 5rem;
 
             > input:checked + span {
                 &:before {
-                    border: 0.25rem solid $c-accent;
+                    border: 0.15rem solid $c-accent;
                 }
             }
         }
@@ -958,17 +986,12 @@ $fab-to-border-threshold: $toc-w + 5rem;
 
 // #endregion
 
+
+// #endregion
+
+
+
 // #region misc
-
-p {
-    line-height: 140%;
-}
-
-.small {
-    font-size: $font-size-small;
-    color: $c-text-on-bg-tet;
-    font-family: $font-family-body;
-}
 
 .nowrap {
     white-space: nowrap;
@@ -976,107 +999,6 @@ p {
 
 .text-right {
     text-align: right;
-}
-
-code {
-    display: inline-block;
-    font-family: $font-family-mono;
-    font-size: $font-size-code;
-    border: 1px solid $c-border-light;
-    // background-color: $c-code-bg;
-    border-radius: 0.25em;
-    padding: 0 0.35em;
-    margin: 0 0.2em;
-    word-break: break-all;
-    text-align: left;
-    font-style: normal;
-
-    > pre {
-        margin: 0;
-    }
-}
-
-.image-container {
-    width: 100%;
-
-    img {
-        display: block;
-        max-width: 100%;
-        padding: 1rem;
-    }
-
-    label {
-        margin-top: -0.5rem;
-        display: block;
-        text-align: center;
-        font-size: $font-size-small;
-        color: $c-text-on-bg-tet;
-        font-style: italic;
-    }
-}
-
-a {
-    color: $c-text-link;
-}
-
-h2,
-h3,
-h4 {
-    $s: 1em;
-    $p: 0.25em;
-    $is: $s - $p * 2;
-
-    .btn-section-link {
-        @extend %standard-hover;
-        background: none;
-        border: none;
-        outline: none;
-        width: $s;
-        height: $s;
-        border-radius: $s;
-        padding: $p;
-        float: right;
-        font-size: inherit;
-        line-height: $is;
-        vertical-align: middle;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        margin: 0.1em;
-        margin-right: 0;
-
-        > img {
-            width: $is;
-            height: $is;
-            line-height: $is;
-            vertical-align: top;
-            opacity: 0.5;
-        }
-    }
-
-}
-
-:root:not(.light) {
-
-    h2,
-    h3,
-    h4 {
-        .btn-section-link {
-            > img {
-                filter: invert(1);
-            }
-        }
-    }
-
-}
-
-@media (hover: hover) {
-    %standard-hover {
-        transition: background-color ease-in-out 0.15s;
-
-        &:hover {
-            background-color: $c-bg-hover;
-        }
-    }
 }
 
 // #endregion

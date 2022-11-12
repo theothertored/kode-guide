@@ -1,6 +1,6 @@
 let prevWindowWidth = window.innerWidth;
 let matchMedia;
-let currentMode;
+let currentTheme;
 
 let prevScrollY = 0;
 let showingFab = true;
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
 
     numberExamples();
     initTOC();
-    initModeSwitching();
+    initThemeSwitching();
 
 });
 
@@ -170,31 +170,31 @@ function initTOC() {
 
 }
 
-function initModeSwitching() {
+function initThemeSwitching() {
 
-    function reactToSelectedModeChange(mode, dontAnimate) {
+    function reactToSelectedThemeChange(theme, dontAnimate) {
 
-        setCheckedValue('mode', mode);
-        setCheckedValue('mode2', mode);
+        setCheckedValue('theme', theme);
+        setCheckedValue('theme2', theme);
 
-        if (mode === 'dark' || mode === 'light') {
+        if (theme === 'dark' || theme === 'light') {
 
-            switchTo(mode, dontAnimate);
+            switchTo(theme, dontAnimate);
 
         } else {
-            // mode is system
+            // theme is system
             if (window.matchMedia) {
 
                 if (!matchMedia) {
                     matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-                    matchMedia.addEventListener('change', systemDarkModeListener);
+                    matchMedia.addEventListener('change', systemDarkThemeListener);
                 }
 
                 if (matchMedia.matches) {
-                    // system set to dark mode
+                    // system set to dark theme
                     switchTo('dark', dontAnimate);
                 } else {
-                    // system set to light mode
+                    // system set to light theme
                     switchTo('light', dontAnimate);
                 }
 
@@ -204,35 +204,35 @@ function initModeSwitching() {
             }
         }
 
-        localStorage.setItem('mode', mode);
+        localStorage.setItem('theme', theme);
 
     }
 
-    function systemDarkModeListener() {
-        if (document.querySelector('[name="mode"]:checked').value === 'system') {
+    function systemDarkThemeListener() {
+        if (document.querySelector('[name="theme"]:checked').value === 'system') {
             switchTo(matchMedia.matches ? 'dark' : 'light');
         }
     }
 
-    function switchTo(toMode, dontAnimate) {
+    function switchTo(toTheme, dontAnimate) {
 
-        if (currentMode === toMode)
+        if (currentTheme === toTheme)
             return;
 
         if (dontAnimate) {
 
-            document.documentElement.classList.toggle('light', toMode === 'light');
+            document.documentElement.classList.toggle('light', toTheme === 'light');
 
         } else {
 
             let overlay = document.createElement('div');
-            overlay.classList.add('theme-switch-overlay', toMode);
+            overlay.classList.add('theme-switch-overlay', toTheme);
             document.body.appendChild(overlay);
 
             setTimeout(() => {
                 overlay.classList.add('in');
                 setTimeout(() => {
-                    document.documentElement.classList.toggle('light', toMode === 'light');
+                    document.documentElement.classList.toggle('light', toTheme === 'light');
                     overlay.classList.remove('in');
                     overlay.classList.add('out');
                     setTimeout(() => {
@@ -243,18 +243,18 @@ function initModeSwitching() {
 
         }
 
-        currentMode = toMode;
+        currentTheme = toTheme;
 
     }
 
-    let initialMode = localStorage.getItem('mode') || 'system';
+    let initialTheme = localStorage.getItem('theme') || 'system';
 
-    document.querySelectorAll('[name="mode"], [name="mode2"]').forEach(el => {
-        el.checked = el.value === initialMode;
-        el.addEventListener('change', ev => reactToSelectedModeChange(ev.currentTarget.value));
+    document.querySelectorAll('[name="theme"], [name="theme2"]').forEach(el => {
+        el.checked = el.value === initialTheme;
+        el.addEventListener('change', ev => reactToSelectedThemeChange(ev.currentTarget.value));
     });
 
-    reactToSelectedModeChange(initialMode, true);
+    reactToSelectedThemeChange(initialTheme, true);
 }
 
 

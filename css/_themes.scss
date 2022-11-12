@@ -1,0 +1,94 @@
+
+// variables shared between themes
+$c-dark-bg: #101010;
+$c-dark-text: rgba(#fff, 0.9);
+$c-light-bg: #ffffff;
+$c-light-text: rgba(#000, 0.9);
+$c-accent: #ff00ff;
+
+// dark theme
+:root {
+    --c-bg: $c-dark-bg;
+    --c-bg-hover: rgba(#fff, 0.1);
+    --c-text-on-bg-pri: $c-dark-text;
+    --c-text-on-bg-sec: rgba(#fff, 0.8);
+    --c-text-on-bg-tet: rgba(#fff, 0.6);
+    --c-text-link: #74c9ea;
+    --c-text-error: #ed9090;
+    --c-text-success: #84c666;
+    --c-border-light: rgba(#fff, 0.2);
+    --c-border-heavy: rgba(#fff, 0.5);
+    --c-code-bg: rgba(#000, 0.01);
+    --c-hl-1: #eacf7f;
+    --c-hl-2: #c88afe;
+    --c-hl-3: #a6ddfd;
+    --c-hl-4: #c2e4a1;
+    --c-hl-5: #f794d1;
+    --c-hl-6: #ffb872;
+    --c-hl-1-strong: #ffcc35;
+    --c-hl-2-strong: #d19dff;
+    --c-hl-3-strong: #74ccff;
+    --c-hl-4-strong: #c4ff8a;
+    --c-hl-5-strong: #f794d1;
+    --c-hl-6-strong: #ffb872;
+    --c-hl-gray: #f5f5f5;
+    --c-hl-gray-strong: #d2d2d2;
+    --c-hl-before: #6f9fff;
+    --c-hl-after: #6f9fff;
+    --c-hl-error: #ea9999;
+    --c-hl-true: #9ecd88;
+    --c-hl-false: #d98989;
+    --c-hl-true-strong: #9dff6f;
+    --c-hl-false-strong: #ff6f6f;
+    color-scheme: dark;
+}
+
+// light theme
+:root.light {
+    --c-bg: $c-light-bg;
+    --c-bg-hover: rgba(#000, 0.05);
+    --c-text-on-bg-pri: $c-light-text;
+    --c-text-on-bg-sec: rgba(#000, 0.75);
+    --c-text-on-bg-tet: rgba(#000, 0.5);
+    --c-text-link: #0e7398;
+    --c-text-error: #e41717;
+    --c-text-success: #52a92a;
+    --c-border-light: rgba(#000, 0.1);
+    --c-border-heavy: rgba(#000, 0.25);
+    --c-code-bg: rgba(#000, 0.01);
+    --c-hl-1: #ffe599;
+    --c-hl-2: #f0dfff;
+    --c-hl-3: #d1eeff;
+    --c-hl-4: #d9ead3;
+    --c-hl-5: #f4cccc;
+    --c-hl-6: #f9cb9c;
+    --c-hl-1-strong: #f7ca42;
+    --c-hl-2-strong: #d8bcfd;
+    --c-hl-3-strong: #9fdcff;
+    --c-hl-4-strong: #a2f484;
+    --c-hl-5-strong: #ff7979;
+    --c-hl-6-strong: #fba44e;
+    --c-hl-gray: #f5f5f5;
+    --c-hl-gray-strong: #d2d2d2;
+    --c-hl-before: #a2d2ff;
+    --c-hl-after: #a2d2ff;
+    --c-hl-error: #ea9999;
+    --c-hl-true: #ecfccf;
+    --c-hl-false: #ffc7c7;
+    --c-hl-true-strong: #ccff6d;
+    --c-hl-false-strong: #ff9797;
+    color-scheme: light;
+}
+
+// variables so it's easier to change things later just in case
+$c-bg: var(--c-bg);
+$c-bg-hover: var(--c-bg-hover);
+$c-text-on-bg-pri: var(--c-text-on-bg-pri);
+$c-text-on-bg-sec: var(--c-text-on-bg-sec);
+$c-text-on-bg-tet: var(--c-text-on-bg-tet);
+$c-text-link: var(--c-text-link);
+$c-text-error: var(--c-text-error);
+$c-text-success: var(--c-text-success);
+$c-border-light: var(--c-border-light);
+$c-border-heavy: var(--c-border-heavy);
+$c-code-bg: var(--c-code-bg);

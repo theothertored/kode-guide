@@ -1,10 +1,10 @@
-- favicon
+- refactor the absolute bowl of spaghetti I have created
 - double tap to copy example
 - add some text explaining section links and copying examples
 - hamburger to arrow animation for fab
 - "pick up where you left off" prompt
-- refactor the absolute bowl of spaghetti I have created
 - open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
+- favicon
 
 DONE:
 - smaller/larger list entries for mouse/touchscreen
