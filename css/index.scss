@@ -29,7 +29,7 @@ $toc-w: 24rem;
 $mobile-threshold: $toc-w + 5rem + $guide-max-w;
 $toc-fab-to-border-threshold: $toc-w + 5rem;
 $toc-fab-size: 3rem;
-$toc-fab-icon-size: 1.5rem;
+$toc-fab-icon-size: 1rem;
 $toc-fab-scroll-out-y-offset: 5rem;
 
 * {
@@ -272,11 +272,6 @@ ul, ol {
         transition: transform ease-in-out 0.33s;
     }
 
-    &.in ~ .toc-scrim {
-        opacity: 0.9;
-        pointer-events: auto;
-    }
-
     > header {
         display: flex;
         align-items: center;
@@ -349,6 +344,49 @@ ul, ol {
         right: 0;
         bottom: 0;
     }
+
+    > .top, > .mid, > .bot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: $toc-fab-icon-size;
+        height: 0.1rem;
+        background-color: $c-text-on-bg-pri;
+    }
+
+    > .top {
+        transform: translate(-50%, -50%) translateY(-$toc-fab-icon-size / 3);
+    }
+
+    > .mid {
+        transform: translate(-50%, -50%);
+    }
+
+    > .bot {
+        transform: translate(-50%, -50%) translateY($toc-fab-icon-size / 3);
+    }
+}
+
+.toc.transition .toc-fab {
+    > .top, > .mid, > .bot {
+        transition: transform ease-in-out 0.15s;
+    }
+}
+
+.toc.in .toc-fab {
+
+    > .top {
+        transform: translate(-50%, -50%) translateY(-$toc-fab-icon-size / 3) translate(-33%, $toc-fab-icon-size / 5.5) rotate(-45deg) scaleX(0.5);
+    }
+    
+    > .mid {
+        transform: translate(-50%, -50%);
+    }
+    
+    > .bot {
+        transform: translate(-50%, -50%) translateY($toc-fab-icon-size / 3) translate(-33%, -$toc-fab-icon-size / 5.5) rotate(45deg) scaleX(0.5);
+    }
+
 }
 
 .toc-scrim {
@@ -363,6 +401,11 @@ ul, ol {
     pointer-events: none;
     display: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+.toc.in ~ .toc-scrim {
+    opacity: 0.9;
+    pointer-events: auto;
 }
 
 // #endregion
@@ -707,7 +750,7 @@ code {
                     0% {
                         transform: translateX(-50%) translateX(Min($guide-max-w / 2, 50vw)) translateX($tr) translateY(-50%) translateX(-50%) rotate($rot);
                     }
-                    
+
                     100% {
                         transform: translateX(-50%) translateX(Max(-$guide-max-w / 2, -50vw)) translateX(-$tr) translateY(-50%) translateX(-50%) rotate($rot);
                     }

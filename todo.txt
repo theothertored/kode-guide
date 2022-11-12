@@ -1,9 +1,10 @@
-- hamburger to arrow animation for fab
 - "pick up where you left off" prompt
 - open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
 - favicon
+- some kind of readme
 
 DONE:
+- hamburger to arrow animation for fab
 - add some text explaining section links and copying examples
 - double tap to copy example
 - refactor the absolute bowl of spaghetti I have created (wasn't that bad lol)

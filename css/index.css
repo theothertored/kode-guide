@@ -244,11 +244,6 @@ ul > li + li, ol > li + li {
   transition: transform ease-in-out 0.33s;
 }
 
-.toc.in ~ .toc-scrim {
-  opacity: 0.9;
-  pointer-events: auto;
-}
-
 .toc > header {
   display: flex;
   align-items: center;
@@ -296,7 +291,7 @@ ul > li + li, ol > li + li {
 .toc-fab {
   width: 3rem;
   height: 3rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border-radius: 1.5rem;
   border: 1px solid var(--c-border-light);
   color: var(--c-text-on-bg-pri);
@@ -317,6 +312,43 @@ ul > li + li, ol > li + li {
   bottom: 0;
 }
 
+.toc-fab > .top, .toc-fab > .mid, .toc-fab > .bot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 0.1rem;
+  background-color: var(--c-text-on-bg-pri);
+}
+
+.toc-fab > .top {
+  transform: translate(-50%, -50%) translateY(-0.33333rem);
+}
+
+.toc-fab > .mid {
+  transform: translate(-50%, -50%);
+}
+
+.toc-fab > .bot {
+  transform: translate(-50%, -50%) translateY(0.33333rem);
+}
+
+.toc.transition .toc-fab > .top, .toc.transition .toc-fab > .mid, .toc.transition .toc-fab > .bot {
+  transition: transform ease-in-out 0.15s;
+}
+
+.toc.in .toc-fab > .top {
+  transform: translate(-50%, -50%) translateY(-0.33333rem) translate(-33%, 0.18182rem) rotate(-45deg) scaleX(0.5);
+}
+
+.toc.in .toc-fab > .mid {
+  transform: translate(-50%, -50%);
+}
+
+.toc.in .toc-fab > .bot {
+  transform: translate(-50%, -50%) translateY(0.33333rem) translate(-33%, -0.18182rem) rotate(45deg) scaleX(0.5);
+}
+
 .toc-scrim {
   position: fixed;
   top: 0;
@@ -329,6 +361,11 @@ ul > li + li, ol > li + li {
   pointer-events: none;
   display: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.toc.in ~ .toc-scrim {
+  opacity: 0.9;
+  pointer-events: auto;
 }
 
 body {
