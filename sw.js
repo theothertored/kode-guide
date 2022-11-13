@@ -7,9 +7,9 @@ self.addEventListener('install', ev => {
     ev.waitUntil(
         caches.open(cacheName).then(cache => {
             return cache.addAll([
-                "/",
-                "/js/index.js",
-                "/css/index.css",
+                "",
+                "js/index.js",
+                "css/index.css",
             ]);
         })
     ); 
@@ -28,7 +28,6 @@ self.addEventListener('fetch', ev => {
                         let reqUrl = ev.request.url.toString();
 
                         if (reqUrl.includes('v=')) {
-                            console.log('updating cached index.js or index.css');
                             cache.put(getReqUrlWithoutVersion(reqUrl), resp.clone());
                         } else {
                             cache.put(ev.request, resp.clone());
@@ -42,7 +41,6 @@ self.addEventListener('fetch', ev => {
                         let reqUrl = ev.request.url.toString();
                         
                         if (reqUrl.includes('v=')) {
-                            console.log('fetching cached index.js or index.css');
                             return cache.match(getReqUrlWithoutVersion(reqUrl));
                         } else {
                             return cache.match(ev.request);
