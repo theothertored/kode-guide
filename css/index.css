@@ -287,15 +287,15 @@ ul > li + li, ol > li + li {
 }
 
 .toc.in .toc-fab > .top {
-  transform: translate(-50%, -50%) translateY(-0.33333rem) translate(-33%, 0.18182rem) rotate(-45deg) scaleX(0.5);
+  transform: translate(-25%, -50%) translateY(-0.33333rem) translate(-33%, 0.18182rem) rotate(-45deg) scaleX(0.5);
 }
 
 .toc.in .toc-fab > .mid {
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scaleX(0);
 }
 
 .toc.in .toc-fab > .bot {
-  transform: translate(-50%, -50%) translateY(0.33333rem) translate(-33%, -0.18182rem) rotate(45deg) scaleX(0.5);
+  transform: translate(-25%, -50%) translateY(0.33333rem) translate(-33%, -0.18182rem) rotate(45deg) scaleX(0.5);
 }
 
 .toc-scrim {

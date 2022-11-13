@@ -287,15 +287,15 @@ ul, ol {
 .toc.in .toc-fab {
 
     > .top {
-        transform: translate(-50%, -50%) translateY(-$toc-fab-icon-size / 3) translate(-33%, $toc-fab-icon-size / 5.5) rotate(-45deg) scaleX(0.5);
+        transform: translate(-25%, -50%) translateY(-$toc-fab-icon-size / 3) translate(-33%, $toc-fab-icon-size / 5.5) rotate(-45deg) scaleX(0.5);
     }
 
     > .mid {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scaleX(0);
     }
 
     > .bot {
-        transform: translate(-50%, -50%) translateY($toc-fab-icon-size / 3) translate(-33%, -$toc-fab-icon-size / 5.5) rotate(45deg) scaleX(0.5);
+        transform: translate(-25%, -50%) translateY($toc-fab-icon-size / 3) translate(-33%, -$toc-fab-icon-size / 5.5) rotate(45deg) scaleX(0.5);
     }
 
 }
