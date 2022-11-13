@@ -2,13 +2,17 @@
 @import "./_themes.scss";
 
 
+$ease-material-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+$ease-material-in: cubic-bezier(0.4, 0.0, 1, 1);
+$ease-material-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+
 
 // #region base
 
 // base class for things simply highlighting on hover, without sticking after touch
 @media (hover: hover) {
     %standard-hover {
-        transition: background-color ease-in-out 0.15s;
+        transition: background-color $ease-material-in-out 0.15s;
 
         &:hover {
             background-color: $c-bg-hover;
@@ -114,7 +118,7 @@ p {
 // spacing between list items
 ul, ol {
     line-height: 140%;
-    
+
     > li + li {
         margin-top: 0.5rem;
     }
@@ -123,7 +127,7 @@ ul, ol {
 // #endregion
 
 
-// #region responsiveness
+// #region toc
 
 .toc {
     position: fixed;
@@ -154,101 +158,6 @@ ul, ol {
     z-index: 2;
 }
 
-// larger than 1600px at 16px font size (max desktop)
-@media screen and (min-width: 100rem) {
-
-    // center the guide on the screen
-    .guide {
-        margin: auto;
-    }
-
-}
-
-// less than 1600px at 16px, but can fit both toc and the guide side by side
-@media screen and (min-width: $mobile-threshold) and (max-width: 100rem) {
-
-    // center the guide on the screen by default
-    .guide {
-        transform: translateX(50vw) translateX(-50%);
-        transition: transform 0.33s ease-in-out;
-    }
-
-    // position the guide to the right of the toc when it is expanded
-    .toc.in ~ .guide {
-        transform: translateX($toc-w + 5rem);
-    }
-
-}
-
-// mobile (toc is overlaid as a left drawer)
-@media screen and (max-width: $mobile-threshold) {
-
-    // center the guide on the screen
-    .guide {
-        margin: auto;
-    }
-
-    // stop no-displaying the toc scrim
-    .toc-scrim {
-        display: block !important;
-        transition: opacity ease-in 0.2s;
-    }
-
-    // js applies this class to hide the fab when scrolling down
-    .toc-fab {
-        &.scroll-out {
-            transform: translateY(-5rem);
-        }
-    }
-}
-
-// the drawer will start to decrease in width at this point
-@media screen and (max-width: $toc-fab-to-border-threshold) {
-
-    // move fab so it overlaps the right border of the toc
-    .toc-fab {
-        right: -1.5rem;
-        top: 0.5rem;
-    }
-
-    // if the toc is expanded, override the fab being hidden due to scrolling down
-    .toc.in .toc-fab.scroll-out {
-        transform: translateX(0);
-    }
-
-    // if the toc is collapsed, 
-    .toc:not(.in) .toc-fab {
-
-        // hide the fab when scrolling up and also move it to the right so it no longer overlaps the border of the toc
-        &.scroll-out {
-            transform: translate(2rem, -$toc-fab-scroll-out-y-offset);
-        }
-
-        // otherwise only move it to the right so it no longer overlaps the border of the toc
-        &:not(.scroll-out) {
-            transform: translateX(2rem);
-        }
-    }
-}
-
-// expand touch targets for touchscreens
-@media (pointer: coarse) {
-    $p: 0.75rem;
-
-    .toc main > .toc-entry {
-        padding-top: $p;
-        padding-bottom: $p;
-    }
-
-    .theme-switcher {
-        > .buttons {
-            > label {
-                padding: $p !important;
-            }
-        }
-    }
-}
-
 // #endregion
 
 
@@ -271,7 +180,7 @@ ul, ol {
 
     // class added by js to only animate after initial state was set
     &.transition {
-        transition: transform ease-in-out 0.33s;
+        transition: transform $ease-material-in-out 0.33s;
     }
 
     > header {
@@ -332,7 +241,7 @@ ul, ol {
     outline: none;
     cursor: pointer;
     overflow: hidden;
-    transition: transform ease-in-out 0.33s;
+    transition: transform $ease-material-in-out 0.33s;
 
     // add a separate element responsible for just animating on hover
     // otherwise, switching the theme causes the fab bg colour to animate
@@ -371,7 +280,7 @@ ul, ol {
 
 .toc.transition .toc-fab {
     > .top, > .mid, > .bot {
-        transition: transform ease-in-out 0.15s;
+        transition: transform $ease-material-in-out 0.15s;
     }
 }
 
@@ -380,11 +289,11 @@ ul, ol {
     > .top {
         transform: translate(-50%, -50%) translateY(-$toc-fab-icon-size / 3) translate(-33%, $toc-fab-icon-size / 5.5) rotate(-45deg) scaleX(0.5);
     }
-    
+
     > .mid {
         transform: translate(-50%, -50%);
     }
-    
+
     > .bot {
         transform: translate(-50%, -50%) translateY($toc-fab-icon-size / 3) translate(-33%, -$toc-fab-icon-size / 5.5) rotate(45deg) scaleX(0.5);
     }
@@ -743,7 +652,7 @@ code {
                 height: 400%;
                 transform-origin: center;
                 animation: 0.5s 1 forwards copied;
-                animation-timing-function: ease-out;
+                animation-timing-function: $ease-material-out;
 
                 @keyframes copied {
                     $rot: 20deg;
@@ -987,7 +896,7 @@ table {
             padding: 0.5rem;
             text-align: center;
             position: relative;
-            transition: background-color ease-in-out 0.1s, transform ease-in-out 0.33s;
+            transition: background-color $ease-material-in-out 0.1s, transform $ease-material-in-out 0.33s;
             cursor: pointer;
 
             > input {
@@ -1038,7 +947,7 @@ table {
     z-index: 10;
     transform: translateY(-100%);
     opacity: 1;
-    transition: transform ease-in 0.25s;
+    transition: transform $ease-material-in 0.25s;
 
     &.dark {
         background-color: $c-dark-bg;
@@ -1054,8 +963,57 @@ table {
 
     &.out {
         transform: translateY(100%);
-        transition-timing-function: ease-out;
+        transition-timing-function: $ease-material-out;
         pointer-events: none;
+    }
+}
+
+// #endregion
+
+
+// #region scroll restore
+
+.scroll-restore-message {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: $guide-max-w;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid $c-border-heavy;
+    background-color: $c-bg;
+    border-radius: 0.25rem;
+    transform: translateY(100%) translateY(1rem);
+    transition: transform $ease-material-in-out 0.33s;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+
+    > span {
+        display: inline-block;
+        padding: 1rem;
+    }
+
+    > .btn-dismiss {
+        @extend %standard-hover;
+        background: none;
+        border: none;
+        outline: none;
+        margin-left: auto;
+        font-family: $font-family-body;
+        font-size: $font-size-base;
+        color: $c-text-on-bg-tet;
+        -webkit-tap-highlight-color: transparent;
+        padding: 1rem;
+        cursor: pointer;
+    }
+
+    &.in {
+        transform: translateY(0);
     }
 }
 
@@ -1074,6 +1032,126 @@ table {
 
 .text-right {
     text-align: right;
+}
+
+// #endregion
+
+
+// #region responsiveness
+
+// larger than 1600px at 16px font size (max desktop)
+@media screen and (min-width: 100rem) {
+
+    // center the guide on the screen
+    .guide {
+        margin: auto;
+    }
+
+}
+
+// less than 1600px at 16px, but can fit both toc and the guide side by side
+@media screen and (min-width: $mobile-threshold) and (max-width: 100rem) {
+
+    .toc.transition ~ .guide {
+        transition: transform $ease-material-in-out 0.33s;
+    }
+
+    // center the guide on the screen by default
+    .guide {
+        transform: translateX(50vw) translateX(-50%);
+    }
+
+    .scroll-restore-message {
+        margin: 0;
+        left: 0;
+        transform: translateX(50vw) translateX(-50%) translateY(100%) translateY(1rem);
+
+        &.in {
+            transform: translateX(50vw) translateX(-50%);
+        }
+    }
+
+    // position the guide to the right of the toc when it is expanded
+    .toc.in {
+
+        ~ .guide, ~ .scroll-restore-message.in {
+            transform: translateX($toc-w + 5rem);
+        }
+
+        ~ .scroll-restore-message {
+            transform: translateX($toc-w + 5rem) translateY(100%) translateY(1rem);
+        }
+    }
+
+}
+
+// mobile (toc is overlaid as a left drawer)
+@media screen and (max-width: $mobile-threshold) {
+
+    // center the guide on the screen
+    .guide {
+        margin: auto;
+    }
+
+    // stop no-displaying the toc scrim
+    .toc-scrim {
+        display: block !important;
+        transition: opacity $ease-material-in 0.2s;
+    }
+
+    // js applies this class to hide the fab when scrolling down
+    .toc-fab {
+        &.scroll-out {
+            transform: translateY(-5rem);
+        }
+    }
+}
+
+// the drawer will start to decrease in width at this point
+@media screen and (max-width: $toc-fab-to-border-threshold) {
+
+    // move fab so it overlaps the right border of the toc
+    .toc-fab {
+        right: -1.5rem;
+        top: 0.5rem;
+    }
+
+    // if the toc is expanded, override the fab being hidden due to scrolling down
+    .toc.in .toc-fab.scroll-out {
+        transform: translateX(0);
+    }
+
+    // if the toc is collapsed, 
+    .toc:not(.in) .toc-fab {
+
+        // hide the fab when scrolling up and also move it to the right so it no longer overlaps the border of the toc
+        &.scroll-out {
+            transform: translate(2rem, -$toc-fab-scroll-out-y-offset);
+        }
+
+        // otherwise only move it to the right so it no longer overlaps the border of the toc
+        &:not(.scroll-out) {
+            transform: translateX(2rem);
+        }
+    }
+}
+
+// expand touch targets for touchscreens
+@media (pointer: coarse) {
+    $p: 0.75rem;
+
+    .toc main > .toc-entry {
+        padding-top: $p;
+        padding-bottom: $p;
+    }
+
+    .theme-switcher {
+        > .buttons {
+            > label {
+                padding: $p !important;
+            }
+        }
+    }
 }
 
 // #endregion

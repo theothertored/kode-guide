@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     initReactingToResize();
     initDoubleTapToCopy();
     initSwipeInteractionsForToc();
+    initScrollRestore();
 
 });
 
@@ -447,15 +448,94 @@ function initSwipeInteractionsForToc() {
     window.addEventListener('touchend', ev => {
         swipeInProgress = false;
     }, false);
-    
-}
 
+}
 
 // opens/closes the TOC and remembers the state in isTOCOpen
 function setTOCOpen(open) {
-    
-    console.log('tocopen', open);
-
     tocEl.classList.toggle('in', open);
     isTOCOpen = open;
+}
+
+function initScrollRestore() {
+
+    const lastVisitScrollYKey = 'lastVisitScrollY';
+    const lastVisitFragmentKey = 'lastVisitFragment';
+
+    // restore scroll position on back/forward
+    window.addEventListener('pageshow', ev => {
+
+        let lastVisitScrollY = parseInt(localStorage.getItem(lastVisitScrollYKey));
+        let lastVisitFragment = localStorage.getItem(lastVisitFragmentKey);
+
+        console.log(window.scrollY, lastVisitScrollY);
+
+        // ev.persisted is true when loading from bfcache, which preserves scroll pos on its own
+        if (!ev.persisted && Math.abs(window.scrollY - lastVisitScrollY) >= 24 && (!window.location.hash || window.location.hash === lastVisitFragment)) {
+
+            // offer to restore after hard reload/fresh visit
+
+            console.log('adding notif el');
+
+            let notifEl = document.createElement('div');
+            notifEl.classList.add('scroll-restore-message');
+
+            let spanEl = document.createElement('span');
+            spanEl.innerText = 'Click here to pick up where you left off';
+
+
+            let dismissBtnEl = document.createElement('button');
+            dismissBtnEl.classList.add('btn-dismiss');
+            dismissBtnEl.innerText = 'DISMISS';
+            dismissBtnEl.addEventListener('click', ev => {
+                hideNotifEl()
+                // make sure the click doesn't reach the parent
+                ev.stopPropagation();
+            });
+
+
+            notifEl.appendChild(spanEl);
+            notifEl.appendChild(dismissBtnEl);
+
+            notifEl.addEventListener('click', ev => {
+                window.scrollTo({
+                    top: lastVisitScrollY,
+                    behavior: 'smooth'
+                });
+                hideNotifEl();
+            });
+
+            document.body.appendChild(notifEl);
+            setTimeout(() => notifEl.classList.add('in'), 0);
+
+            function hideNotifEl() {
+
+                notifEl.addEventListener('transitionend', ev => notifEl.remove());
+                notifEl.classList.remove('in');
+
+                localStorage.removeItem(lastVisitScrollYKey);
+                localStorage.removeItem(lastVisitFragmentKey);
+
+            }
+
+        }
+
+    });
+
+    let saveScrollTimeoutDuration = 100;
+    let saveScrollTimeoutId = null;
+
+    window.addEventListener('scroll', ev => {
+
+        clearTimeout(saveScrollTimeoutId);
+
+        saveScrollTimeoutId = setTimeout(() => {
+
+            localStorage.setItem(lastVisitScrollYKey, window.scrollY);
+            localStorage.setItem(lastVisitFragmentKey, window.location.hash);
+
+        }, saveScrollTimeoutDuration);
+
+    });
+
 }

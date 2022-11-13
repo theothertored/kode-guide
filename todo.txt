@@ -1,9 +1,9 @@
-- open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
-- "pick up where you left off" prompt
 - favicon
 - some kind of readme
 
 DONE:
+- "pick up where you left off" prompt
+- open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
 - expand the regex section a bit to maybe convince people to learn it
 - hamburger to arrow animation for fab
 - add some text explaining section links and copying examples
