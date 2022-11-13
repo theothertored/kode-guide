@@ -1,6 +1,5 @@
-- write some kind of readme
-
 DONE:
+- write some kind of readme
 - section about basic lv() usage
 - add a service worker + PWA capability
 - favicon
