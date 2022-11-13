@@ -445,7 +445,6 @@ code > pre {
 :root.light .hl {
   position: relative;
   z-index: -1;
-  display: inline-block;
   line-height: 1;
   white-space: pre-wrap;
   padding: 0.1rem;

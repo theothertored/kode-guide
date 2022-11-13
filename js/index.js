@@ -195,7 +195,7 @@ function initTOCAndHeaders() {
         tocLinkEl.classList.add('toc-entry', `toc-${entryIndex}`);
 
         // make a text for the entry from the counters and the header text
-        tocLinkEl.innerHTML = `<span class="number">${counters.slice(0, entryIndex + 1).join('.')}.</span> ${text}`;
+        tocLinkEl.innerHTML = `<span class="number">${counters.slice(0, entryIndex + 1).join('.')}.</span> ${html}`;
 
         tocLinkEl.href = href;
 
