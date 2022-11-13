@@ -2,6 +2,7 @@
     "id": "kode-guide",
     "name": "Kode Guide",
     "short_name": "Kode Guide",
+    "description": "An introduction to writing formulas for Kustom apps, mainly KLWP and KWGT.",
     "icons": [
         {
             "src": "img/favicon/android-chrome-192x192.png",
