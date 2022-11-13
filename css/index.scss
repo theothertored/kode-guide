@@ -113,6 +113,8 @@ p {
 
 // spacing between list items
 ul, ol {
+    line-height: 140%;
+    
     > li + li {
         margin-top: 0.5rem;
     }

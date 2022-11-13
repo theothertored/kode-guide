@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kode Basics</title>
 
-    <link rel="stylesheet" href="css/index.css?v=0.0.4" />
+    <link rel="stylesheet" href="css/index.css?v=0.0.5" />
 
 </head>
 
@@ -103,7 +103,7 @@
         </p>
 
 
-        <h3>Important notes regarding this guide</h3>
+        <h3 id="guide-meta">Important notes regarding this guide</h3>
 
         <p>
             A quick note for the very start - experimenting and testing stuff for yourself is highly encouraged.
@@ -113,7 +113,7 @@
         <p>
             If you want to test the examples for yourself:
         </p>
-        
+
         <ul>
             <li>
                 You can <strong>double-tap/double-click any example box</strong> to copy its contents to clipboard,
@@ -462,7 +462,7 @@
         <div class="snippet">
             <label class="ex-no subex first">
                 <span class="error">
-                    incorrect, the <code>$</code> will be treated as the end of the kode part, making <code>1000</code> plain text and the final <code>$</code> an unclosed evaluated part.
+                    incorrect, the second <code>$</code> will be treated as the end of the kode part, making <code>1000</code> plain text and the last <code>$</code> an unclosed evaluated part.
                 </span>
             </label>
             <code class="no-dollars"><span class="hl hl-false strong">$</span><span class="hl hl-false">Please give me </span><span class="hl hl-false strong">$</span>1000$</code>
@@ -625,13 +625,13 @@
                 For example, <code>df</code> is short for "Date Format", while <code>tc</code> is short for "Text Converter".
             </li>
             <li>
-                An opening parenthesis: <span class="hl hl-2">(</span>,
+                <code class="hl hl-2">(</code> (an opening parenthesis),
             </li>
             <li>
-                <span class="hl hl-3">Arguments</span> separated by commas,
+                <span class="hl hl-3">Arguments</span> <span>separated by</span> <span class="hl hl-2">commas</span> <span class="nowrap">(<code class="hl hl-2">,</code>)</span>
             </li>
             <li>
-                A closing parenthesis: <span class="hl hl-2">)</span>,
+                <code class="hl hl-2">)</code> (a closing parenthesis),
             </li>
         </ol>
 
@@ -845,21 +845,92 @@
         <h4 id="note-on-regex">Note on Regex (regular expressions)</h3>
 
             <p>
-                For advanced users, this is a good place to mention that <code>tc()</code> has a mode that allows you to
-                make use of regular expressions - <code>tc(reg)</code>.
-                This function accepts 3 arguments after the mode - <code>tc(reg, [text], [pattern], [replacement])</code>.
-                In the replacement, <code>$0</code> can be used to refer to the entire match, and <code>$1</code>,
+                While Regex/regular expressions might sound scary if you haven't used them before, they are a very powerful tool that is worth learning.
+                They are not used only in Kustom, you can make use of them in other tools and programming languages for advanced text searching and replacing.
+            </p>
+
+            <p>
+                A regular expression is a string consisting of regular characters and special characters that can match different characters or multiple characters, called a <span class="hl hl-2">pattern</span>.
+                Regular expressions are used to search for a <span class="hl hl-2">pattern</span> <span>in a</span>
+                <hl class="hl hl-1">string</hl><span>, and often also to replace whatever it matches with</span> <span class="hl hl-3">something else</span>.
+            </p>
+
+            <p>
+                In Kustom, <code>tc()</code> has a mode that allows you to make use of regular expressions - <code>tc(reg)</code>. This function accepts 3 arguments after the mode:
+            </p>
+
+            <div class="snippet">
+                <label class="ex-no"></label>
+                <code>tc(reg, <span class="hl hl-1">string</span>, <span class="hl hl-2">pattern</span>, <span class="hl hl-3">replacement</span>)</code>
+            </div>
+
+            <p>
+                If you don't want to learn regex, please just note that you can use <code>tc(reg)</code> to simply replace all occurences of a string with another string:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tc(reg, <span class="hl hl-1">"I like trains"</span>, <span class="hl hl-2">"like"</span>, <span class="hl hl-3">"don't like"</span>)</code>
+
+                <label class="output"></label>
+                <code>I don't like trains</code>
+
+            </div>
+
+            <p>
+                Here is an example of using a pattern to replace everything in parentheses and whitespace before the opening parenthesis with an empty string (removing it from the string):
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tc(reg, <span class="hl hl-1">"This part is wanted (this part isn't) for murder"</span>, "<span class="hl hl-2">\s*\(.*?\)</span>", <span class="hl hl-3">""</span>)</code>
+
+                <label class="output"></label>
+                <code>This part is wanted for murder</code>
+
+            </div>
+
+            <p>
+                Here is what each part of the <span class="hl hl-2">pattern</span> does:
+            </p>
+
+            <ul>
+                <li><code>\s</code> matches any whitespace character, <code>\s*</code> matches 0 or more whitespace characters,</li>
+                <li><code>\(</code> matches an opening parenthesis. Because <code>(</code> is a special character in regex, therefore must be escaped with a backslash <span class="nowrap">(<code>\</code>)</span>,</li>
+                <li><code>.</code> matches any single character, <code>.*</code> matches 0 or more characters, <code>.*?</code> ensures the match stops at the first occurence of the next token instead of last,</li>
+                <li><code>\)</code> matches a closing parenthesis.</li>
+            </ul>
+
+            <p>
+                Note that in the <span class="hl hl-3">replacement string</span>, <code>$0</code> can be used to refer to the entire match, and <code>$1</code>,
                 <code>$2</code>, …, <code>$9</code> to groups 1-9 of the match.
             </p>
 
             <p>
                 I won't go in depth about regex here, as it'd be repeating work already done better elsewhere.
-                If you're interested in learning regex, I'd recommend giving <a href="https://regexone.com/">RegexOne</a> a go, it'll help you master the basics
-                by giving you exercises as you go.
-                After that, <a href="https://regex101.com/">Regex101</a> is a great tool to build patterns with, letting you work with any text you put into it,
-                as well as highlighting what your pattern selects and why. Good luck!
+                I'll instead provide you some links if you'd like to learn, but don't know where to begin:
             </p>
 
+            <ul>
+                <li>
+                    <a href="https://regexone.com/">RegexOne</a> can help you master the basics by giving you exercises as you go,
+                </li>
+                <li>
+                    <a href="https://regex101.com/">Regex101</a> is a great tool to build patterns with, letting you test on any text you want, as well as highlighting what your pattern selects and why,
+                </li>
+                <li>
+                    <a href="https://regexr.com/">Regexr</a> is a similar tool, but with a different user interface,
+                </li>
+                <li>
+                    <a href="https://www.autoregex.xyz/">AutoRegex</a> is a tool that attempts to translate english into a regex pattern. It is not 100% accurate all the time, but it might help you learn.
+                </li>
+            </ul>
+
+            <p>
+
+            </p>
 
             <h3 id="doing-a-or-b-depending-on-x">Doing A or B depending on X</h3>
 
@@ -2129,7 +2200,7 @@
 
     </main>
 
-    <script src="js/index.js?v=0.0.4"></script>
+    <script src="js/index.js?v=0.0.6"></script>
 
 </body>
 

@@ -147,6 +147,10 @@ p {
   margin-top: 0.5rem;
 }
 
+ul, ol {
+  line-height: 140%;
+}
+
 ul > li + li, ol > li + li {
   margin-top: 0.5rem;
 }
