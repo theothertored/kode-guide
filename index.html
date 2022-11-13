@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kode Basics</title>
 
-    <link rel="stylesheet" href="css/index.css?v=0.0.5" />
+    <link rel="stylesheet" href="css/index.css?v=0.0.7" />
 
 </head>
 
@@ -879,28 +879,26 @@
             </div>
 
             <p>
-                Here is an example of using a pattern to replace everything in parentheses and whitespace before the opening parenthesis with an empty string (removing it from the string):
+                Here is an example of using a pattern to remove everything after a dash by replacing it with an empty string:
             </p>
 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>tc(reg, <span class="hl hl-1">"This part is wanted (this part isn't) for murder"</span>, "<span class="hl hl-2">\s*\(.*?\)</span>", <span class="hl hl-3">""</span>)</code>
+                <code>tc(reg, <span class="hl hl-1">"This part is wanted - this part isn't"</span>, "<span class="hl hl-2"> -.*</span>", <span class="hl hl-3">""</span>)</code>
 
                 <label class="output"></label>
-                <code>This part is wanted for murder</code>
+                <code>This part is wanted</code>
 
             </div>
 
             <p>
-                Here is what each part of the <span class="hl hl-2">pattern</span> does:
+                Here is what the <span class="hl hl-2">pattern</span> does:
             </p>
 
             <ul>
-                <li><code>\s</code> matches any whitespace character, <code>\s*</code> matches 0 or more whitespace characters,</li>
-                <li><code>\(</code> matches an opening parenthesis. Because <code>(</code> is a special character in regex, therefore must be escaped with a backslash <span class="nowrap">(<code>\</code>)</span>,</li>
-                <li><code>.</code> matches any single character, <code>.*</code> matches 0 or more characters, <code>.*?</code> ensures the match stops at the first occurence of the next token instead of last,</li>
-                <li><code>\)</code> matches a closing parenthesis.</li>
+                <li><code><pre> -</pre></code> matches a space and a dash,</li>
+                <li><code>.*</code> matches any character <span class="nowrap">(<code>.</code>)</span> 0 or more times <span class="nowrap">(<code>*</code>)</span></li>
             </ul>
 
             <p>
@@ -2200,7 +2198,7 @@
 
     </main>
 
-    <script src="js/index.js?v=0.0.6"></script>
+    <script src="js/index.js?v=0.0.7"></script>
 
 </body>
 

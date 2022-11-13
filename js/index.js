@@ -1,5 +1,6 @@
 
 let tocEl, guideEl;
+let isTOCOpen;
 let matchMedia, currentTheme;
 
 const mobileThreshold = rem2px(64);
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     initThemeSwitching();
     initReactingToResize();
     initDoubleTapToCopy();
+    initSwipeInteractionsForToc();
 
 });
 
@@ -31,7 +33,7 @@ function initReactingToResize() {
 
         // expand/collapse toc if we went from mobile to desktop or vice versa
         if (window.innerWidth < mobileThreshold != prevWindowWidth < mobileThreshold) {
-            tocEl.classList.toggle('in', window.innerWidth >= mobileThreshold);
+            setTOCOpen(window.innerWidth >= mobileThreshold);
         }
 
         // save window width for next resize event
@@ -169,7 +171,7 @@ function initTOCAndHeaders() {
 
             // if mobile, close TOC so the user doesn't have to do it manually
             if (window.innerWidth < mobileThreshold)
-                tocEl.classList.remove('in');
+                setTOCOpen(false)
         });
 
         // add created entry to the TOC
@@ -181,7 +183,7 @@ function initTOCAndHeaders() {
     let tocFab = document.querySelector('.toc-fab');
 
     // toggle TOC on fab click
-    tocFab.addEventListener('click', ev => tocEl.classList.toggle('in'));
+    tocFab.addEventListener('click', ev => setTOCOpen(!isTOCOpen));
 
 
     // hide TOC fab on scroll down on mobile
@@ -221,10 +223,10 @@ function initTOCAndHeaders() {
 
     // hide TOC on scrim click
     let tocScrimEl = document.querySelector('.toc-scrim');
-    tocScrimEl.addEventListener('click', ev => tocEl.classList.remove('in'));
+    tocScrimEl.addEventListener('click', ev => setTOCOpen(false));
 
     // show TOC initially on desktop, hide on mobile
-    tocEl.classList.toggle('in', window.innerWidth >= mobileThreshold);
+    setTOCOpen(window.innerWidth >= mobileThreshold);
 
     // add transition class after setting TOC initial state (so further changes will be animated)
     setTimeout(() => tocEl.classList.add('transition'), 0);
@@ -369,22 +371,22 @@ function initDoubleTapToCopy() {
 
                 // double tap detected, copy snippet text to clipboard
                 navigator.clipboard.writeText(noDollars ? el.innerText : `$${el.innerText}$`).then(function () {
-                    
+
                     // success, animate
-                    
+
                     // after animation ends, remove the animation class and the listener
                     const listener = ev => {
                         el.classList.remove('copied');
                         el.removeEventListener('transitionend', listener);
                     };
-                    
+
                     el.classList.add('copied');
                     el.addEventListener('animationend', listener);
 
                 }, function (err) {
                     alert('Error copying:' + err);
                 });
-                
+
 
             } else {
                 lastTapForThisEl = now;
@@ -394,4 +396,66 @@ function initDoubleTapToCopy() {
 
     });
 
+}
+
+let swipeInProgress = false;
+let swipeStartX, swipeStartY;
+const swipeThreshold = 24;
+
+function initSwipeInteractionsForToc() {
+
+    window.addEventListener('touchstart', ev => {
+
+        if (ev.touches.length !== 1)
+            return;
+
+        let touch = ev.touches[0];
+        swipeStartX = touch.clientX;
+        swipeStartY = touch.clientY;
+
+        swipeInProgress = true;
+
+    }, false);
+
+    window.addEventListener('touchmove', ev => {
+
+        if (!swipeInProgress)
+            return;
+
+        let touch = ev.touches[0];
+
+        let dx = touch.clientX - swipeStartX;
+        let dy = touch.clientY - swipeStartY;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+
+            if (Math.abs(dx) >= swipeThreshold) {
+                // horizontal swipe
+                ev.preventDefault();
+                setTOCOpen(dx > 0);
+                swipeInProgress = false;
+            }
+
+        } else {
+            // vertical swipe
+            swipeInProgress = false;
+        }
+
+
+    }, { passive: false });
+
+    window.addEventListener('touchend', ev => {
+        swipeInProgress = false;
+    }, false);
+    
+}
+
+
+// opens/closes the TOC and remembers the state in isTOCOpen
+function setTOCOpen(open) {
+    
+    console.log('tocopen', open);
+
+    tocEl.classList.toggle('in', open);
+    isTOCOpen = open;
 }
