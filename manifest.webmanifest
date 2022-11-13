@@ -27,7 +27,7 @@
             "purpose": "maskable"
         }
     ],
-    "start_url": "/kode-guide",
+    "start_url": "/kode-guide/",
     "theme_color": "#101010",
     "background_color": "#101010",
     "display": "standalone"
