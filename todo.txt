@@ -1,7 +1,10 @@
-- favicon
-- some kind of readme
+- add a service worker + PWA capability
+- write some kind of readme
+- section about globals
+- section about basic lv() usage
 
 DONE:
+- favicon
 - "pick up where you left off" prompt
 - open/close left drawer with a swipe (I already tried opening it like that without thinking and it went back to my new tab screen)
 - expand the regex section a bit to maybe convince people to learn it
