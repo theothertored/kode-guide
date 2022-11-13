@@ -3,7 +3,7 @@ let tocEl, guideEl;
 let isTOCOpen;
 let matchMedia, currentTheme;
 
-const mobileThreshold = rem2px(64);
+const mobileThreshold = rem2px(24 + 5 + 56);
 
 function rem2px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -195,7 +195,7 @@ function initTOCAndHeaders() {
         tocLinkEl.classList.add('toc-entry', `toc-${entryIndex}`);
 
         // make a text for the entry from the counters and the header text
-        tocLinkEl.innerText = `${counters.slice(0, entryIndex + 1).join('.')}. ${text}`;
+        tocLinkEl.innerHTML = `<span class="number">${counters.slice(0, entryIndex + 1).join('.')}.</span> ${text}`;
 
         tocLinkEl.href = href;
 

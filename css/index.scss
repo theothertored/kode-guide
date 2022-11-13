@@ -28,7 +28,7 @@ $ease-material-out: cubic-bezier(0.0, 0.0, 0.2, 1);
 
 
 // layout variables
-$guide-max-w: 35rem;
+$guide-max-w: 50rem;
 $toc-w: 24rem;
 $mobile-threshold: $toc-w + 5rem + $guide-max-w;
 $toc-fab-to-border-threshold: $toc-w + 5rem;
@@ -207,6 +207,10 @@ ul, ol {
             padding: 0.5rem;
             -webkit-tap-highlight-color: transparent;
             border-radius: 0.25rem;
+
+            > .number {
+                color: $c-text-on-bg-irr;
+            }
         }
 
         > .toc-1 {
@@ -626,7 +630,7 @@ code {
     > code, .step > code {
         display: block;
         border: 1px solid $c-border-light;
-        padding: 0.5rem;
+        padding: 0.5rem 0.75rem;
         line-height: 1.5;
         margin: 0;
         overflow: hidden;
@@ -686,8 +690,9 @@ code {
             align-items: center;
             justify-content: start;
             padding: 0 0.5rem;
-            margin-top: -0.25rem;
-            margin-bottom: -0.2rem;
+            font-size: 1.4rem;
+            margin-top: -0.25em;
+            margin-bottom: -0.25em;
             line-height: 1;
 
             &::before {
@@ -767,7 +772,6 @@ table {
     th {
         &:first-child {
             text-align: center;
-            font-weight: bold;
         }
 
         &:nth-child(2) {
@@ -782,7 +786,6 @@ table {
     th {
         &:nth-child(1) {
             text-align: center;
-            font-weight: bold;
         }
 
         &:nth-child(2) {
@@ -797,7 +800,6 @@ table {
     th {
         &:nth-child(1) {
             text-align: center;
-            font-weight: bold;
         }
 
         &:nth-child(2) {
@@ -867,7 +869,6 @@ table {
     th {
         &:nth-child(1) {
             text-align: center;
-            font-weight: bold;
         }
 
         &:nth-child(2) {
@@ -1134,6 +1135,10 @@ table {
         display: block !important;
         transition: opacity $ease-material-in 0.2s;
     }
+}
+
+// the fab will start to overlap the content at this point
+@media screen and (max-width: ($guide-max-w + 10rem)) {
 
     // js applies this class to hide the fab when scrolling down
     .toc-fab {
@@ -1141,6 +1146,12 @@ table {
             transform: translateY(-5rem);
         }
     }
+
+    // if the toc is expanded, override the fab being hidden due to scrolling down
+    .toc.in .toc-fab.scroll-out {
+        transform: translateX(0);
+    }
+
 }
 
 // the drawer will start to decrease in width at this point
@@ -1152,24 +1163,20 @@ table {
         top: 0.5rem;
     }
 
-    // if the toc is expanded, override the fab being hidden due to scrolling down
-    .toc.in .toc-fab.scroll-out {
-        transform: translateX(0);
-    }
-
     // if the toc is collapsed, 
     .toc:not(.in) .toc-fab {
 
         // hide the fab when scrolling up and also move it to the right so it no longer overlaps the border of the toc
         &.scroll-out {
-            transform: translate(2rem, -$toc-fab-scroll-out-y-offset);
+            transform: translate(2.5rem, -$toc-fab-scroll-out-y-offset);
         }
 
         // otherwise only move it to the right so it no longer overlaps the border of the toc
         &:not(.scroll-out) {
-            transform: translateX(2rem);
+            transform: translateX(2.5rem);
         }
     }
+
 }
 
 // expand touch targets for touchscreens
