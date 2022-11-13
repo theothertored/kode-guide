@@ -31,7 +31,7 @@ function initPWA() {
     let prompt;
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(reg => {
+        navigator.serviceWorker.register('sw.js', { scope: '/kode-guide/' }).then(reg => {
 
             let swCachingP = document.getElementById('sw-caching-available');
             swCachingP.classList.remove('no-display');
