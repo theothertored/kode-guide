@@ -25,20 +25,20 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(0,-11.249983)"
+     transform="translate(-3.5000003e-8,-11.613785)"
      id="layer1">
     <path
        transform="matrix(0.26458334,0,0,0.26458334,0,11.249983)"
-       d="M 3 7 L 2 8 L 0 14 L 6 15 L 7 16 L 9 16 L 10 15 L 16 14 L 14 8 L 13 7 L 12 7.25 L 12 8.25 L 13 8 L 14 12 L 9 13 L 8 14 L 9 15 L 7 15 L 8 14 L 7 13 L 2 12 L 3 8 L 4 8.25 L 4 7.25 L 3 7 z "
+       d="m 3,7.3749996 -1,1 L 2.8346459e-8,14.374999 6,15.374999 l 1,1 h 2 l 1,-1 6,-1 -2,-5.9999994 -1,-1 -1,0.25 v 1 l 1,-0.25 1,3.9999994 -5,1 -1,1 1,1 H 7 l 1,-1 -1,-1 -5,-1 1,-3.9999994 1,0.25 v -1 z"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path832" />
     <path
        id="path842"
-       d="M 1.3229167,11.514566 V 14.1604 L 1.8520834,13.895816 V 11.77915 Z"
+       d="m 1.3229167,11.779149 v 2.645834 l 0.5291667,-0.264584 v -2.116666 z"
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 2.38125,11.77915 v 0.529166 L 1.8520834,12.837483 2.38125,13.36665 v 0.529166 L 2.9104167,14.1604 V 13.102066 L 2.38125,12.837483 2.9104167,12.5729 v -1.058334 z"
+       d="m 2.38125,12.043733 v 0.529166 L 1.8520834,13.102066 2.38125,13.631233 v 0.529166 l 0.5291667,0.264584 V 13.366649 L 2.38125,13.102066 2.9104167,12.837483 v -1.058334 z"
        id="path844" />
   </g>
 </svg>
