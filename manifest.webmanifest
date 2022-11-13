@@ -26,7 +26,7 @@
             "purpose": "maskable"
         }
     ],
-    "start_url": "",
+    "start_url": "/kode-basics",
     "theme_color": "#101010",
     "background_color": "#101010",
     "display": "standalone"
