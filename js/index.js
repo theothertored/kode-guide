@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     guideEl = document.querySelector('.guide');
     tocEl = document.querySelector('.toc');
 
+    initPWA();
     initExampleNumbers();
     initTOCAndHeaders();
     initThemeSwitching();
@@ -24,6 +25,38 @@ document.addEventListener('DOMContentLoaded', ev => {
     initScrollRestore();
 
 });
+
+function initPWA() {
+
+    let prompt;
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+
+            let swCachingP = document.getElementById('sw-caching-available');
+            swCachingP.classList.remove('no-display');
+
+        });
+
+    }
+
+    window.addEventListener('beforeinstallprompt', ev => {
+
+        prompt = ev;
+        let promptP = document.getElementById('pwa-install-prompt');
+        let promptBtnP = document.getElementById('pwa-install-button');
+        let promptBtn = promptBtnP.querySelector('button');
+
+        promptP.classList.remove('no-display');
+        promptBtnP.classList.remove('no-display');
+
+        promptBtn.addEventListener('click', ev => {
+            prompt.prompt();
+        });
+
+    });
+
+}
 
 function initReactingToResize() {
 
@@ -467,8 +500,6 @@ function initScrollRestore() {
 
         let lastVisitScrollY = parseInt(localStorage.getItem(lastVisitScrollYKey));
         let lastVisitFragment = localStorage.getItem(lastVisitFragmentKey);
-
-        console.log(window.scrollY, lastVisitScrollY);
 
         // ev.persisted is true when loading from bfcache, which preserves scroll pos on its own
         if (!ev.persisted && Math.abs(window.scrollY - lastVisitScrollY) >= 24 && (!window.location.hash || window.location.hash === lastVisitFragment)) {

@@ -75,10 +75,10 @@
 }
 
 @media (hover: hover) {
-  .toc > main > .toc-entry, .toc-fab:before, .scroll-restore-message > .btn-dismiss {
+  .toc > main > .toc-entry, .toc-fab:before, .scroll-restore-message > .btn-dismiss, .btn {
     transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
   }
-  .toc > main > .toc-entry:hover, .toc-fab:hover:before, .scroll-restore-message > .btn-dismiss:hover {
+  .toc > main > .toc-entry:hover, .toc-fab:hover:before, .scroll-restore-message > .btn-dismiss:hover, .btn:hover {
     background-color: var(--c-bg-hover);
   }
 }
@@ -983,12 +983,33 @@ table code {
   transform: translateY(0);
 }
 
+.btn {
+  background: none;
+  border: 1px solid var(--c-border-heavy);
+  border-radius: 0.25rem;
+  outline: none;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 1rem;
+  color: var(--c-text-on-bg-sec);
+  -webkit-tap-highlight-color: transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
 .nowrap {
   white-space: nowrap;
 }
 
+.no-display {
+  display: none;
+}
+
 .text-right {
   text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
 
 @media screen and (min-width: 100rem) {
@@ -1056,5 +1077,8 @@ table code {
   }
   .theme-switcher > .buttons > label {
     padding: 0.75rem !important;
+  }
+  .btn {
+    padding: 0.75rem 1.5rem;
   }
 }

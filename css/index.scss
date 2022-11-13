@@ -1020,6 +1020,25 @@ table {
 // #endregion
 
 
+// #region buttons
+
+.btn {
+    @extend %standard-hover;
+    background: none;
+    border: 1px solid $c-border-heavy;
+    border-radius: 0.25rem;
+    outline: none;
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $c-text-on-bg-sec;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+// #endregion
+
+
 // #endregion
 
 
@@ -1030,8 +1049,16 @@ table {
     white-space: nowrap;
 }
 
+.no-display {
+    display: none;
+}
+
 .text-right {
     text-align: right;
+}
+
+.text-center {
+    text-align: center;
 }
 
 // #endregion
@@ -1151,6 +1178,10 @@ table {
                 padding: $p !important;
             }
         }
+    }
+
+    .btn {
+        padding: $p 1.5rem;
     }
 }
 

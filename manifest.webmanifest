@@ -1,5 +1,6 @@
 {
-    "name": "A guide to Kode basics",
+    "id": "kode-basics",
+    "name": "Kode Basics",
     "short_name": "Kode Basics",
     "icons": [
         {
@@ -13,7 +14,7 @@
             "type": "image/png"
         }
     ],
-    "start-url": "/",
+    "start_url": "/kode-basics",
     "theme_color": "#101010",
     "background_color": "#101010",
     "display": "standalone"
