@@ -105,7 +105,7 @@ h1, h2, h3, h4 {
 }
 
 // spacing between paragraphs
-p {
+p, blockquote {
     margin-top: 1.5rem;
     line-height: 140%;
 }
@@ -390,6 +390,15 @@ h1, h2, h3, h4, h5, h6 {
 // recolour links
 a {
     color: $c-text-link;
+}
+
+blockquote {
+    font-style: italic;
+    border-left: 2px solid $c-border-light;
+    margin-left: 0;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 // #endregion

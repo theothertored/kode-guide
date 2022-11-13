@@ -1,8 +1,7 @@
-- section about globals
-- section about basic lv() usage
 - write some kind of readme
 
 DONE:
+- section about basic lv() usage
 - add a service worker + PWA capability
 - favicon
 - "pick up where you left off" prompt

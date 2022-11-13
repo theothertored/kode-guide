@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kode Basics</title>
 
-    <link rel="stylesheet" href="css/index.css?v=0.1.1" />
+    <link rel="stylesheet" href="css/index.css?v=0.1.2" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
@@ -1493,6 +1493,176 @@
             </p>
 
 
+            <h3 id="local-variable-intro">Writing cleaner formulas with <code>lv()</code></h3>
+
+            <p>
+                If you've written any kind of longer formula before, you might have ran into something like this:
+            </p>
+
+            <blockquote>
+                "I've written this lengthy bit of kode that gets the value I need, but I need to use it in multiple places, so now I had to copy it everywhere, and now fixing the formula is a nightmare."
+            </blockquote>
+
+            <p>
+                Recently at the time of writing, a new function called <code>lv()</code> (Local Variable, <a href="https://help.kustom.rocks/i2177-lv-local-variables">requested</a> by yours truly) was introduced.
+                This function can be used to solve the problem described above.
+            </p>
+
+            <p>
+                The basic usage of <code>lv()</code> starts by calling it with two arguments to store a <span class="hl hl-2">value</span> <span>in a local variable under a given</span> <span class="hl hl-1">name</span>:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>lv(<span class="hl hl-1">name</span><span>,</span> <span class="hl hl-2">value</span>)</code>
+
+                <label class="output"></label>
+                <code>&nbsp;</code>
+
+            </div>
+
+            <p>
+                Calling <code>lv()</code> with two arguments always returns an empty string.
+                This is because it is meant to be used within a formula, but without changing the result on its own.
+            </p>
+
+            <p>
+                To later retrieve a value stored in a local variable, you can call <code>lv()</code> with only one argument, the name of the variable:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex first"></label>
+                <code>lv(<span class="hl hl-1">name</span>)</code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-2">value</span></code>
+
+            </div>
+
+            <p>
+                When using this syntax, if a variable isn't found, a warning will show up and an empty string <span class="nowrap">(<code>""</code>)</span> will be returned.
+            </p>
+
+            <p>
+                Alternatively, you can use the new <code>#</code> syntax. Kustom will try to find a local variable for any quoted or unquoted string starting with <code>#</code>:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex"></label>
+                <code>#<span class="hl hl-1">name</span></code>
+
+                <label class="output"></label>
+                <code><span class="hl hl-2">value</span></code>
+
+            </div>
+
+            <p>
+                When using this syntax, if a variable isn't found, Kustom will simply return the string as-is:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex"></label>
+                <code>#name2</code>
+
+                <label class="output"></label>
+                <code>#name2</code>
+
+            </div>
+
+            <p>
+                Let's use an example to illustrate how <code>lv()</code> can help you write cleaner formulas.
+                For this example, let's say we've written a formula that loads a list of quotes from a text file, and we would now like to display a random quote (line) from that list:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>wg("file:///sdcard/quotes.txt", raw)</code>
+
+                <label class="output"></label>
+                <code>
+<pre>"I like trains" - Albert Einstein
+"This sentence is false" - Archimedes
+...</pre>
+                </code>
+
+            </div>
+
+            <p>
+                We can use <code>tc(split)</code> to split the text into a list of lines and take a line at an index.
+                The index of the line will be random, but it needs to an index of a line, and not just any random number.
+                <code>tc(lines)</code> can be used to obtain the number of lines in a given string.
+                Then, <code>mu(rnd)</code> can be used to get a random number between 0 and the maximum index, which is number of lines - 1.
+            </p>
+
+            <p>If all of that is combined into a formula, it will look like this:</p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>tc(split, wg("file:///sdcard/quotes.txt", raw)), mu(rnd, tc(lines, wg("file:///sdcard/quotes.txt", raw)) - 1))</code>
+
+                <label class="output"></label>
+                <code>"I like trains" - Albert Einstein</code>
+
+            </div>
+
+            <p>
+                Not only is this formula long and hard to read, if we now wanted to change the path to the file with the quotes, we would have to change it in two different places.
+                It's not hard to imagine formulas like this getting out of hand very quickly, as the number of different values needing to be copied and pasted increases.
+            </p>
+
+            <p>
+                To clean this up, let's first place the quotes into a local variable, and then use that variable in the formula:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>
+<pre><span class="hl hl-1">lv(quotes, wg("file:///sdcard/quotes.txt", raw))</span> <span>+</span>
+tc(split, <span class="hl hl-1">#quotes</span>, mu(rnd, tc(lines, <span class="hl hl-1">#quotes</span>) - 1))</pre>
+                </code>
+
+                <label class="output"></label>
+                <code>"I like trains" - Albert Einstein</code>
+
+            </div>
+
+            <p>
+                This formula takes advantage of the fact that <code>lv()</code> returns an empty string and uses <code>+</code> to concatenate that empty string to the actual result of the formula.
+                The part actually generating the result has gotten much shorter, and if the path to the file changes, it only needs to be changed in one place.
+            </p>
+
+            <p>
+                You could also use <code>lv()</code> to split calculations into multiple steps.
+                Here, two sides of a right triangle are given. 
+                The formula calculates the third side using the Pythagorean theorem and stores that in another variable.
+                Finally, it uses the three variables to return the circumference of the triangle:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no"></label>
+                <code>
+<pre>
+lv(<span class="hl hl-1">a</span>, 245)) <span>+</span>
+lv(<span class="hl hl-2">b</span>, 310)) <span>+</span>
+lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 + <span class="hl hl-2">#b</span> ^ 2))</span> <span>+</span>
+<span class="hl hl-1">#a</span> <span>+</span> <span class="hl hl-2">#b</span> <span>+</span> <span class="hl hl-3">#c</span></pre>
+                </code>
+
+            </div>
+
+            <p>
+                Even with basic usage, <code>lv()</code> is a powerful tool that can help you make even complex formulas readable, debuggable and modifiable.
+            </p>
+
+
             <h2 id="more-value-types">More value types</h2>
 
             <h3 id="date-and-time">Date &amp; time</h3>
@@ -2218,7 +2388,7 @@
 
     </main>
 
-    <script src="js/index.js?v=0.1.1"></script>
+    <script src="js/index.js?v=0.1.2"></script>
 
 </body>
 

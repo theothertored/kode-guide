@@ -502,53 +502,57 @@ function initScrollRestore() {
         let lastVisitFragment = localStorage.getItem(lastVisitFragmentKey);
 
         // ev.persisted is true when loading from bfcache, which preserves scroll pos on its own
-        if (!ev.persisted && Math.abs(window.scrollY - lastVisitScrollY) >= 24 && (!window.location.hash || window.location.hash === lastVisitFragment)) {
+        if (!ev.persisted) {
 
-            // offer to restore after hard reload/fresh visit
+            // if (Math.abs(window.scrollY - lastVisitScrollY) >= 24 && (!window.location.hash || window.location.hash === lastVisitFragment))
+            if ((window.scrollY === 0 && lastVisitScrollY >= 24) || (window.location.fragment === lastVisitFragment && Math.abs(document.querySelector(lastVisitFragment).offsetTop - window.scrollY) >= 24)) {
 
-            console.log('adding notif el');
+                // offer to restore after hard reload/fresh visit
 
-            let notifEl = document.createElement('div');
-            notifEl.classList.add('scroll-restore-message');
+                console.log('adding notif el');
 
-            let spanEl = document.createElement('span');
-            spanEl.innerText = 'Click here to pick up where you left off';
+                let notifEl = document.createElement('div');
+                notifEl.classList.add('scroll-restore-message');
 
-
-            let dismissBtnEl = document.createElement('button');
-            dismissBtnEl.classList.add('btn-dismiss');
-            dismissBtnEl.innerText = 'DISMISS';
-            dismissBtnEl.addEventListener('click', ev => {
-                hideNotifEl()
-                // make sure the click doesn't reach the parent
-                ev.stopPropagation();
-            });
+                let spanEl = document.createElement('span');
+                spanEl.innerText = 'Click here to pick up where you left off';
 
 
-            notifEl.appendChild(spanEl);
-            notifEl.appendChild(dismissBtnEl);
-
-            notifEl.addEventListener('click', ev => {
-                window.scrollTo({
-                    top: lastVisitScrollY,
-                    behavior: 'smooth'
+                let dismissBtnEl = document.createElement('button');
+                dismissBtnEl.classList.add('btn-dismiss');
+                dismissBtnEl.innerText = 'DISMISS';
+                dismissBtnEl.addEventListener('click', ev => {
+                    hideNotifEl()
+                    // make sure the click doesn't reach the parent
+                    ev.stopPropagation();
                 });
-                hideNotifEl();
-            });
 
-            document.body.appendChild(notifEl);
-            setTimeout(() => notifEl.classList.add('in'), 0);
 
-            function hideNotifEl() {
+                notifEl.appendChild(spanEl);
+                notifEl.appendChild(dismissBtnEl);
 
-                notifEl.addEventListener('transitionend', ev => notifEl.remove());
-                notifEl.classList.remove('in');
+                notifEl.addEventListener('click', ev => {
+                    window.scrollTo({
+                        top: lastVisitScrollY,
+                        behavior: 'smooth'
+                    });
+                    hideNotifEl();
+                });
 
-                localStorage.removeItem(lastVisitScrollYKey);
-                localStorage.removeItem(lastVisitFragmentKey);
+                document.body.appendChild(notifEl);
+                setTimeout(() => notifEl.classList.add('in'), 0);
+
+                function hideNotifEl() {
+
+                    notifEl.addEventListener('transitionend', ev => notifEl.remove());
+                    notifEl.classList.remove('in');
+
+                    localStorage.removeItem(lastVisitScrollYKey);
+                    localStorage.removeItem(lastVisitFragmentKey);
+
+                }
 
             }
-
         }
 
     });
