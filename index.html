@@ -1439,6 +1439,140 @@
             </div>
 
 
+            <h4 id="logical-operator-precedence">Logical operator precedence</h4>
+
+            <p>
+                You might expect <code>&</code> to have a higher precedence than <code>|</code>, or in other words, for ANDs to evaluate before ORs - especially if you are already familiar with other programming languages.
+                Those operators <b>have the same precedence</b> in kode, which means <b>they will be evaluated left to right</b>, unless parentheses are introduced to change the order of evaluation.
+            </p>
+
+            <p>
+                To illustrate where this is important, let's check if the clock's hour hand is nearly horizontal, by checking if the current hour is between 2 and 4 or 8 and 10:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex first">
+                    <span class="error">incorrect - this formula will not produce the expected result.</span>
+                </label>
+                <div class="step">
+                    <code>
+<pre>if(
+    <span class="hl-before">df(h)</span> &gt;= 2 & <span class="hl-before">df(h)</span> &lt;= 4 | <span class="hl-before">df(h)</span> &gt;= 8 & <span class="hl-before">df(h)</span> &lt;= 10,
+    "Clock hour hand is almost horizontal"
+)</pre>
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+<pre>if(
+    <span class="hl-after">3</span> &gt;= 2 & <span class="hl-after">3</span> &lt;= 4 | <span class="hl-after">3</span> &gt;= 8 & <span class="hl-after">3</span> &lt;= 10,
+    "Clock hour hand is almost horizontal"
+)</pre>
+                    </code>
+                </div>
+
+
+                <label class="ex-no subex">
+                    <span class="error">
+                        comparisons get evaluated before <code>&</code> and <code>|</code>. I've omitted everything except for the condition for brevity.
+                    </span>
+                </label>
+                <div class="step">
+                    <code>
+                        <span class="hl-before">3 &gt;= 2</span> & <span class="hl-before">3 &lt;= 4</span> | <span class="hl-before">3 &gt;= 8</span> & <span class="hl-before">3 &lt;= 10</span>
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+                        <span class="hl-after">1</span> & <span class="hl-after">1</span> | <span class="hl-after">0</span> & <span class="hl-after">0</span>
+                    </code>
+                </div>
+
+
+                <label class="ex-no subex">
+                    <span class="error">
+                        now <code>&</code> and <code>|</code> get evaluated left to right.
+                    </span>
+                </label>
+                <div class="step">
+                    <code>
+                        <span class="hl-before">1 & 1</span> | 0 & 0
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+                        <span class="hl-after">1</span> | 0 & 0
+                    </code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>
+                        <span class="hl-before">1 | 0</span> & 0
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+                        <span class="hl-after">1</span> & 0
+                    </code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code>
+                        <span class="hl-before">1 & 0</span>
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+                        <span class="hl-after">0</span>
+                    </code>
+                </div>
+
+
+                <label class="output">
+                    <span class="error">
+                        After evaluating the <code>if()</code>, the output is empty, despite <code>3</code> being between <code>2</code> and <code>4</code> - the hour hand is horizontal.
+                    </span>
+                </label>
+                <code></code>
+
+            </div>
+
+            <p>
+                To fix this issue, each pair should be wrapped in parentheses:
+            </p>
+
+            <div class="snippet">
+
+                <label class="ex-no subex">
+                    <span class="success">
+                        correct - both ANDs (<code>&</code>) now evaluate before the OR (<code>|</code>) thanks to the parentheses. I've once again omitted everything except for the condition for brevity.
+                    </span>
+                </label>
+                <div class="step">
+                    <code>
+                        <span class="hl-before">(3 &gt;= 2 & 3 &lt;= 4)</span> | <span class="hl-before">(3 &gt;= 8 & 3 &lt;= 10)</span>
+                    </code>
+                    <div class="arrow"></div>
+                    <code>
+                        <span class="hl-after">1</span> | <span class="hl-after">0</span>
+                    </code>
+                </div>
+
+                <label class="ex-no subex"></label>
+                <div class="step">
+                    <code><span class="hl-before">1 | 0</span></code>
+                    <div class="arrow"></div>
+                    <code><span class="hl-after">1</span></code>
+                </div>
+
+                <label class="output">
+                    <span class="success">
+                        correct - the output is now what we wanted it to be.
+                    </span>
+                </label>
+                <code>Clock hour hand is almost horizontal</code>
+
+            </div>
+
+
             <h4 id="logical-not">Inverting booleans</h4>
 
             <p>
@@ -1741,7 +1875,7 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
                 <div class="note">
                     Please note the quotation marks (<code>"</code>) around the format. This is necessary, because the format includes a comma (<code>,</code>), which is a special character in kode.
                 </div>
-                
+
                 <label class="output"></label>
                 <code>Fri, 11 Nov 2022</code>
 
