@@ -1,4 +1,3 @@
-
 // variables shared between themes
 $c-dark-bg: #101010;
 $c-dark-text: rgba(#fff, 0.9);
@@ -7,46 +6,48 @@ $c-light-text: rgba(#000, 0.9);
 $c-accent: #ff00ff;
 
 // dark theme
-:root {
-    --c-bg: $c-dark-bg;
-    --c-bg-hover: rgba(#fff, 0.1);
-    --c-bg-copied: $c-light-bg;
-    --c-text-on-bg-pri: $c-dark-text;
-    --c-text-on-bg-sec: rgba(#fff, 0.8);
-    --c-text-on-bg-tet: rgba(#fff, 0.6);
-    --c-text-on-bg-irr: rgba(#fff, 0.4);
-    --c-text-link: #74c9ea;
-    --c-text-error: #ed9090;
-    --c-text-success: #84c666;
-    --c-border-light: rgba(#fff, 0.2);
-    --c-border-heavy: rgba(#fff, 0.5);
-    --c-code-bg: rgba(#000, 0.01);
-    --c-hl-1: #eacf7f;
-    --c-hl-2: #c88afe;
-    --c-hl-3: #a6ddfd;
-    --c-hl-4: #c2e4a1;
-    --c-hl-5: #f794d1;
-    --c-hl-6: #ffb872;
-    --c-hl-1-strong: #ffcc35;
-    --c-hl-2-strong: #d19dff;
-    --c-hl-3-strong: #74ccff;
-    --c-hl-4-strong: #c4ff8a;
-    --c-hl-5-strong: #f794d1;
-    --c-hl-6-strong: #ffb872;
-    --c-hl-gray: #f5f5f5;
-    --c-hl-gray-strong: #d2d2d2;
-    --c-hl-before: #ffac58;
-    --c-hl-after: #ffac58;
-    --c-hl-error: #ea9999;
-    --c-hl-true: #9ecd88;
-    --c-hl-false: #d98989;
-    --c-hl-true-strong: #9dff6f;
-    --c-hl-false-strong: #ff6f6f;
-    color-scheme: dark;
+@media not print {
+    :root.dark {
+        --c-bg: $c-dark-bg;
+        --c-bg-hover: rgba(#fff, 0.1);
+        --c-bg-copied: $c-light-bg;
+        --c-text-on-bg-pri: $c-dark-text;
+        --c-text-on-bg-sec: rgba(#fff, 0.8);
+        --c-text-on-bg-tet: rgba(#fff, 0.6);
+        --c-text-on-bg-irr: rgba(#fff, 0.4);
+        --c-text-link: #74c9ea;
+        --c-text-error: #ed9090;
+        --c-text-success: #84c666;
+        --c-border-light: rgba(#fff, 0.2);
+        --c-border-heavy: rgba(#fff, 0.5);
+        --c-code-bg: rgba(#000, 0.01);
+        --c-hl-1: #eacf7f;
+        --c-hl-2: #c88afe;
+        --c-hl-3: #a6ddfd;
+        --c-hl-4: #c2e4a1;
+        --c-hl-5: #f794d1;
+        --c-hl-6: #ffb872;
+        --c-hl-1-strong: #ffcc35;
+        --c-hl-2-strong: #d19dff;
+        --c-hl-3-strong: #74ccff;
+        --c-hl-4-strong: #c4ff8a;
+        --c-hl-5-strong: #f794d1;
+        --c-hl-6-strong: #ffb872;
+        --c-hl-gray: #f5f5f5;
+        --c-hl-gray-strong: #d2d2d2;
+        --c-hl-before: #ffac58;
+        --c-hl-after: #ffac58;
+        --c-hl-error: #ea9999;
+        --c-hl-true: #9ecd88;
+        --c-hl-false: #d98989;
+        --c-hl-true-strong: #9dff6f;
+        --c-hl-false-strong: #ff6f6f;
+        color-scheme: dark;
+    }
 }
 
 // light theme
-:root.light {
+:root {
     --c-bg: $c-light-bg;
     --c-bg-hover: rgba(#000, 0.05);
     --c-bg-copied: $c-dark-bg;

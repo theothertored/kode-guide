@@ -5,11 +5,16 @@ let matchMedia, currentTheme;
 
 const mobileThreshold = rem2px(24 + 5 + 56);
 
-function rem2px(rem) {
+function rem2px(rem)
+{
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
-document.addEventListener('DOMContentLoaded', ev => {
+// initialize before the page loads
+initThemeSwitching();
+
+document.addEventListener('DOMContentLoaded', ev =>
+{
 
     // make sure elements used by more than one function are initialized first
     guideEl = document.querySelector('.guide');
@@ -18,7 +23,6 @@ document.addEventListener('DOMContentLoaded', ev => {
     initPWA();
     initExampleNumbers();
     initTOCAndHeaders();
-    initThemeSwitching();
     initReactingToResize();
     initDoubleTapToCopy();
     initSwipeInteractionsForToc();
@@ -26,12 +30,15 @@ document.addEventListener('DOMContentLoaded', ev => {
 
 });
 
-function initPWA() {
+function initPWA()
+{
 
     let prompt;
 
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/kode-guide/sw.js', { scope: '/kode-guide/' }).then(reg => {
+    if ('serviceWorker' in navigator)
+    {
+        navigator.serviceWorker.register('/kode-guide/sw.js', { scope: '/kode-guide/' }).then(reg =>
+        {
 
             let swCachingP = document.getElementById('sw-caching-available');
             swCachingP.classList.remove('no-display');
@@ -40,7 +47,8 @@ function initPWA() {
 
     }
 
-    window.addEventListener('beforeinstallprompt', ev => {
+    window.addEventListener('beforeinstallprompt', ev =>
+    {
 
         prompt = ev;
         let promptP = document.getElementById('pwa-install-prompt');
@@ -50,7 +58,8 @@ function initPWA() {
         promptP.classList.remove('no-display');
         promptBtnP.classList.remove('no-display');
 
-        promptBtn.addEventListener('click', ev => {
+        promptBtn.addEventListener('click', ev =>
+        {
             prompt.prompt();
         });
 
@@ -58,15 +67,18 @@ function initPWA() {
 
 }
 
-function initReactingToResize() {
+function initReactingToResize()
+{
 
     let prevWindowWidth = window.innerWidth;
 
     // init auto-hiding TOC on window resize
-    window.addEventListener('resize', ev => {
+    window.addEventListener('resize', ev =>
+    {
 
         // expand/collapse toc if we went from mobile to desktop or vice versa
-        if (window.innerWidth < mobileThreshold != prevWindowWidth < mobileThreshold) {
+        if (window.innerWidth < mobileThreshold != prevWindowWidth < mobileThreshold)
+        {
             setTOCOpen(window.innerWidth >= mobileThreshold);
         }
 
@@ -77,19 +89,23 @@ function initReactingToResize() {
 
 }
 
-function initExampleNumbers() {
+function initExampleNumbers()
+{
 
     // ex. 1 and ex.1.1 counters
     let ex = 0, subex = 0;
 
     // go through each example number element
-    document.querySelectorAll('.snippet .ex-no').forEach(el => {
+    document.querySelectorAll('.snippet .ex-no').forEach(el =>
+    {
 
-        if (el.classList.contains('subex')) {
+        if (el.classList.contains('subex'))
+        {
 
             // subexample
 
-            if (el.classList.contains('first')) {
+            if (el.classList.contains('first'))
+            {
                 // fisrt subexample should increment the main example counter and reset the subexample counter
                 ex++;
                 subex = 0;
@@ -99,7 +115,8 @@ function initExampleNumbers() {
             subex++;
             el.prepend(`ex. ${ex}.${subex} `);
 
-        } else {
+        } else
+        {
 
             // example 
             // increment example counter, set the text and reset the subexample counter
@@ -113,7 +130,8 @@ function initExampleNumbers() {
 
 }
 
-function initTOCAndHeaders() {
+function initTOCAndHeaders()
+{
 
     // the element to append created list items to
     let tocListEl = tocEl.querySelector('main');
@@ -121,7 +139,8 @@ function initTOCAndHeaders() {
     let counters = [0, 0, 0];
 
     // function to scroll to section linked to by the clicked link (ev.currentTarget)
-    function sectionLinkEl_click(ev) {
+    function sectionLinkEl_click(ev)
+    {
         ev.preventDefault();
 
         // show fragment in the address bar without triggering the default instant scroll
@@ -133,10 +152,12 @@ function initTOCAndHeaders() {
         // make sure the TOC fab won't overlap the header we're scrolling to
         let scrollTop;
 
-        if (scrollToEl.offsetTop < window.scrollY && window.innerWidth < mobileThreshold) {
+        if (scrollToEl.offsetTop < window.scrollY && window.innerWidth < mobileThreshold)
+        {
             // scrolling up and on mobile, fab will be in the way, offset by its height
             scrollTop = scrollToEl.offsetTop - tocFab.clientHeight;
-        } else {
+        } else
+        {
             // scrolling down or not on mobile, fab is not in the way
             scrollTop = scrollToEl.offsetTop;
         }
@@ -149,7 +170,8 @@ function initTOCAndHeaders() {
     }
 
     // go through all headers in the guide
-    guideEl.querySelectorAll('h2, h3, h4').forEach(el => {
+    guideEl.querySelectorAll('h2, h3, h4').forEach(el =>
+    {
 
         // store the text of the header for later
         let html = el.innerHTML;
@@ -187,7 +209,8 @@ function initTOCAndHeaders() {
         counters[entryIndex]++;
 
         // reset counters for lower header levels
-        for (let i = entryIndex + 1; i < counters.length; i++) {
+        for (let i = entryIndex + 1; i < counters.length; i++)
+        {
             counters[i] = 0;
         }
 
@@ -200,7 +223,8 @@ function initTOCAndHeaders() {
         tocLinkEl.href = href;
 
         // listen to TOC entry clicks
-        tocLinkEl.addEventListener('click', ev => {
+        tocLinkEl.addEventListener('click', ev =>
+        {
             sectionLinkEl_click(ev)
 
             // if mobile, close TOC so the user doesn't have to do it manually
@@ -227,22 +251,27 @@ function initTOCAndHeaders() {
     let showingFab = true;
 
     // react to window scrolling
-    window.addEventListener('scroll', ev => {
+    window.addEventListener('scroll', ev =>
+    {
 
         // this code could maybe be changed to use requestAnimationFrame, but I don't think that's necessary
 
-        if (window.scrollY > prevScrollY) {
+        if (window.scrollY > prevScrollY)
+        {
 
             // scrolling down, hide fab if it's visible
-            if (showingFab) {
+            if (showingFab)
+            {
                 tocFab.classList.add('scroll-out');
                 showingFab = false;
             }
 
-        } else {
+        } else
+        {
 
             // scrolling up, show fab if it's hidden
-            if (!showingFab) {
+            if (!showingFab)
+            {
                 tocFab.classList.remove('scroll-out');
                 showingFab = true;
             }
@@ -267,42 +296,54 @@ function initTOCAndHeaders() {
 
 }
 
-function initThemeSwitching() {
+function initThemeSwitching()
+{
 
     // reacts to the user's theme selection changing between 'light', 'dark' and 'system'
     //  1. synchronizes both theme switchers
     //  2. switches to the appropriate theme (resolves 'system' to 'light' or 'dark')
     //  3. saves the selection to localStorage
-    function reactToSelectedThemeChange(theme, dontAnimate) {
+    function reactToSelectedThemeChange(theme, dontAnimate)
+    {
 
-        setCheckedValue('theme', theme);
-        setCheckedValue('theme2', theme);
+        if (document.readyState === 'interactive')
+        {
+            setCheckedValue('theme', theme);
+            setCheckedValue('theme2', theme);
+        }
 
-        if (theme === 'dark' || theme === 'light') {
+        if (theme === 'dark' || theme === 'light')
+        {
 
             // switch to theme directly
             switchTo(theme, dontAnimate);
 
-        } else {
+        } else
+        {
 
             // theme is system
-            if (window.matchMedia) {
+            if (window.matchMedia)
+            {
 
-                if (!matchMedia) {
+                if (!matchMedia)
+                {
                     // this is the first time system was selected, check system theme and listen for further changes
                     matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
                     matchMedia.addEventListener('change', systemDarkThemeListener);
                 }
 
-                if (matchMedia.matches) {
+                if (matchMedia.matches)
+                {
                     // system set to dark theme
                     switchTo('dark', dontAnimate);
-                } else {
+                } else
+                {
                     // system set to light theme
                     switchTo('light', dontAnimate);
                 }
 
-            } else {
+            } else
+            {
                 // switch to light as fallback
                 switchTo('light', dontAnimate);
             }
@@ -313,8 +354,10 @@ function initThemeSwitching() {
     }
 
     // listens to system dark theme changes and switches to the appropriate theme if 'system' is selected
-    function systemDarkThemeListener() {
-        if (document.querySelector('[name="theme"]:checked').value === 'system') {
+    function systemDarkThemeListener()
+    {
+        if (document.querySelector('[name="theme"]:checked').value === 'system')
+        {
             switchTo(matchMedia.matches ? 'dark' : 'light');
         }
     }
@@ -328,28 +371,36 @@ function initThemeSwitching() {
     //  3. toggles the "light" theme class on <html>
     //  4. hides the overlay and waits for animation finish
     //  5. removes the overlay from the DOM
-    function switchTo(toTheme, dontAnimate) {
+    function switchTo(toTheme, dontAnimate)
+    {
 
         if (currentTheme === toTheme)
             return;
 
-        if (dontAnimate) {
+        document.documentElement.style.backgroundColor = null;
 
-            document.documentElement.classList.toggle('light', toTheme === 'light');
+        if (dontAnimate)
+        {
 
-        } else {
+            document.documentElement.classList.toggle('dark', toTheme === 'dark');
+
+        } else
+        {
 
             let overlay = document.createElement('div');
             overlay.classList.add('theme-switch-overlay', toTheme);
             document.body.appendChild(overlay);
 
-            setTimeout(() => {
+            setTimeout(() =>
+            {
                 overlay.classList.add('in');
-                setTimeout(() => {
-                    document.documentElement.classList.toggle('light', toTheme === 'light');
+                setTimeout(() =>
+                {
+                    document.documentElement.classList.toggle('dark', toTheme === 'dark');
                     overlay.classList.remove('in');
                     overlay.classList.add('out');
-                    setTimeout(() => {
+                    setTimeout(() =>
+                    {
                         overlay.remove();
                     }, 330);
                 }, 330);
@@ -364,15 +415,19 @@ function initThemeSwitching() {
     // get initial theme from local storage, default to system
     let initialTheme = localStorage.getItem('theme') || 'system';
 
-    document.querySelectorAll('[name="theme"], [name="theme2"]').forEach(el => {
+    document.addEventListener('DOMContentLoaded', ev =>
+    {
+        document.querySelectorAll('[name="theme"], [name="theme2"]').forEach(el =>
+        {
 
-        // check appropriate radios
-        el.checked = el.value === initialTheme;
+            // check appropriate radios
+            el.checked = el.value === initialTheme;
 
-        // react to radios of both theme switchers changing
-        el.addEventListener('change', ev => reactToSelectedThemeChange(ev.currentTarget.value));
+            // react to radios of both theme switchers changing
+            el.addEventListener('change', ev => reactToSelectedThemeChange(ev.currentTarget.value));
 
-    });
+        });
+    })
 
     // set initial theme
     reactToSelectedThemeChange(initialTheme, true);
@@ -380,36 +435,44 @@ function initThemeSwitching() {
 }
 
 // helper function to set the checked value of a radio group given by name
-function setCheckedValue(name, value) {
-    document.querySelectorAll(`[name="${name}"]`).forEach(el => {
+function setCheckedValue(name, value)
+{
+    document.querySelectorAll(`[name="${name}"]`).forEach(el =>
+    {
         el.checked = el.value === value;
     });
 }
 
 // initializes double-tapping on example boxes to copy to clipboard, with a fancy animation
-function initDoubleTapToCopy() {
+function initDoubleTapToCopy()
+{
 
     const doubleTapDelay = 500;
 
-    document.querySelectorAll('.snippet > code, .snippet > .step > code').forEach(el => {
+    document.querySelectorAll('.snippet > code, .snippet > .step > code').forEach(el =>
+    {
 
         let lastTapForThisEl = 0;
 
-        el.addEventListener('click', ev => {
+        el.addEventListener('click', ev =>
+        {
 
             let now = Date.now();
 
-            if (now - lastTapForThisEl < doubleTapDelay) {
+            if (now - lastTapForThisEl < doubleTapDelay)
+            {
 
                 let noDollars = el.classList.contains('no-dollars') || el.previousElementSibling?.classList.contains('output');
 
                 // double tap detected, copy snippet text to clipboard
-                navigator.clipboard.writeText(noDollars ? el.innerText : `$${el.innerText}$`).then(function () {
+                navigator.clipboard.writeText(noDollars ? el.innerText : `$${el.innerText}$`).then(function ()
+                {
 
                     // success, animate
 
                     // after animation ends, remove the animation class and the listener
-                    const listener = ev => {
+                    const listener = ev =>
+                    {
                         el.classList.remove('copied');
                         el.removeEventListener('transitionend', listener);
                     };
@@ -417,12 +480,14 @@ function initDoubleTapToCopy() {
                     el.classList.add('copied');
                     el.addEventListener('animationend', listener);
 
-                }, function (err) {
+                }, function (err)
+                {
                     alert('Error copying:' + err);
                 });
 
 
-            } else {
+            } else
+            {
                 lastTapForThisEl = now;
             }
 
@@ -436,9 +501,11 @@ let swipeInProgress = false;
 let swipeStartX, swipeStartY;
 const swipeThreshold = 24;
 
-function initSwipeInteractionsForToc() {
+function initSwipeInteractionsForToc()
+{
 
-    window.addEventListener('touchstart', ev => {
+    window.addEventListener('touchstart', ev =>
+    {
 
         if (ev.touches.length !== 1)
             return;
@@ -451,7 +518,8 @@ function initSwipeInteractionsForToc() {
 
     }, false);
 
-    window.addEventListener('touchmove', ev => {
+    window.addEventListener('touchmove', ev =>
+    {
 
         if (!swipeInProgress)
             return;
@@ -461,16 +529,19 @@ function initSwipeInteractionsForToc() {
         let dx = touch.clientX - swipeStartX;
         let dy = touch.clientY - swipeStartY;
 
-        if (Math.abs(dx) > Math.abs(dy)) {
+        if (Math.abs(dx) > Math.abs(dy))
+        {
 
-            if (Math.abs(dx) >= swipeThreshold) {
+            if (Math.abs(dx) >= swipeThreshold)
+            {
                 // horizontal swipe
                 ev.preventDefault();
                 setTOCOpen(dx > 0);
                 swipeInProgress = false;
             }
 
-        } else {
+        } else
+        {
             // vertical swipe
             swipeInProgress = false;
         }
@@ -478,34 +549,40 @@ function initSwipeInteractionsForToc() {
 
     }, { passive: false });
 
-    window.addEventListener('touchend', ev => {
+    window.addEventListener('touchend', ev =>
+    {
         swipeInProgress = false;
     }, false);
 
 }
 
 // opens/closes the TOC and remembers the state in isTOCOpen
-function setTOCOpen(open) {
+function setTOCOpen(open)
+{
     tocEl.classList.toggle('in', open);
     isTOCOpen = open;
 }
 
-function initScrollRestore() {
+function initScrollRestore()
+{
 
     const lastVisitScrollYKey = 'lastVisitScrollY';
     const lastVisitFragmentKey = 'lastVisitFragment';
 
     // restore scroll position on back/forward
-    window.addEventListener('pageshow', ev => {
+    window.addEventListener('pageshow', ev =>
+    {
 
         let lastVisitScrollY = parseInt(localStorage.getItem(lastVisitScrollYKey));
         let lastVisitFragment = localStorage.getItem(lastVisitFragmentKey);
 
         // ev.persisted is true when loading from bfcache, which preserves scroll pos on its own
-        if (!ev.persisted) {
+        if (!ev.persisted)
+        {
 
             // if (Math.abs(window.scrollY - lastVisitScrollY) >= 24 && (!window.location.hash || window.location.hash === lastVisitFragment))
-            if ((window.scrollY === 0 && lastVisitScrollY >= 24) || (window.location.fragment === lastVisitFragment && Math.abs(document.querySelector(lastVisitFragment).offsetTop - window.scrollY) >= 24)) {
+            if ((window.scrollY === 0 && lastVisitScrollY >= 24) || (window.location.fragment === lastVisitFragment && Math.abs(document.querySelector(lastVisitFragment).offsetTop - window.scrollY) >= 24))
+            {
 
                 // offer to restore after hard reload/fresh visit
 
@@ -521,7 +598,8 @@ function initScrollRestore() {
                 let dismissBtnEl = document.createElement('button');
                 dismissBtnEl.classList.add('btn-dismiss');
                 dismissBtnEl.innerText = 'DISMISS';
-                dismissBtnEl.addEventListener('click', ev => {
+                dismissBtnEl.addEventListener('click', ev =>
+                {
                     hideNotifEl()
                     // make sure the click doesn't reach the parent
                     ev.stopPropagation();
@@ -531,7 +609,8 @@ function initScrollRestore() {
                 notifEl.appendChild(spanEl);
                 notifEl.appendChild(dismissBtnEl);
 
-                notifEl.addEventListener('click', ev => {
+                notifEl.addEventListener('click', ev =>
+                {
                     window.scrollTo({
                         top: lastVisitScrollY,
                         behavior: 'smooth'
@@ -542,7 +621,8 @@ function initScrollRestore() {
                 document.body.appendChild(notifEl);
                 setTimeout(() => notifEl.classList.add('in'), 0);
 
-                function hideNotifEl() {
+                function hideNotifEl()
+                {
 
                     notifEl.addEventListener('transitionend', ev => notifEl.remove());
                     notifEl.classList.remove('in');
@@ -560,11 +640,13 @@ function initScrollRestore() {
     let saveScrollTimeoutDuration = 100;
     let saveScrollTimeoutId = null;
 
-    window.addEventListener('scroll', ev => {
+    window.addEventListener('scroll', ev =>
+    {
 
         clearTimeout(saveScrollTimeoutId);
 
-        saveScrollTimeoutId = setTimeout(() => {
+        saveScrollTimeoutId = setTimeout(() =>
+        {
 
             localStorage.setItem(lastVisitScrollYKey, window.scrollY);
             localStorage.setItem(lastVisitFragmentKey, window.location.hash);

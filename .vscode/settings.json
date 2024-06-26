@@ -1,3 +1,4 @@
 {
-    "easysass.excludeRegex": "^_"
+    "easysass.excludeRegex": "^_",
+    "easysass.compileAfterSave": true
 }

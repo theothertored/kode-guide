@@ -1206,4 +1206,14 @@ table {
     }
 }
 
+@media print {
+    .toc, .toc-fab, .scroll-restore-message, .toc-scrim, .theme-switch-overlay {
+        display: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+}
+
 // #endregion
