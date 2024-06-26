@@ -712,6 +712,10 @@ code {
         margin-top: 0.5rem;
         font-style: italic;
         padding: 0 0.5rem;
+
+        + label {
+            margin-top: 0.5rem;
+        }
     }
 
     + .snippet {

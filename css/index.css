@@ -743,6 +743,10 @@ code > pre {
   padding: 0 0.5rem;
 }
 
+.snippet > .note + label {
+  margin-top: 0.5rem;
+}
+
 .snippet + .snippet {
   margin-top: 1.5rem;
 }
