@@ -1863,10 +1863,10 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>df(dddddddd)</code>
+                <code>df(<span class="hl hl-3">dddddddd</span>)</code>
 
                 <label class="output"></label>
-                <code>00000012</code>
+                <code><span class="hl hl-3">00000012</span></code>
 
             </div>
 
@@ -1877,13 +1877,13 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>df("EEEE, d MMM yyyy")</code>
+                <code>df("EEEE, <span class="hl hl-3">d</span> <span class="hl hl-2">MMM</span> <span class="hl hl-1">yyyy</span>")</code>
                 <div class="note">
                     Please note the quotation marks (<code>"</code>) around the format. This is necessary, because the format includes a comma (<code>,</code>), which is a special character in kode.
                 </div>
 
                 <label class="output"></label>
-                <code>Fri, 11 Nov 2022</code>
+                <code>Fri, <span class="hl hl-3">11</span> <span class="hl hl-2">Nov</span> <span class="hl hl-1">2022</span></code>
 
             </div>
 
@@ -1964,10 +1964,10 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>df("yyyy-MM-ss hh:mm:ss a", <span class="hl hl-1">ci(start, 0)</span>)</code>
+                <code>df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span> a", <span class="hl hl-1">ci(start, 0)</span>)</code>
 
                 <label class="output"></label>
-                <code>2022-08-11 08:00:00 AM</code>
+                <code><span class="hl hl-1">2022</span>-<span class="hl hl-2">08</span>-<span class="hl hl-3">11</span> <span class="hl hl-4">08</span>:<span class="hl hl-5">00</span>:<span class="hl hl-6">00</span> AM</code>
 
             </div>
 
@@ -2003,7 +2003,7 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
 
                 <label class="ex-no"></label>
                 <code>
-                df("yyyy-MM-ss hh:mm:ss a",
+            df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span> a",
                 <span class="hl hl-1">2022y</span><span class="hl hl-2">11M</span><span class="hl hl-3">10d</span><span class="hl hl-4">13h</span><span class="hl hl-5">13m</span><span class="hl hl-6">41s</span>)
             </code>
 
