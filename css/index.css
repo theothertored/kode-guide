@@ -445,7 +445,7 @@ code > pre {
   white-space: pre-wrap;
 }
 
-:root.light .hl {
+:root:not(.dark) .hl {
   position: relative;
   z-index: -1;
   line-height: 1;
@@ -454,179 +454,179 @@ code > pre {
   margin: -0.1rem;
 }
 
-:root.light .hl + .hl {
+:root:not(.dark) .hl + .hl {
   margin-left: 0.1rem;
 }
 
-:root.light .hl-1 {
+:root:not(.dark) .hl-1 {
   background-color: var(--c-hl-1);
 }
 
-:root.light .hl-1.strong {
+:root:not(.dark) .hl-1.strong {
   background-color: var(--c-hl-1-strong);
 }
 
-:root.light .hl-2 {
+:root:not(.dark) .hl-2 {
   background-color: var(--c-hl-2);
 }
 
-:root.light .hl-2.strong {
+:root:not(.dark) .hl-2.strong {
   background-color: var(--c-hl-2-strong);
 }
 
-:root.light .hl-3 {
+:root:not(.dark) .hl-3 {
   background-color: var(--c-hl-3);
 }
 
-:root.light .hl-3.strong {
+:root:not(.dark) .hl-3.strong {
   background-color: var(--c-hl-3-strong);
 }
 
-:root.light .hl-4 {
+:root:not(.dark) .hl-4 {
   background-color: var(--c-hl-4);
 }
 
-:root.light .hl-4.strong {
+:root:not(.dark) .hl-4.strong {
   background-color: var(--c-hl-4-strong);
 }
 
-:root.light .hl-5 {
+:root:not(.dark) .hl-5 {
   background-color: var(--c-hl-5);
 }
 
-:root.light .hl-5.strong {
+:root:not(.dark) .hl-5.strong {
   background-color: var(--c-hl-5-strong);
 }
 
-:root.light .hl-6 {
+:root:not(.dark) .hl-6 {
   background-color: var(--c-hl-6);
 }
 
-:root.light .hl-6.strong {
+:root:not(.dark) .hl-6.strong {
   background-color: var(--c-hl-6-strong);
 }
 
-:root.light .hl-before {
+:root:not(.dark) .hl-before {
   background-color: var(--c-hl-before);
 }
 
-:root.light .hl-after {
+:root:not(.dark) .hl-after {
   background-color: var(--c-hl-after);
 }
 
-:root.light .hl-error {
+:root:not(.dark) .hl-error {
   background-color: var(--c-hl-error);
 }
 
-:root.light .hl-true {
+:root:not(.dark) .hl-true {
   background-color: var(--c-hl-true);
 }
 
-:root.light .hl-true.strong {
+:root:not(.dark) .hl-true.strong {
   background-color: var(--c-hl-true-strong);
 }
 
-:root.light .hl-false {
+:root:not(.dark) .hl-false {
   background-color: var(--c-hl-false);
 }
 
-:root.light .hl-false.strong {
+:root:not(.dark) .hl-false.strong {
   background-color: var(--c-hl-false-strong);
 }
 
-:root.light .hl-gray {
+:root:not(.dark) .hl-gray {
   background-color: var(--c-hl-gray);
 }
 
-:root.light .hl-gray.strong {
+:root:not(.dark) .hl-gray.strong {
   background-color: var(--c-hl-gray-strong);
 }
 
-:root:not(.light) .hl-1 {
+:root.dark .hl-1 {
   color: var(--c-hl-1);
 }
 
-:root:not(.light) .hl-1.strong {
+:root.dark .hl-1.strong {
   color: var(--c-hl-1-strong);
 }
 
-:root:not(.light) .hl-2 {
+:root.dark .hl-2 {
   color: var(--c-hl-2);
 }
 
-:root:not(.light) .hl-2.strong {
+:root.dark .hl-2.strong {
   color: var(--c-hl-2-strong);
 }
 
-:root:not(.light) .hl-3 {
+:root.dark .hl-3 {
   color: var(--c-hl-3);
 }
 
-:root:not(.light) .hl-3.strong {
+:root.dark .hl-3.strong {
   color: var(--c-hl-3-strong);
 }
 
-:root:not(.light) .hl-4 {
+:root.dark .hl-4 {
   color: var(--c-hl-4);
 }
 
-:root:not(.light) .hl-4.strong {
+:root.dark .hl-4.strong {
   color: var(--c-hl-4-strong);
 }
 
-:root:not(.light) .hl-5 {
+:root.dark .hl-5 {
   color: var(--c-hl-5);
 }
 
-:root:not(.light) .hl-5.strong {
+:root.dark .hl-5.strong {
   color: var(--c-hl-5-strong);
 }
 
-:root:not(.light) .hl-6 {
+:root.dark .hl-6 {
   color: var(--c-hl-6);
 }
 
-:root:not(.light) .hl-6.strong {
+:root.dark .hl-6.strong {
   color: var(--c-hl-6-strong);
 }
 
-:root:not(.light) .hl-before {
+:root.dark .hl-before {
   color: var(--c-hl-before);
 }
 
-:root:not(.light) .hl-after {
+:root.dark .hl-after {
   color: var(--c-hl-after);
 }
 
-:root:not(.light) .hl-error {
+:root.dark .hl-error {
   color: var(--c-hl-error);
 }
 
-:root:not(.light) .hl-true {
+:root.dark .hl-true {
   color: var(--c-hl-true);
 }
 
-:root:not(.light) .hl-true.strong {
+:root.dark .hl-true.strong {
   color: var(--c-hl-true-strong);
 }
 
-:root:not(.light) .hl-false {
+:root.dark .hl-false {
   color: var(--c-hl-false);
 }
 
-:root:not(.light) .hl-false.strong {
+:root.dark .hl-false.strong {
   color: var(--c-hl-false-strong);
 }
 
-:root:not(.light) .hl-gray {
+:root.dark .hl-gray {
   color: var(--c-hl-gray);
 }
 
-:root:not(.light) .hl-gray.strong {
+:root.dark .hl-gray.strong {
   color: var(--c-hl-gray-strong);
 }
 
-:root:not(.light) .hl.strong {
+:root.dark .hl.strong {
   font-weight: bold;
 }
 

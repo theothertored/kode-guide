@@ -466,7 +466,7 @@ code {
 }
 
 // light mode highlights using background color
-:root.light {
+:root:not(.dark) {
 
     .hl {
         position: relative;
@@ -530,7 +530,7 @@ code {
 }
 
 // dark mode highlights using text color
-:root:not(.light) {
+:root.dark {
 
     @for $i from 1 to 7 {
         .hl-#{$i} {
