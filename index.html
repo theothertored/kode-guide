@@ -1659,7 +1659,7 @@
             </blockquote>
 
             <p>
-                Recently at the time of writing, a new function called <code>lv()</code> (Local Variable, <a href="https://help.kustom.rocks/i2177-lv-local-variables">requested</a> by yours truly) was introduced.
+                Recently at the time of writing, a new function called <code>lv()</code> (Local Variable, <a href="https://forum.kustom.rocks/t/lv-local-variables/4125">requested</a> by yours truly) was introduced.
                 This function can be used to solve the problem described above.
             </p>
 
@@ -1877,18 +1877,18 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>df("EEEE, <span class="hl hl-3">d</span> <span class="hl hl-2">MMM</span> <span class="hl hl-1">yyyy</span>")</code>
+                <code>df("<span class="hl hl-3">EEEE</span>, <span class="hl hl-3">d</span> <span class="hl hl-2">MMM</span> <span class="hl hl-1">yyyy</span>")</code>
                 <div class="note">
                     Please note the quotation marks (<code>"</code>) around the format. This is necessary, because the format includes a comma (<code>,</code>), which is a special character in kode.
                 </div>
 
                 <label class="output"></label>
-                <code>Fri, <span class="hl hl-3">11</span> <span class="hl hl-2">Nov</span> <span class="hl hl-1">2022</span></code>
+                <code><span class="hl hl-3">Friday</span>, <span class="hl hl-3">11</span> <span class="hl hl-2">Nov</span> <span class="hl hl-1">2022</span></code>
 
             </div>
 
             <p>
-                Check out the <a href="https://help.kustom.rocks/i2554-df-date-format-represent-a-time-instant-as-text">official <code>df()</code> function documentation page</a> for all the different tokens you can use.
+                Check out the <a href="https://docs.kustom.rocks/docs/reference/functions/df/">official <code>df()</code> function documentation page</a> for all the different tokens you can use.
             </p>
 
             <p>
@@ -1964,10 +1964,10 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
             <div class="snippet">
 
                 <label class="ex-no"></label>
-                <code>df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span> a", <span class="hl hl-1">ci(start, 0)</span>)</code>
+                <code>df("yyyy-MM-ss hh:mm:ss a", <span class="hl hl-1">ci(start, 0)</span>)</code>
 
                 <label class="output"></label>
-                <code><span class="hl hl-1">2022</span>-<span class="hl hl-2">08</span>-<span class="hl hl-3">11</span> <span class="hl hl-4">08</span>:<span class="hl hl-5">00</span>:<span class="hl hl-6">00</span> AM</code>
+                <code>2022-08-11 08:00:00 AM</code>
 
             </div>
 
@@ -2003,7 +2003,7 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
 
                 <label class="ex-no"></label>
                 <code>
-            df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span> a",
+            df("<span class="hl hl-1">yyyy</span>-<span class="hl hl-2">MM</span>-<span class="hl hl-3">dd</span> <span class="hl hl-4">hh</span>:<span class="hl hl-5">mm</span>:<span class="hl hl-6">ss</span> <span class="hl hl-4">a</span>",
                 <span class="hl hl-1">2022y</span><span class="hl hl-2">11M</span><span class="hl hl-3">10d</span><span class="hl hl-4">13h</span><span class="hl hl-5">13m</span><span class="hl hl-6">41s</span>)
             </code>
 
@@ -2378,7 +2378,7 @@ lv(<span class="hl hl-3">c</span>, mu(sqrt, <span class="hl hl-1">#a</span> ^ 2 
 
             <ul class="text-left">
                 <li>
-                    <a href="https://help.kustom.rocks/s1-general/knowledgebase/top/c2-functions">Official documentation</a> for all Kustom functions,
+                    <a href="https://docs.kustom.rocks/docs/reference/functions/">Official documentation</a> for all Kustom functions,
                 </li>
                 <li>
                     <a href="https://discord.gg/XhDkh3SFNt">Kustom Discord server</a>, where you can get help and showcase your creations, as well as browse useful resources and formulas created by other users,
